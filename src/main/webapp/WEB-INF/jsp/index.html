@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+    <link href="resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="resources/css/animate.css" rel="stylesheet">
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+ 
+    <style type="text/css">
+      .height-big{
+        height: 1200px;
+      }
+      .height-xs{
+        height: 50px;
+      }
+      .blue{
+        background: #36D1C4;
+      }
+      .green{
+        background: #A0EECC;
+      }
+      .qing{
+        background: #6DF1CC;
+      }
+      .yellow{
+        background: #E3FFC3;
+      }
+      .red{
+        background: #FF89C0 ;
+      }
+      .white{
+        background: #ffffff;
+      }
+      .gray{
+        background: #F4F7F7;
+      }
+      .height-sm{
+        height: 500px;
+      }
+      li{
+      	margin-bottom:10px
+      }
+    </style>
+  </head>
+  <body ng-app="myApp" ng-controller="userCtrl" class="gray">
+    <!-- 页眉大屏显示 -->  
+    <div class="jumbotron blue">  
+        <div class="container">
+          <div style="height:50px"></div>
+          <div class="text-center">
+            <h1><font color="white">我的个人博客</font></h1>
+          </div>   
+          <p class="text-center">生如夏花之绚烂，死如秋叶之静美</p>   
+        </div>  
+    </div> 
+
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" id = 'top'>
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">我的博客</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="#">首页</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">关于 <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">关于我</a></li>
+            <li><a href="#">友情链接</a></li>
+          </ul>
+        </li>
+        <li><a href="#">成长</a></li>
+        <li><a href="#">学习</a></li>
+        <li><a href="#">娱乐</a></li>
+        <li><a href="#">说说</a></li>
+        <li><a href="#">留言</a></li>
+      </ul>
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group from-inline">
+          <input type="text" class="form-control" placeholder="请输入关键字">
+          <button type="submit" class="btn btn-primary" >搜索</button>
+        </div>
+      </form>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<!-- 主体内容-->
+    <div class="container content scrollspy-example">
+      <div class="col-md-8 col-xs-12 blue">
+        <div class="red ">
+          <div>
+          <h4><span>最新发布</span></h4>
+            <ul class="list-group">
+              <a href="#" class="list-group-item" ng-repeat="x in users" >
+              <div class ="container">
+              	<div class="col-md-2 col-xs-2">
+              	<!-- class="img-responsive"图片会根据屏幕大小 响应式改变 -->
+           			<img  src="resources/img/image2.jpg" class="img-responsive" alt="...">
+           		</div>
+                    
+                <div class="col-md-10 col-xs-10">
+                    <h3 class="">{{x.name}}</h3>
+                    <h4 style="color: #C5C5C5">{{x.id}}</h4>
+                </div>
+              </div>
+              </a>
+            </ul>
+          </div>
+        </div>
+        <div class="yellow">
+        <div>
+          <h4><span>特别推荐</span></h4>
+            <ul class="list-group">
+              <a href="#" class="list-group-item" ng-repeat="x in users" >
+              <div class ="container">
+              	<div class="col-md-2 col-xs-2">
+           			<img  src="resources/img/image2.jpg" class="img-responsive" alt="...">
+           		</div>
+                    
+                <div class="col-md-10 col-xs-10">
+                    <h3 class="">{{x.name}}</h3>
+                    <h4 style="color: #C5C5C5">{{x.id}}</h4>
+                </div>
+              </div>
+              </a>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="green col-md-4 col-xs-12 height-big">
+		
+      </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="resources/js/bootstrap.min.js"></script>
+    <script src="http://ifightcrime.github.io/bootstrap-growl/jquery.bootstrap-growl.min.js"></script>
+
+    <!-- 响应式导航栏所需要的js库-->
+    <script src="resources/js/index-controller.js"></script>
+    <script src="resources/js/myJs.js"></script>
+    <script src="resources/js/Headroom.js"></script>
+    <script src="resources/js/jquery-headroom.js"></script>
+  </body>
+</html>

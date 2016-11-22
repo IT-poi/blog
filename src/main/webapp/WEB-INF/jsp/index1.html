@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+ 
+    <style type="text/css">
+      .height-big{
+        height: 1200px;
+      }
+      .height-xs{
+        height: 50px;
+      }
+      .height-match{
+        height:0px;
+        padding-bottom:60%
+      }
+      .height-ban{
+        height:0px;
+        padding-bottom:40%
+      }
+      .blue{
+        background: #36D1C4;
+      }
+      .black{
+        background: #384259;
+      }
+      .green{
+        background: #A0EECC;
+      }
+      .qing{
+        background: #6DF1CC;
+      }
+      .yellow{
+        background: #E3FFC3;
+      }
+      .red{
+        background: #FF89C0 ;
+      }
+      .white{
+        background: #ffffff;
+      }
+      .gray{
+        background: #F4F7F7;
+      }
+      .height-sm{
+        height: 500px;
+      }
+    </style>
+  </head>
+  <body class="gray">
+    <!-- 页眉大屏显示 -->  
+    <div class="height-match blue">  
+        <div class="container">
+          <div style="height:50px"></div>
+          <div class="text-center">
+            <h1><font color="white">我的个人博客</font></h1>
+          </div>   
+          <p class="text-center">生如夏花之绚烂，死如秋叶之静美</p>   
+        </div>  
+    </div> 
+
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" id = 'top'>
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">我的博客</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="#">首页</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">关于 <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">关于我</a></li>
+            <li><a href="#">友情链接</a></li>
+          </ul>
+        </li>
+        <li><a href="#">成长</a></li>
+        <li><a href="#">学习</a></li>
+        <li><a href="#">娱乐</a></li>
+        <li><a href="#">说说</a></li>
+        <li><a href="#">留言</a></li>
+      </ul>
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group from-inline">
+          <input type="text" class="form-control" placeholder="请输入关键字">
+          <button type="submit" class="btn btn-primary" >搜索</button>
+        </div>
+      </form>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<!-- 主体内容-->
+    <div class="height-ban">
+        <div class="col-md-5 height-ban animated zoomIn red">123</div>
+        <div class="col-md-7 height-ban animated fadeInRight black">312</div>
+    </div>
+    <div class="height-ban">
+        <div class="col-md-7 height-ban animated fadeInLeft black">123</div>
+        <div class="col-md-5 height-ban animated zoomIn red">312</div>
+    </div>
+    <div class="height-xs green">
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="http://ifightcrime.github.io/bootstrap-growl/jquery.bootstrap-growl.min.js"></script>
+
+    <!-- 响应式导航栏所需要的js库-->
+    <script src="js/myJs.js"></script>
+    <script src="js/Headroom.js"></script>
+    <script src="js/jquery-headroom.js"></script>
+  </body>
+</html>
