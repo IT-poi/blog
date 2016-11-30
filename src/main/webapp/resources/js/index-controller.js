@@ -1,9 +1,9 @@
 var app = angular.module("myApp",[]);
 app.controller("userCtrl", function($scope,$http) {
 	console.log("response:");//TODO
-	$http.get("/user")
+	$http.get("/article")
 	.success(function (response) {
 		console.log(response);//TODO
-		$scope.users = response.users;
+		$scope.articles = response.articles;
 	});
 });

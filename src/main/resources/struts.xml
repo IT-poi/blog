@@ -18,7 +18,7 @@
     </package>
     
     <package name="json" extends="json-default" namespace="/">  
-        <action name="user" class="userAction" method="getUser">  
+        <action name="article" class="articleJsonAction" method="getUser">  
 	        <result type="json">
 	            <param name="root">users</param>  
 	        </result>

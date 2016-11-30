@@ -8,6 +8,6 @@
 </head>
 <body>
 	this is a success jsp file
-	<h2><a href="<%=request.getContextPath()%>/">返回首页</button></h2>
+	<h2><a href="<%=request.getContextPath()%>/test/index">返回首页</button></h2>
 </body>
 </html>

@@ -15,14 +15,14 @@ public class USerServiceImpl implements UserService{
 	private UserDao userDao;
 	
 	@Transactional
-	public boolean insertUser(User user) {
+	public int insertUser(User user) {
 		// TODO Auto-generated method stub
 		try {
 			return userDao.insert(user);
 		} catch (DataIntegrityViolationException e) {
 			// TODO: handle exception
 			System.out.println("userServiceImpl catch exception!");
-			return false;
+			return 0;
 		}
 	}
 	

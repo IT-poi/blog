@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.cuit.boke.dao.GenericDao;
 import com.cuit.boke.entity.User;
 @Component
-public class UserDao implements GenericDao<User> {
+public class UserDao implements GenericDao<User, Integer> {
 	
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -21,7 +21,7 @@ public class UserDao implements GenericDao<User> {
 		return this.sessionFactory.getCurrentSession();
 	}
 
-	public User queryById(int id) {
+	public User queryById(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -30,38 +30,37 @@ public class UserDao implements GenericDao<User> {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	public boolean insert(User t) {
+	
+	public List<User> queryByPage(int begin, int pageSize) {
 		// TODO Auto-generated method stub
-		boolean flag = true;
+		return null;
+	}
+
+	public Integer insert(User t) {
+		int i = -1;
 		try {
 			//返回id
-			int i = (Integer)this.getCurrentSession().save(t);
+			i = (Integer)this.getCurrentSession().save(t);
 			System.out.println("本次操作影响的行数："+i);
-			flag = true;
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println("userDao catch exception!");
-			flag = false;
 		}
-		return flag;
+		return i;
 	}
 
-	public int update(User t) {
+	public Integer update(User t) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	public int deleteById(int id) {
+	public Integer deleteById(Integer id) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	public void flush() {
-		// TODO Auto-generated method stub
-		if(this.getCurrentSession()!=null){
-			this.getCurrentSession().flush();
-		}
+		this.getCurrentSession().flush();
 	}
 
 }

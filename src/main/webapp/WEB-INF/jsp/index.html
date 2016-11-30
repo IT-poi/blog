@@ -112,7 +112,7 @@
           <div>
           <h4><span>最新发布</span></h4>
             <ul class="list-group">
-              <a href="#" class="list-group-item" ng-repeat="x in users" >
+              <a href="#" class="list-group-item" ng-repeat="x in articles" >
               <div class ="container">
               	<div class="col-md-2 col-xs-2">
               	<!-- class="img-responsive"图片会根据屏幕大小 响应式改变 -->
@@ -120,8 +120,9 @@
            		</div>
                     
                 <div class="col-md-10 col-xs-10">
-                    <h3 class="">{{x.name}}</h3>
-                    <h4 style="color: #C5C5C5">{{x.id}}</h4>
+                    <h3 class="">{{x.title}}</h3>
+                    <h4 style="color: #C5C5C5">{{x.content}}</h4>
+                    <span>{{x.id}} &nbsp;&nbsp;</span><span>{{x.label}}</span>
                 </div>
               </div>
               </a>
@@ -132,15 +133,16 @@
         <div>
           <h4><span>特别推荐</span></h4>
             <ul class="list-group">
-              <a href="#" class="list-group-item" ng-repeat="x in users" >
+              <a href="#" class="list-group-item" ng-repeat="x in articles" >
               <div class ="container">
               	<div class="col-md-2 col-xs-2">
            			<img  src="resources/img/image2.jpg" class="img-responsive" alt="...">
            		</div>
                     
                 <div class="col-md-10 col-xs-10">
-                    <h3 class="">{{x.name}}</h3>
-                    <h4 style="color: #C5C5C5">{{x.id}}</h4>
+                    <h3 class="">{{x.title}}</h3>
+                    <h4 style="color: #C5C5C5">作者：{{x.author}}</h4>
+                    <span>{{x.id}} &nbsp;&nbsp;</span><span>{{x.brief}}</span>
                 </div>
               </div>
               </a>

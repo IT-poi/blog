@@ -4,6 +4,6 @@ import com.cuit.boke.entity.User;
 
 public interface UserService {
 	
-	public boolean insertUser(User user);
+	public int insertUser(User user);
 	
 }
