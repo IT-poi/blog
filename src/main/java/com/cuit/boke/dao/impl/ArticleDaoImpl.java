@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.cuit.boke.dao.ArticleDao;
+import com.cuit.boke.dto.PageBean;
 import com.cuit.boke.entity.Article;
 @Component
 public class ArticleDaoImpl implements ArticleDao{
@@ -23,17 +24,21 @@ public class ArticleDaoImpl implements ArticleDao{
 	 
 	
 	public Article queryById(Integer id) {
-		return null;
+		String sql = "select * from article where id = "+ id;
+		List<Article> list = (List<Article>) this.getCurrentSession().createSQLQuery(sql).addEntity(Article.class).list();
+		return list.get(0);
 	}
 
 	public List<Article> queryAll() {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "select * from article";
+		@SuppressWarnings("unchecked")
+		List<Article> list = (List<Article>) this.getCurrentSession().createSQLQuery(sql).addEntity(Article.class).list();
+		return list;
 	}
 
-	public List<Article> queryByPage(int begin, int pageSize) {
-		System.out.println("daozhele ~------------------");
-		String sql = "select * from article limit " + begin +","+ pageSize;
+	public List<Article> queryByPage(int begin, int pageSize, String order) {
+		String sql = "select * from article limit " + begin + "," + pageSize + " order by " + order + " DESC";
+		@SuppressWarnings("unchecked")
 		List<Article> list = (List<Article>) this.getCurrentSession().createSQLQuery(sql).addEntity(Article.class).list();
 		return list;
 	}
@@ -52,9 +57,8 @@ public class ArticleDaoImpl implements ArticleDao{
 		return 0;
 	}
 
-	public void flush() {
-		// TODO Auto-generated method stub
-		
+	public void flush() { 
+		getCurrentSession().flush();
 	}
 
 	public int queryTotalCount() {
@@ -66,6 +70,17 @@ public class ArticleDaoImpl implements ArticleDao{
 		
 		BigInteger count = (BigInteger) this.getCurrentSession().createSQLQuery(sql).uniqueResult();
 		return count.intValue();
+	}
+
+
+
+	public List<Article> queryByLabelPage(String label, int begin, int pageSize) {
+		//查询包含当前标签的文章列表
+		String sql = "select * from article where label like '%"+ label + "%' limit " + begin + "," 
+				+ pageSize + " order by " + PageBean.TIME + " DESC";
+		@SuppressWarnings("unchecked")
+		List<Article> list = (List<Article>) this.getCurrentSession().createSQLQuery(sql).addEntity(Article.class).list();
+		return list;
 	}
 	
 }

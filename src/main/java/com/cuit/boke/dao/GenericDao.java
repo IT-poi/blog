@@ -25,14 +25,6 @@ public interface GenericDao<T, PK> {
 	public List<T> queryAll();
 	
 	/**
-	 * 分页查询
-	 * @param begin 从当前位置开始查询
-	 * @param pageSize 查询的记录数
-	 * @return 查询结果
-	 */
-	public List<T> queryByPage(int begin, int pageSize);
-	
-	/**
 	 * 将泛型所约定的实体插入数据表
 	 * @param t 要插入的实体
 	 * @return 插入数据id

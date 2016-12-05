@@ -29,10 +29,10 @@ public class ArticleJsonAction extends ActionSupport{
 		this.recentPages = recentPages;
 	}
 
-	public String getUser(){
+	public String getPages(){
 		PageBean<Article> pages;
 		System.out.println("----JsonAction");
-		pages = articleService.recentArticleByPage(1, 5);
+		pages = articleService.recentArticleByPage(1, 5, PageBean.TIME);
 		recentPages.put("recentPages", pages);
 		return SUCCESS;
 	}

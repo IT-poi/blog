@@ -18,7 +18,7 @@ public class ArticleServiceImpl implements ArticleService{
 	@Autowired
 	private ArticleDao articleDao;
 	
-	public PageBean<Article> recentArticleByPage(int currPage, int pageSize) {
+	public PageBean<Article> recentArticleByPage(int currPage, int pageSize, String order) {
 		PageBean<Article> pageBean = new PageBean<Article>();
 		//封装当前页数
 		pageBean.setCurrPage(currPage);
@@ -34,7 +34,7 @@ public class ArticleServiceImpl implements ArticleService{
 		//封装每页显示的数据
 		int begin = (currPage - 1)*pageSize;
 		System.out.println("---------Service");
-		List<Article> list = articleDao.queryByPage(begin, pageSize);
+		List<Article> list = articleDao.queryByPage(begin, pageSize, order);
 		pageBean.setList(list);
 		return pageBean;
 	}

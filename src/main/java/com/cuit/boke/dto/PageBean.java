@@ -11,6 +11,10 @@ import java.util.List;
  */
 public class PageBean<T> {
 	
+	public static final String VIEW = "page_view"; //按文章浏览量排序
+	
+	public static final String TIME = "create_time"; //按文章发布时间排序
+	
 	private int currPage; //当前页数
 	
 	private int pageSize; //每页显示记录数
@@ -19,9 +23,11 @@ public class PageBean<T> {
 	
 	private int totalPage; //总页数
 	
-	private List<T> list; //每页要显示的数据
-
+	private String order; //排序方式，可以通过最新和最热排序
 	
+	private List<T> list; //每页要显示的数据
+	
+
 	public int getCurrPage() {
 		return currPage;
 	}
@@ -32,7 +38,7 @@ public class PageBean<T> {
 	 */
 	public void setCurrPage(int currPage) {
 		if (currPage<=0) {
-			currPage = 1;
+			this.currPage = 1;
 		}else {
 			this.currPage = currPage;
 		}
@@ -48,7 +54,7 @@ public class PageBean<T> {
 	 */
 	public void setPageSize(int pageSize) {
 		if(pageSize <= 0){
-			pageSize = 1;
+			this.pageSize = 1;
 		}else {
 			this.pageSize = pageSize;
 		}
@@ -64,7 +70,7 @@ public class PageBean<T> {
 	 */
 	public void setTotalCount(int totalCount) {
 		if(totalCount<0){
-			totalCount = 0;
+			this.totalCount = 0;
 		}else {
 			this.totalCount = totalCount;
 		}
@@ -80,7 +86,7 @@ public class PageBean<T> {
 	 */
 	public void setTotalPage(int totalPage) {
 		if (totalPage<=0) {
-			totalPage = 1;
+			this.totalPage = 1;
 		}else {
 			this.totalPage = totalPage;
 		}
@@ -92,6 +98,21 @@ public class PageBean<T> {
 
 	public void setList(List<T> list) {
 		this.list = list;
+	}
+
+	public String getOrder() {
+		return order;
+	}
+
+	/**
+	 * 默认按照最新发表排序
+	 * @param order
+	 */
+	public void setOrder(String order) {
+		if(order.isEmpty()){
+			order = TIME;
+		}
+		this.order = order;
 	}
 	
 	
