@@ -52,6 +52,9 @@
       li{
       	margin-bottom:10px
       }
+      @media (max-width:991px){
+      	
+      }
     </style>
   </head>
   <body ng-app="myApp" ng-controller="userCtrl" class="gray">
@@ -112,7 +115,7 @@
           <div>
           <h4><span>最新发布</span></h4>
             <ul class="list-group">
-              <a href="#" class="list-group-item" ng-repeat="x in articles" >
+              <a href="#" class="list-group-item" ng-repeat="x in recentPages.list" >
               <div class ="container">
               	<div class="col-md-2 col-xs-2">
               	<!-- class="img-responsive"图片会根据屏幕大小 响应式改变 -->
@@ -127,13 +130,20 @@
               </div>
               </a>
             </ul>
+            <nav>
+			  <ul class="pagination">
+			    <li class="disabled"><a href="#">&laquo;</a></li>
+			    <li class="active" ng-repeat="x in recentPages.totalPage"><button ng-click="">{{x.totalPage}}<span class="sr-only">{{x.currentPage}}</span></button></li>
+			    <li><a href="/article">&raquo;</a></li>
+			  </ul>
+			</nav>
           </div>
         </div>
         <div class="yellow">
         <div>
           <h4><span>特别推荐</span></h4>
             <ul class="list-group">
-              <a href="#" class="list-group-item" ng-repeat="x in articles" >
+              <a href="#" class="list-group-item" ng-repeat="x in recentPages.list" >
               <div class ="container">
               	<div class="col-md-2 col-xs-2">
            			<img  src="resources/img/image2.jpg" class="img-responsive" alt="...">

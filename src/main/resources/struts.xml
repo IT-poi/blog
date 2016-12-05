@@ -20,7 +20,7 @@
     <package name="json" extends="json-default" namespace="/">  
         <action name="article" class="articleJsonAction" method="getUser">  
 	        <result type="json">
-	            <param name="root">users</param>  
+	            <param name="root">recentPages</param>  
 	        </result>
          </action>  
      </package> 

@@ -25,33 +25,65 @@ public class PageBean<T> {
 	public int getCurrPage() {
 		return currPage;
 	}
-
+	
+	/**
+	 * 当前页至少为1
+	 * @param currPage
+	 */
 	public void setCurrPage(int currPage) {
-		this.currPage = currPage;
+		if (currPage<=0) {
+			currPage = 1;
+		}else {
+			this.currPage = currPage;
+		}
 	}
 
 	public int getPageSize() {
 		return pageSize;
 	}
 
+	/**
+	 * pageSize至少为1
+	 * @param pageSize
+	 */
 	public void setPageSize(int pageSize) {
-		this.pageSize = pageSize;
+		if(pageSize <= 0){
+			pageSize = 1;
+		}else {
+			this.pageSize = pageSize;
+		}
 	}
 
 	public int getTotalCount() {
 		return totalCount;
 	}
 
+	/**
+	 * 总记录条数至少为0
+	 * @param totalCount
+	 */
 	public void setTotalCount(int totalCount) {
-		this.totalCount = totalCount;
+		if(totalCount<0){
+			totalCount = 0;
+		}else {
+			this.totalCount = totalCount;
+		}
 	}
 
 	public int getTotalPage() {
 		return totalPage;
 	}
-
+	
+	/**
+	 * 总页数最小为1
+	 * @param totalPage
+	 */
 	public void setTotalPage(int totalPage) {
-		this.totalPage = totalPage;
+		if (totalPage<=0) {
+			totalPage = 1;
+		}else {
+			this.totalPage = totalPage;
+		}
 	}
 
 	public List<T> getList() {

@@ -1,5 +1,6 @@
 package com.cuit.boke.dao.impl;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -57,12 +58,14 @@ public class ArticleDaoImpl implements ArticleDao{
 	}
 
 	public int queryTotalCount() {
-//		String sql = "select count(*) from article";
+		String sql = "select count(*) from article";
 //		List<Long> list = (List<Long>) this.getCurrentSession().createSQLQuery(sql).addEntity(Long.class).list();
 //		if(list!=null && list.size()>0){
 //			return list.get(0).intValue();
 //		}
-		return 0;
+		
+		BigInteger count = (BigInteger) this.getCurrentSession().createSQLQuery(sql).uniqueResult();
+		return count.intValue();
 	}
 	
 }

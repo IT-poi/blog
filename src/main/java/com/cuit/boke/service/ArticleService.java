@@ -33,8 +33,9 @@ public class ArticleService {
 		int totalCount = articleDao.queryTotalCount();
 		pageBean.setTotalCount(totalCount);
 		//封装总页数
-		Double pageCount = Math.ceil(totalCount/pageSize);
-		pageBean.setTotalPage(pageCount.intValue());
+//		Double pageCount = Math.ceil(totalCount / pageSize);
+		int pageCount = (totalCount + pageSize -1) / pageSize;
+		pageBean.setTotalPage(pageCount);
 		//封装每页显示的数据
 		int begin = (currPage - 1)*pageSize;
 		System.out.println("---------Service");

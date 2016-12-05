@@ -4,6 +4,6 @@ app.controller("userCtrl", function($scope,$http) {
 	$http.get("/article")
 	.success(function (response) {
 		console.log(response);//TODO
-		$scope.articles = response.articles;
+		$scope.recentPages = response.recentPages;
 	});
 });
