@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import com.cuit.boke.entity.Article;
-import com.cuit.boke.entity.User;
 import com.cuit.boke.service.ArticleService;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -17,7 +16,8 @@ import com.opensymphony.xwork2.ActionSupport;
 @ParentPackage("struts-default")
 public class TestAction extends ActionSupport{
 	
-	private User user;
+	
+	private static final long serialVersionUID = 5857514152555579576L;
 	
 	private Article article;
 	
@@ -34,21 +34,6 @@ public class TestAction extends ActionSupport{
 		return "index";
 	}
 	
-	
-	@Action(value="login", results={
-			@Result(name="success", location="/success.jsp"),
-			@Result(name="error", location="/error.jsp")
-	})
-	public String success(){
-		if(user==null){
-			return "error";
-		}else {
-			if(user.getName().isEmpty()){
-				return "error";
-			}
-		}
-		return "success";
-	}
 	@Action(value="commit", results={
 			@Result(name="success", location="/success.jsp"),
 			@Result(name="error", location="/error.jsp")
@@ -69,11 +54,4 @@ public class TestAction extends ActionSupport{
 		this.article = article;
 	}
 
-
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
 }

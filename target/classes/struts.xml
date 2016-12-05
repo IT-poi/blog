@@ -6,14 +6,11 @@
 <struts>
 
    <package name="default" extends="struts-default">
-        <action name="boke" class="bokeAction" method="dsa">
-            <result name="innt">/index.jsp</result>
-            <result name="success">/success.jsp</result>
-            <result name="error">/error.jsp</result>
-        </action>
-        
-        <action name = "*" >
+        <action name = "main" >
         	<result>/WEB-INF/jsp/index.html</result>
+        </action>
+        <action name = "main1" >
+        	<result>/WEB-INF/jsp/index1.html</result>
         </action>
     </package>
     

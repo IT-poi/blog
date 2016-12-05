@@ -4,11 +4,16 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
  
 <hibernate-mapping package="com.cuit.boke.entity">
-    <class name="User">
-        <id name="id">
+    <class name="Article">
+        <id name="id" type="int">
         	<generator class="identity"></generator>
         </id>
-        <property name="name"></property>
-        <property name="age"></property>
+        <property name="title"></property>
+        <property name="content"></property>
+        <property name="brief"></property>
+        <property name="imgUrl" column="img_url"></property>
+        <property name="pageViews" column="page_views"></property>
+        <property name="label" ></property>
+        <property name="author" column="author"></property>
     </class>
 </hibernate-mapping>
