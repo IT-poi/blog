@@ -41,7 +41,7 @@ public class TestAction extends ActionSupport{
 	public String getArticlePage(){
 		Integer articleId = 0;
 //		try {
-			System.out.println(article.getBrief());
+//			System.out.println(article.getBrief());
 			articleId = articleService.saveArticle(article);
 			System.out.println(articleId);
 //		} catch (Exception e) {

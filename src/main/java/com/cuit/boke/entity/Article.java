@@ -1,27 +1,89 @@
 package com.cuit.boke.entity;
 
-public class Article {
-	private int id; //文章主键
-	
-	private String title; //文章标题
-	
-	private String content; //文章内容
-	
-	private String brief; //文章概要
-	
-	private String imgUrl; //图片URL
-	
-	private int pageViews; //文章浏览量
-	
-	private String label; //文章的标签，以分隔符(,)分开
-	
-	private String author; //作者
+import java.sql.Date;
 
-	public int getId() {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+@Entity
+@Table(name="article")
+@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
+public class Article {
+	// 文章主键
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer id;
+
+	
+	
+	// 文章标题
+	@Column(nullable=false,length=255)
+	private String title; 
+	
+	// 文章内容
+	@Column(nullable=false,length=10000)
+	private String content; 
+	
+	
+
+	// 文章概要
+	@Column(nullable=false,length=100)
+	private String brief; 
+	
+	// 图片URL,默认地址为"/"
+	@Column(nullable=false,columnDefinition="/")
+	private String imgURL; 
+	
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	// 文章上传时间(文章第一次上传的时间)
+	@Column(nullable=false,name="create_time")
+	private Date createTime;
+	
+	
+
+	// 文章浏览量
+	@Column(name="page_view",columnDefinition="0")
+	private int pageView;
+	
+	// 文章的标签，以分隔符(,)分开
+	@Column
+	private String label; 
+	
+	// 博客本人
+	@ManyToOne(targetEntity=Manager.class)
+	@JoinColumn(name="manager_id",nullable=false)
+	private int managerId;
+	
+	
+	
+	
+
+
+	// 文章评论数
+	@Column(name="comment_num",columnDefinition="0")
+	private int commentNum;
+
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -49,20 +111,20 @@ public class Article {
 		this.brief = brief;
 	}
 
-	public String getImgUrl() {
-		return imgUrl;
+	public String getImgURL() {
+		return imgURL;
 	}
 
-	public void setImgUrl(String imgUrl) {
-		this.imgUrl = imgUrl;
+	public void setImgURL(String imgURL) {
+		this.imgURL = imgURL;
 	}
 
-	public int getPageViews() {
-		return pageViews;
+	public int getPageView() {
+		return pageView;
 	}
 
-	public void setPageViews(int pageViews) {
-		this.pageViews = pageViews;
+	public void setPageView(int pageView) {
+		this.pageView = pageView;
 	}
 
 	public String getLabel() {
@@ -73,13 +135,25 @@ public class Article {
 		this.label = label;
 	}
 
-	public String getAuthor() {
-		return author;
+	public int getManagerId() {
+		return managerId;
 	}
 
-	public void setAuthor(String author) {
-		this.author = author;
+	public void setManagerId(int managerId) {
+		this.managerId = managerId;
 	}
+
+	public int getCommentNum() {
+		return commentNum;
+	}
+
+	public void setCommentNum(int commentNum) {
+		this.commentNum = commentNum;
+	}
+
+	
+	
+	
 	
 	
 	
