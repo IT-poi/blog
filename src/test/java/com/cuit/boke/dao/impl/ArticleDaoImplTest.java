@@ -29,7 +29,7 @@ public class ArticleDaoImplTest {
 	//测试按id查询
 	public void testQueryById() {
 		Integer id = 1;
-		Article article = articleDao.queryById(id);
+		Article article = articleDao.queryById(Article.class,id);
 		System.out.println(article);
 	}
 	
@@ -41,7 +41,7 @@ public class ArticleDaoImplTest {
 		manager1.setPassword("1312");
 		System.out.println(ManagerDaoImpl.insert(manager1));
 		System.out.println("---------------------------------------");
-		Manager manager = ManagerDaoImpl.queryById(1);
+		Manager manager = ManagerDaoImpl.queryById(Manager.class,1);
 		Article article = new Article();
 		article.setTitle("生活");
 		article.setContent("美好的生活");

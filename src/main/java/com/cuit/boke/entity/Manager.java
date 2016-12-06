@@ -35,6 +35,10 @@ public class Manager {
 	@Column
 	private String elucidation;
 	
+	// 博主名称
+	@Column
+	private String name;
+	
 	/**
 	 * 管理员相关个人说明信息,可以自行增添。
 	 */
@@ -110,12 +114,21 @@ public class Manager {
 		this.signature = signature;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	@Override
 	public String toString() {
-		return "Manager [id=" + id + ", number=" + number + ", password=" + password + ", elucidation=" + elucidation
-				+ ", address=" + address + ", perfessional=" + perfessional + ", signature=" + signature + "]";
+		return "Manager [id=" + id + ", number=" + number + ", password="
+				+ password + ", elucidation=" + elucidation + ", name=" + name
+				+ ", address=" + address + ", perfessional=" + perfessional
+				+ ", signature=" + signature + ", articles=" + articles + "]";
 	}
-	
 	
 	
 }

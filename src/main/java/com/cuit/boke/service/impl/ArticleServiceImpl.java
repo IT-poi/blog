@@ -44,7 +44,7 @@ public class ArticleServiceImpl implements ArticleService{
 	}
 
 	public int saveArticle(Article article) {
-		Manager manager = managerDaoImpl.queryById(1);
+		Manager manager = managerDaoImpl.queryById(Manager.class,1);
 		article.setManager(manager);
 		return articleDao.insert(article);
 	}

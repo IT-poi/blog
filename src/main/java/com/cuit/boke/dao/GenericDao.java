@@ -1,6 +1,5 @@
 package com.cuit.boke.dao;
 
-import java.io.Serializable;
 import java.util.List;
 /**
  * 创建时间：2016年11月21日20:26:04
@@ -16,13 +15,13 @@ public interface GenericDao<T, PK> {
 	 * @param id
 	 * @return 查询的实体
 	 */
-	public T queryById(PK id);
+	public T queryById(Class<T> clazz,PK id);
 	
 	/**
 	 * 查询所有数据
 	 * @return 查询到的所有实体集合
 	 */
-	public List<T> queryAll();
+	public List<T> queryAll(Class<T> clazz);
 	
 	/**
 	 * 将泛型所约定的实体插入数据表
@@ -36,14 +35,14 @@ public interface GenericDao<T, PK> {
 	 * @param t 更新的实体
 	 * @return 更新数据id
 	 */
-	public PK update(T t);
+	public void update(T t);
 	
 	/**
 	 * 通过id删除
 	 * @param id
 	 * @return 删除数据id
 	 */
-	public PK deleteById(PK id);
+	public void deleteById(Class<T> clazz,PK id);
 	
 	/**
 	 * flush方法的主要作用就是清理缓存，
