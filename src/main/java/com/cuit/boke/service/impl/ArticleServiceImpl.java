@@ -7,8 +7,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cuit.boke.dao.ArticleDao;
+import com.cuit.boke.dao.impl.ManagerDaoImpl;
 import com.cuit.boke.dto.PageBean;
 import com.cuit.boke.entity.Article;
+import com.cuit.boke.entity.Manager;
 import com.cuit.boke.service.ArticleService;
 
 @Service
@@ -17,6 +19,8 @@ public class ArticleServiceImpl implements ArticleService{
 
 	@Autowired
 	private ArticleDao articleDao;
+	@Autowired
+	private ManagerDaoImpl managerDaoImpl;
 	
 	public PageBean<Article> recentArticleByPage(int currPage, int pageSize, String order) {
 		PageBean<Article> pageBean = new PageBean<Article>();
@@ -40,6 +44,8 @@ public class ArticleServiceImpl implements ArticleService{
 	}
 
 	public int saveArticle(Article article) {
+		Manager manager = managerDaoImpl.queryById(1);
+		article.setManager(manager);
 		return articleDao.insert(article);
 	}
 

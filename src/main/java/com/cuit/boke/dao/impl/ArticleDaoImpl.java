@@ -26,6 +26,9 @@ public class ArticleDaoImpl implements ArticleDao{
 	public Article queryById(Integer id) {
 		String sql = "select * from article where id = "+ id;
 		List<Article> list = (List<Article>) this.getCurrentSession().createSQLQuery(sql).addEntity(Article.class).list();
+		if (list == null || list.size()<=0) {
+			return null;
+		}
 		return list.get(0);
 	}
 
@@ -44,6 +47,7 @@ public class ArticleDaoImpl implements ArticleDao{
 	}
 
 	public Integer insert(Article t) {
+		System.out.println(t.toString());
 		return (Integer)this.getCurrentSession().save(t);
 	}
 

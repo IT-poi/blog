@@ -36,7 +36,7 @@ public class Article {
 	private String brief; 
 	
 	// 图片URL,默认地址为"/"
-	@Column(nullable=false,columnDefinition="varchar(255) default '/picture/'")
+	@Column(columnDefinition="varchar(255) default '/picture/'")
 	private String imgURL; 
 
 	// 文章上传时间(文章第一次上传的时间)
@@ -52,10 +52,10 @@ public class Article {
 	private String label; 
 	
 	// 博客本人
-	@ManyToOne(targetEntity=Manager.class)
-	@JoinColumn(name="manager_id",nullable=false)
-	private int managerId;
-
+	@ManyToOne(targetEntity = Manager.class)
+	@JoinColumn(name="manager_id")
+	private Manager manager;
+ 
 	// 文章评论数
 	@Column(name="comment_num",columnDefinition="int default 0",nullable=false)
 	private int commentNum;
@@ -125,12 +125,14 @@ public class Article {
 		this.label = label;
 	}
 
-	public int getManagerId() {
-		return managerId;
+	
+
+	public Manager getManager() {
+		return manager;
 	}
 
-	public void setManagerId(int managerId) {
-		this.managerId = managerId;
+	public void setManager(Manager manager) {
+		this.manager = manager;
 	}
 
 	public int getCommentNum() {
@@ -145,7 +147,7 @@ public class Article {
 	public String toString() {
 		return "Article [id=" + id + ", title=" + title + ", content=" + content + ", brief=" + brief + ", imgURL="
 				+ imgURL + ", createTime=" + createTime + ", pageView=" + pageView + ", label=" + label + ", managerId="
-				+ managerId + ", commentNum=" + commentNum + "]";
+				+ manager.toString() + ", commentNum=" + commentNum + "]";
 	}
 	
 	

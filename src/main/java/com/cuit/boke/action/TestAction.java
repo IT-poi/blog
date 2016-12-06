@@ -1,5 +1,7 @@
 package com.cuit.boke.action;
 
+import java.sql.Date;
+
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
@@ -8,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import com.cuit.boke.entity.Article;
+import com.cuit.boke.entity.Manager;
 import com.cuit.boke.service.ArticleService;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -41,7 +44,10 @@ public class TestAction extends ActionSupport{
 	public String getArticlePage(){
 		Integer articleId = 0;
 //		try {
-//			System.out.println(article.getBrief());
+		
+			System.out.println(article.getBrief());
+			Date date = new Date(System.currentTimeMillis());
+			article.setCreateTime(date);
 			articleId = articleService.saveArticle(article);
 			System.out.println(articleId);
 //		} catch (Exception e) {

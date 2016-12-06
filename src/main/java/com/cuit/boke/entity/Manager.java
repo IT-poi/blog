@@ -1,10 +1,14 @@
 package com.cuit.boke.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
@@ -46,9 +50,10 @@ public class Manager {
 	// 个性签名
 	@Column
 	private String signature;
-
 	
-
+	@OneToMany(mappedBy="manager",targetEntity=Article.class)
+	private Set<Article> articles = new HashSet<Article>();	
+	
 	public Integer getId() {
 		return id;
 	}

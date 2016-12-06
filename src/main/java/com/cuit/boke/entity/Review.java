@@ -26,7 +26,7 @@ public class Review {
 	// 该评论对应的文章id
 	@ManyToOne(targetEntity = Article.class)
 	@JoinColumn(name = "article_id", nullable = false)
-	private int articleId;
+	private Integer articleId;
 
 	// 该评论的内容
 	@Column(nullable = false)
@@ -60,11 +60,11 @@ public class Review {
 		this.id = id;
 	}
 
-	public int getArticleId() {
+	public Integer getArticleId() {
 		return articleId;
 	}
 
-	public void setArticleId(int articleId) {
+	public void setArticleId(Integer articleId) {
 		this.articleId = articleId;
 	}
 
