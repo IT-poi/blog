@@ -96,6 +96,13 @@
 			<artifactId>spring-context</artifactId>
 			<version>4.2.4.RELEASE</version>
 		</dependency>
+		<!-- 单元测试相关包 -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-test</artifactId>
+		    <version>4.2.4.RELEASE</version>
+		</dependency>
+		
 		<!-- mysql驱动 -->
 		<dependency>
 			<groupId>mysql</groupId>
