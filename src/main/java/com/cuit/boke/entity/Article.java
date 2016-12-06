@@ -22,8 +22,6 @@ public class Article {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-
-	
 	
 	// 文章标题
 	@Column(nullable=false,length=255)
@@ -32,33 +30,21 @@ public class Article {
 	// 文章内容
 	@Column(nullable=false,length=10000)
 	private String content; 
-	
-	
 
 	// 文章概要
 	@Column(nullable=false,length=100)
 	private String brief; 
 	
 	// 图片URL,默认地址为"/"
-	@Column(nullable=false,columnDefinition="/")
+	@Column(nullable=false,columnDefinition="varchar(255) default '/picture/'")
 	private String imgURL; 
-	
-	public Date getCreateTime() {
-		return createTime;
-	}
-
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
 
 	// 文章上传时间(文章第一次上传的时间)
 	@Column(nullable=false,name="create_time")
 	private Date createTime;
-	
-	
 
 	// 文章浏览量
-	@Column(name="page_view",columnDefinition="0")
+	@Column(name="page_view",columnDefinition="int default 0",nullable=false)
 	private int pageView;
 	
 	// 文章的标签，以分隔符(,)分开
@@ -69,16 +55,12 @@ public class Article {
 	@ManyToOne(targetEntity=Manager.class)
 	@JoinColumn(name="manager_id",nullable=false)
 	private int managerId;
-	
-	
-	
-	
-
 
 	// 文章评论数
-	@Column(name="comment_num",columnDefinition="0")
+	@Column(name="comment_num",columnDefinition="int default 0",nullable=false)
 	private int commentNum;
 
+	
 	public Integer getId() {
 		return id;
 	}
@@ -119,6 +101,14 @@ public class Article {
 		this.imgURL = imgURL;
 	}
 
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
 	public int getPageView() {
 		return pageView;
 	}
@@ -151,10 +141,12 @@ public class Article {
 		this.commentNum = commentNum;
 	}
 
-	
-	
-	
-	
+	@Override
+	public String toString() {
+		return "Article [id=" + id + ", title=" + title + ", content=" + content + ", brief=" + brief + ", imgURL="
+				+ imgURL + ", createTime=" + createTime + ", pageView=" + pageView + ", label=" + label + ", managerId="
+				+ managerId + ", commentNum=" + commentNum + "]";
+	}
 	
 	
 }

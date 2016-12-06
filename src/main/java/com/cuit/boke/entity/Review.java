@@ -15,24 +15,42 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 @Entity
-@Table(name="review")
-@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
+@Table(name = "review")
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Review {
 	// 评论id
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	// 该评论对应的文章id
-	@ManyToOne(targetEntity=Article.class)
-	@JoinColumn(name="article_id",nullable=false)
+	@ManyToOne(targetEntity = Article.class)
+	@JoinColumn(name = "article_id", nullable = false)
 	private int articleId;
-	
+
 	// 该评论的内容
-	@Column(nullable=false)
+	@Column(nullable = false)
 	private String content;
-	
-	
+
+	// 该评论的作者名
+	@Column(nullable = false)
+	private String name;
+
+	// 该评论作者的头像URL地址
+	@Column(name = "portrait_url",nullable=false,columnDefinition="varchar(255) default '/picture/'")
+	private String portraitURL;
+
+	// 该评论生成时间
+	@Column(name = "create_time", nullable = false)
+	private Date cteateTime;
+
+	// 该评论获得的赞的数目
+	@Column(name = "praise_num",columnDefinition="int default 0",nullable=false)
+	private int praiseNum;
+
+	// 该评论获得的踩的数目
+	@Column(name = "stamp_num",columnDefinition="int default 0",nullable=false)
+	private int stampNum;
 
 	public Integer getId() {
 		return id;
@@ -98,24 +116,11 @@ public class Review {
 		this.stampNum = stampNum;
 	}
 
-	// 该评论的作者名
-	@Column(nullable=false)
-	private String name;
-	
-	// 该评论作者的头像URL地址
-	@Column(name="portrait_url")
-	private String portraitURL;
-	
-	// 该评论生成时间
-	@Column(name="create_time",nullable=false)
-	private Date cteateTime;
-	
-	// 该评论获得的赞的数目
-	@Column(name="praise_num")
-	private int praiseNum;
-	
-	// 该评论获得的踩的数目
-	@Column(name="stamp_num")
-	private int stampNum;
+	@Override
+	public String toString() {
+		return "Review [id=" + id + ", articleId=" + articleId + ", content=" + content + ", name=" + name
+				+ ", portraitURL=" + portraitURL + ", cteateTime=" + cteateTime + ", praiseNum=" + praiseNum
+				+ ", stampNum=" + stampNum + "]";
+	}
 	
 }

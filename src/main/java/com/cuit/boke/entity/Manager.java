@@ -104,6 +104,12 @@ public class Manager {
 	public void setSignature(String signature) {
 		this.signature = signature;
 	}
+
+	@Override
+	public String toString() {
+		return "Manager [id=" + id + ", number=" + number + ", password=" + password + ", elucidation=" + elucidation
+				+ ", address=" + address + ", perfessional=" + perfessional + ", signature=" + signature + "]";
+	}
 	
 	
 	
