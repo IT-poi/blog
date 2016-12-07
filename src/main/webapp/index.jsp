@@ -22,11 +22,11 @@
 		</tr>
 		<tr>
 			<td><lable>图片url</lable></td>
-			<td><input name="article.imgUrl" type ="text" value="" /></td>
+			<td><input name="article.imgURL" type ="text" value="" /></td>
 		</tr>
 		<tr>
 			<td><lable>文章浏览量</lable></td>
-			<td><input name="article.pageViews" type ="text" value="" /></td>
+			<td><input name="article.pageView" type ="text" value="" /></td>
 		</tr>
 		<tr>
 			<td><lable>文章标签</lable></td>

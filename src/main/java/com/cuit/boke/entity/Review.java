@@ -1,6 +1,8 @@
 package com.cuit.boke.entity;
 
-import java.sql.Date;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,12 +11,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-@Entity
+@Entity()
 @Table(name = "review")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Review {
@@ -23,21 +26,20 @@ public class Review {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	// 该评论对应的文章id
-	@ManyToOne(targetEntity = Article.class)
-	@JoinColumn(name = "article_id", nullable = false)
-	private Integer articleId;
+	// 该评论的级别
+	@Column(nullable = false)
+	private int level;
 
 	// 该评论的内容
 	@Column(nullable = false)
 	private String content;
 
-	// 该评论的作者名
+	// 该评论的用户名
 	@Column(nullable = false)
 	private String name;
 
 	// 该评论作者的头像URL地址
-	@Column(name = "portrait_url",nullable=false,columnDefinition="varchar(255) default '/picture/'")
+	@Column(name = "portrait_url", nullable = false)
 	private String portraitURL;
 
 	// 该评论生成时间
@@ -45,12 +47,26 @@ public class Review {
 	private Date cteateTime;
 
 	// 该评论获得的赞的数目
-	@Column(name = "praise_num",columnDefinition="int default 0",nullable=false)
+	@Column(name = "praise_num", columnDefinition = "int default 0", nullable = false)
 	private int praiseNum;
 
 	// 该评论获得的踩的数目
-	@Column(name = "stamp_num",columnDefinition="int default 0",nullable=false)
+	@Column(name = "stamp_num", columnDefinition = "int default 0", nullable = false)
 	private int stampNum;
+
+	// 该评论的父类
+	@ManyToOne(targetEntity = Review.class)
+	@JoinColumn(name = "parent_id")
+	private Review parentReview;
+
+	// 该评论对应的回复
+	@OneToMany(targetEntity = Review.class, mappedBy = "parentReview")
+	private Set<Review> reviews = new HashSet<Review>();
+
+	// 该评论对应的文章id
+	@ManyToOne(targetEntity = Article.class)
+	@JoinColumn(name = "article_id", nullable = false)
+	private Article article;
 
 	public Integer getId() {
 		return id;
@@ -60,12 +76,12 @@ public class Review {
 		this.id = id;
 	}
 
-	public Integer getArticleId() {
-		return articleId;
+	public int getLevel() {
+		return level;
 	}
 
-	public void setArticleId(Integer articleId) {
-		this.articleId = articleId;
+	public void setLevel(int level) {
+		this.level = level;
 	}
 
 	public String getContent() {
@@ -89,6 +105,9 @@ public class Review {
 	}
 
 	public void setPortraitURL(String portraitURL) {
+		if (portraitURL.isEmpty()) {
+			portraitURL = "/pictrue/1.png";
+		}
 		this.portraitURL = portraitURL;
 	}
 
@@ -116,11 +135,39 @@ public class Review {
 		this.stampNum = stampNum;
 	}
 
+	public Review getParentReview() {
+		return parentReview;
+	}
+
+	public void setParentReview(Review parentReview) {
+		this.parentReview = parentReview;
+	}
+
+	public Set<Review> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(Set<Review> reviews) {
+		this.reviews = reviews;
+	}
+
+	public Article getArticle() {
+		return article;
+	}
+
+	public void setArticle(Article article) {
+		this.article = article;
+	}
+
 	@Override
 	public String toString() {
-		return "Review [id=" + id + ", articleId=" + articleId + ", content=" + content + ", name=" + name
-				+ ", portraitURL=" + portraitURL + ", cteateTime=" + cteateTime + ", praiseNum=" + praiseNum
-				+ ", stampNum=" + stampNum + "]";
+		return "Review [id=" + id + ", level=" + level + ", content=" + content
+				+ ", name=" + name + ", portraitURL=" + portraitURL
+				+ ", cteateTime=" + cteateTime + ", praiseNum=" + praiseNum
+				+ ", stampNum=" + stampNum + ", parentReview=" + parentReview
+				+ ", reviews=" + reviews + ", article=" + article + "]";
 	}
+
 	
+
 }
