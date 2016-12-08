@@ -20,13 +20,4 @@ public interface ArticleDao extends GenericDao<Article, Integer> {
 	 * @return 查询结果（文章列表）
 	 */
 	public List<Article> queryByLabelPage(String label, int begin, int pageSize);
-	
-	/**
-	 * 分页查询
-	 * @param begin 从当前位置开始查询
-	 * @param pageSize 查询的记录数
-	 * @param order 排序方式
-	 * @return 查询结果
-	 */
-	public List<Article> queryByPage(int begin, int pageSize, String order);
 }

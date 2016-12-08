@@ -38,7 +38,7 @@ public class ArticleServiceImpl implements ArticleService{
 		//封装每页显示的数据
 		int begin = (currPage - 1)*pageSize;
 		System.out.println("---------Service");
-		List<Article> list = articleDao.queryByPage(begin, pageSize, order);
+		List<Article> list = articleDao.queryByPage(Article.class, begin, pageSize, null, null);
 		pageBean.setList(list);
 		return pageBean;
 	}
