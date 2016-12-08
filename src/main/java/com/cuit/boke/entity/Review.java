@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -60,7 +61,8 @@ public class Review {
 	private Review parentReview;
 
 	// 该评论对应的回复
-	@OneToMany(targetEntity = Review.class, mappedBy = "parentReview")
+	@OneToMany(targetEntity = Review.class, mappedBy = "parentReview"
+			,cascade=CascadeType.REMOVE)
 	private Set<Review> reviews = new HashSet<Review>();
 
 	// 该评论对应的文章id

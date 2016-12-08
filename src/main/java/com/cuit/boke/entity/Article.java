@@ -4,8 +4,10 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -60,11 +62,12 @@ public class Article {
 
 	// 该文章对应的博主id
 	@ManyToOne(targetEntity = Manager.class)
-	@JoinColumn(name = "manager_id")
+	@JoinColumn(name = "manager_id",nullable=false)
 	private Manager manager;
 
 	// 该文章对应的评论
-	@OneToMany(targetEntity = Review.class, mappedBy = "article")
+	@OneToMany(targetEntity = Review.class, mappedBy = "article",
+			cascade=CascadeType.REMOVE,fetch=FetchType.EAGER)
 	private Set<Review> reviews = new HashSet<Review>();
 
 	public Integer getId() {

@@ -31,7 +31,6 @@ public class GenericDaoImpl<T,PK extends Serializable> implements GenericDao<T, 
 
 	@SuppressWarnings("unchecked")
 	public PK insert(T t) {
-		System.out.println(t.toString());
 		return (PK) sessionFactory.getCurrentSession().save(t);
 	}
 

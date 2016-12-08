@@ -109,6 +109,7 @@ public class Manager {
 	}
 
 	public void setCreateTime(Date createTime) {
+		System.out.println("hello");
 		this.createTime = createTime;
 	}
 
