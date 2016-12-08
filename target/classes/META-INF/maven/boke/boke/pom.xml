@@ -122,6 +122,12 @@
 			<artifactId>commons-dbcp</artifactId>
 			<version>1.4</version>
 		</dependency>
+		<!-- apache提供的md5加密包 -->
+		<dependency> 
+            <groupId>commons-codec</groupId> 
+            <artifactId>commons-codec</artifactId> 
+            <version>1.6</version> 
+        </dependency> 
 
 		<!-- 添加Log4J依赖 -->
 		<dependency>

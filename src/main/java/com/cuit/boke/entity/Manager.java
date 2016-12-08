@@ -148,7 +148,7 @@ public class Manager {
 	public String toString() {
 		return "Manager [id=" + id + ", number=" + number + ", password="
 				+ password + ", elucidation=" + elucidation + ", name=" + name
-				+ ", createTime=" + createTime + ", articles=" + articles
+				+ ", createTime=" + ", articles=" 
 				+ ", address=" + address + ", perfessional=" + perfessional
 				+ ", signature=" + signature + "]";
 	}

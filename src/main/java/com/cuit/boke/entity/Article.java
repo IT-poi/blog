@@ -57,10 +57,14 @@ public class Article {
 	// 文章的标签，以分隔符(,)分开
 	@Column
 	private String label;
+	
+	//是否置顶，默认为否
+	@Column(name = "stick", columnDefinition = "boolean default false", nullable = false)
+	private boolean isStick;
 
 	// 该文章对应的博主id
 	@ManyToOne(targetEntity = Manager.class)
-	@JoinColumn(name = "manager_id")
+	@JoinColumn(name = "manager_id",nullable=false)
 	private Manager manager;
 
 	// 该文章对应的评论
@@ -158,11 +162,20 @@ public class Article {
 		this.reviews = reviews;
 	}
 
+	
+	public boolean isStick() {
+		return isStick;
+	}
+
+	public void setStick(boolean isStick) {
+		this.isStick = isStick;
+	}
+
 	@Override
 	public String toString() {
 		return "Article [id=" + id + ", title=" + title + ", brief=" + brief
 				+ ", content=" + content + ", imgURL=" + imgURL
-				+ ", createTime=" + createTime + ", pageView=" + pageView
+				+ ", createTime=" + ", pageView=" + pageView
 				+ ", commentNum=" + commentNum + ", label=" + label
 				+ ", manager=" + manager + ", reviews=" + reviews + "]";
 	}

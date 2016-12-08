@@ -5,7 +5,9 @@ import java.util.List;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import com.cuit.boke.dao.GenericDao;
+import com.cuit.boke.entity.Article;
 
 /**
  * 
@@ -18,6 +20,10 @@ public class GenericDaoImpl<T,PK extends Serializable> implements GenericDao<T, 
 	@Autowired
 	private SessionFactory sessionFactory;
 	
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
+	
 	@SuppressWarnings("unchecked")
 	public T queryById(Class<T> clazz, PK id) {
 		return (T)sessionFactory.getCurrentSession().get(clazz, id);
@@ -28,6 +34,27 @@ public class GenericDaoImpl<T,PK extends Serializable> implements GenericDao<T, 
 		String sql = "select * from "+clazz.getSimpleName();
 		return sessionFactory.getCurrentSession().createSQLQuery(sql).addEntity(clazz).list();
 	}
+	
+	//分页查询
+	@SuppressWarnings("unchecked")
+	public List<T> queryByPage(Class<T> clazz, int begin, int pageSize,
+			String orderBy, String order) {
+		String sql = "select * from "+ clazz.getSimpleName();
+		if (orderBy!=null) {
+			//如果排序字段不为空，则加上order by
+			sql = sql +  " order by " + orderBy;
+			if (order == null) {
+				//默认按照降序排序
+				sql = sql + " DESC";
+			}else {
+				sql = sql + " " + order;
+			}
+		}
+		sql = sql + " limit " + begin + "," + pageSize;
+		List<T> list = (List<T>) sessionFactory.getCurrentSession().createSQLQuery(sql).addEntity(clazz).list();
+		return list;
+	}
+	
 
 	@SuppressWarnings("unchecked")
 	public PK insert(T t) {
@@ -48,15 +75,6 @@ public class GenericDaoImpl<T,PK extends Serializable> implements GenericDao<T, 
 	public void flush() {
 		sessionFactory.getCurrentSession().flush();
 	}
-
-	public SessionFactory getSessionFactory() {
-		return sessionFactory;
-	}
-
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
-	
 	
 	
 }

@@ -1,6 +1,7 @@
 package com.cuit.boke.dao;
 
 import java.util.List;
+
 /**
  * 创建时间：2016年11月21日20:26:04
  * @author inori
@@ -19,9 +20,21 @@ public interface GenericDao<T, PK> {
 	
 	/**
 	 * 查询所有数据
+	 * @param clazz 要查询的实体的类型
 	 * @return 查询到的所有实体集合
 	 */
 	public List<T> queryAll(Class<T> clazz);
+	
+	/**
+	 * 分页查询，并且根据orderBy的值排序
+	 * @param clazz 要查询的实体类型
+	 * @param begin 查询开始位置
+	 * @param pageSize 查询的记录条数
+	 * @param orderBy 根据此字段排序 若为空则默认
+	 * @param order 排序方式 若为空则默认升序
+	 * @return 查询记录结果列表
+	 */
+	public List<T> queryByPage(Class<T> clazz, int begin, int pageSize, String orderBy, String order);
 	
 	/**
 	 * 将泛型所约定的实体插入数据表
