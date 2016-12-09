@@ -59,7 +59,6 @@ public class ArticleDaoImplTest {
 		article1.setImgURL("");
 		article1.setStick(true);
 		article1.setCreateTime(new Date());
-//		System.out.println(article.getCreateTime());
 		article1.setLabel("java");
 		
 		
@@ -113,7 +112,9 @@ public class ArticleDaoImplTest {
 	public void testUpdate(){
 		Article article = articleDao.queryById(Article.class, 1);
 		article.setPageView(2);
-		articleDao.update(article);
+		Article article2 = new Article();
+		System.out.println(article2);
+		articleDao.update(article2);
 	}
 	
 	@Test

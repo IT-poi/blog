@@ -7,7 +7,6 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.cuit.boke.dao.GenericDao;
-import com.cuit.boke.entity.Article;
 
 /**
  * 

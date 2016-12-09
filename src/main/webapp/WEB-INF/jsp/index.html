@@ -133,8 +133,8 @@
             <nav>
 			  <ul class="pagination">
 			    <li class="disabled"><a href="#">&laquo;</a></li>
-			    <li class="active" ng-repeat="x in recentPages.totalPage"><button ng-click="">{{x.totalPage}}<span class="sr-only">{{x.currentPage}}</span></button></li>
-			    <li><a href="/article">&raquo;</a></li>
+			    <li class="active"><button ng-click="nextPage()">{{x.totalPage}}<span class="sr-only">{{x.currentPage}}</span></button></li>
+			    <li><a ng-click="nextPage()">&raquo;</a></li>
 			  </ul>
 			</nav>
           </div>

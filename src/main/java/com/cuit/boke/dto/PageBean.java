@@ -15,6 +15,10 @@ public class PageBean<T> {
 	
 	public static final String TIME = "create_time"; //按文章发布时间排序
 	
+	public static final String ASC = "ASC"; //升序
+	
+	public static final String DESC = "DESC"; //降序
+	
 	private int currPage; //当前页数
 	
 	private int pageSize; //每页显示记录数
@@ -23,7 +27,9 @@ public class PageBean<T> {
 	
 	private int totalPage; //总页数
 	
-	private String order; //排序方式，可以通过最新和最热排序
+	private String orderBy; //排序方式，可以通过最新和最热排序
+	
+	private String order; //排序方式，升序或者降序
 	
 	private List<T> list; //每页要显示的数据
 	
@@ -114,6 +120,21 @@ public class PageBean<T> {
 		}
 		this.order = order;
 	}
-	
+
+	public String getOrderBy() {
+		return orderBy;
+	}
+
+	public void setOrderBy(String orderBy) {
+		this.orderBy = orderBy;
+	}
+
+	@Override
+	public String toString() {
+		return "PageBean [currPage=" + currPage + ", pageSize=" + pageSize
+				+ ", totalCount=" + totalCount + ", totalPage=" + totalPage
+				+ ", orderBy=" + orderBy + ", order=" + order + ", list="
+				+ list + "]";
+	}
 	
 }

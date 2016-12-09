@@ -1,19 +1,14 @@
 package com.cuit.boke.entity;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
@@ -70,9 +65,9 @@ public class Article {
 	private Manager manager;
 
 	// 该文章对应的评论
-	@OneToMany(targetEntity = Review.class, mappedBy = "article",
-			cascade=CascadeType.REMOVE,fetch=FetchType.EAGER)
-	private Set<Review> reviews = new HashSet<Review>();
+//	@OneToMany(targetEntity = Review.class, mappedBy = "article",
+//			cascade=CascadeType.REMOVE)
+//	private Set<Review> reviews = new HashSet<Review>();
 
 	public Integer getId() {
 		return id;
@@ -157,13 +152,13 @@ public class Article {
 		this.manager = manager;
 	}
 
-	public Set<Review> getReviews() {
-		return reviews;
-	}
-
-	public void setReviews(Set<Review> reviews) {
-		this.reviews = reviews;
-	}
+//	public Set<Review> getReviews() {
+//		return reviews;
+//	}
+//
+//	public void setReviews(Set<Review> reviews) {
+//		this.reviews = reviews;
+//	}
 
 	
 	public boolean isStick() {
@@ -174,14 +169,14 @@ public class Article {
 		this.isStick = isStick;
 	}
 
-	@Override
-	public String toString() {
-		return "Article [id=" + id + ", title=" + title + ", brief=" + brief
-				+ ", content=" + content + ", imgURL=" + imgURL
-				+ ", createTime=" + ", pageView=" + pageView
-				+ ", commentNum=" + commentNum + ", label=" + label
-				+ ", manager=" + manager + ", reviews=" + reviews + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Article [id=" + id + ", title=" + title + ", brief=" + brief
+//				+ ", content=" + content + ", imgURL=" + imgURL
+//				+ ", createTime=" + ", pageView=" + pageView
+//				+ ", commentNum=" + commentNum + ", label=" + label
+//				+ ", manager=" + manager + ", reviews=" + "]";
+//	}
 
 	
 

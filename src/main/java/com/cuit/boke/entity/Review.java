@@ -61,9 +61,9 @@ public class Review {
 	private Review parentReview;
 
 	// 该评论对应的回复
-	@OneToMany(targetEntity = Review.class, mappedBy = "parentReview"
-			,cascade=CascadeType.REMOVE)
-	private Set<Review> reviews = new HashSet<Review>();
+//	@OneToMany(targetEntity = Review.class, mappedBy = "parentReview"
+//			,cascade=CascadeType.REMOVE)
+//	private Set<Review> reviews = new HashSet<Review>();
 
 	// 该评论对应的文章id
 	@ManyToOne(targetEntity = Article.class)
@@ -145,13 +145,13 @@ public class Review {
 		this.parentReview = parentReview;
 	}
 
-	public Set<Review> getReviews() {
-		return reviews;
-	}
-
-	public void setReviews(Set<Review> reviews) {
-		this.reviews = reviews;
-	}
+//	public Set<Review> getReviews() {
+//		return reviews;
+//	}
+//
+//	public void setReviews(Set<Review> reviews) {
+//		this.reviews = reviews;
+//	}
 
 	public Article getArticle() {
 		return article;
@@ -161,14 +161,14 @@ public class Review {
 		this.article = article;
 	}
 
-	@Override
-	public String toString() {
-		return "Review [id=" + id + ", level=" + level + ", content=" + content
-				+ ", name=" + name + ", portraitURL=" + portraitURL
-				+ ", cteateTime=" + ", praiseNum=" + praiseNum
-				+ ", stampNum=" + stampNum + ", parentReview=" + parentReview
-				+ ", reviews=" + reviews + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Review [id=" + id + ", level=" + level + ", content=" + content
+//				+ ", name=" + name + ", portraitURL=" + portraitURL
+//				+ ", cteateTime=" + ", praiseNum=" + praiseNum
+//				+ ", stampNum=" + stampNum + ", parentReview=" + parentReview
+//				+ ", reviews=" + "]";
+//	}
 
 	
 

@@ -39,8 +39,8 @@ public class ReviewDaoImplTest {
 		review.setPortraitURL("4444");
 		review.setContent("4444");
 		review.setCteateTime(new Date());
-		review.setParentReview(reviewDaoImpl.queryById(Review.class, 7));
-//		review.setParentReview(null);
+//		review.setParentReview(reviewDaoImpl.queryById(Review.class, 7));
+		review.setParentReview(null);
 		review.setArticle(articleDaoImpl.queryById(Article.class, 1));
 		reviewDaoImpl.insert(review);
 	}
@@ -87,13 +87,6 @@ public class ReviewDaoImplTest {
 	public void testArticle(){
 		Article article = articleDaoImpl.queryById(Article.class, 1);
 		System.out.println(article.getContent());
-		Set<Review> reviews = article.getReviews();
-		if(reviews.isEmpty()){
-			System.out.println("null");
-		}
-		for(Review review:reviews){
-			System.out.println(review.getContent());
-		}
 	}
 
 }

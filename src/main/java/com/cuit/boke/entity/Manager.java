@@ -45,8 +45,8 @@ public class Manager {
 	private Date createTime;
 
 	// 该博主对应的文章
-	@OneToMany(mappedBy = "manager", targetEntity = Article.class)
-	private Set<Article> articles = new HashSet<Article>();
+//	@OneToMany(mappedBy = "manager", targetEntity = Article.class)
+//	private Set<Article> articles = new HashSet<Article>();
 
 	/**
 	 * 管理员相关个人信息说明,可以自行增添。
@@ -113,13 +113,13 @@ public class Manager {
 		this.createTime = createTime;
 	}
 
-	public Set<Article> getArticles() {
-		return articles;
-	}
-
-	public void setArticles(Set<Article> articles) {
-		this.articles = articles;
-	}
+//	public Set<Article> getArticles() {
+//		return articles;
+//	}
+//
+//	public void setArticles(Set<Article> articles) {
+//		this.articles = articles;
+//	}
 
 	public String getAddress() {
 		return address;
@@ -145,14 +145,14 @@ public class Manager {
 		this.signature = signature;
 	}
 
-	@Override
-	public String toString() {
-		return "Manager [id=" + id + ", number=" + number + ", password="
-				+ password + ", elucidation=" + elucidation + ", name=" + name
-				+ ", createTime=" + ", articles=" 
-				+ ", address=" + address + ", perfessional=" + perfessional
-				+ ", signature=" + signature + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Manager [id=" + id + ", number=" + number + ", password="
+//				+ password + ", elucidation=" + elucidation + ", name=" + name
+//				+ ", createTime=" + ", articles=" 
+//				+ ", address=" + address + ", perfessional=" + perfessional
+//				+ ", signature=" + signature + "]";
+//	}
 	
 	
 	

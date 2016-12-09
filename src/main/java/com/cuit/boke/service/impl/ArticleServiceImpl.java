@@ -11,10 +11,13 @@ import com.cuit.boke.dao.impl.ManagerDaoImpl;
 import com.cuit.boke.dto.PageBean;
 import com.cuit.boke.entity.Article;
 import com.cuit.boke.entity.Manager;
+import com.cuit.boke.exception.DeleteFailException;
+import com.cuit.boke.exception.SaveFailException;
+import com.cuit.boke.exception.UnknowException;
+import com.cuit.boke.exception.UpdateFailException;
 import com.cuit.boke.service.ArticleService;
-
-@Service
 @Transactional
+@Service
 public class ArticleServiceImpl implements ArticleService{
 
 	@Autowired
@@ -22,31 +25,57 @@ public class ArticleServiceImpl implements ArticleService{
 	@Autowired
 	private ManagerDaoImpl managerDaoImpl;
 	
-	public PageBean<Article> recentArticleByPage(int currPage, int pageSize, String order) {
-		PageBean<Article> pageBean = new PageBean<Article>();
+	public PageBean<Article> recentArticleByPage(PageBean<Article> pageBean) throws UnknowException {
+		if (pageBean == null) {
+			throw new UnknowException("pageBean为空");
+		}
 		//封装当前页数
-		pageBean.setCurrPage(currPage);
+//		pageBean.setCurrPage(pageBean.getCurrPage());
 		//封装每页显示的记录数
-		pageBean.setPageSize(pageSize);
+//		pageBean.setPageSize(pageBean.getPageSize());
 		//封装总记录条数
 		int totalCount = articleDao.queryTotalCount();
 		pageBean.setTotalCount(totalCount);
 		//封装总页数
 //		Double pageCount = Math.ceil(totalCount / pageSize);
-		int pageCount = (totalCount + pageSize -1) / pageSize;
+		int pageCount = (totalCount + pageBean.getPageSize() -1) / pageBean.getPageSize();
 		pageBean.setTotalPage(pageCount);
+		if (pageBean.getCurrPage() > pageCount) {
+			throw new UnknowException("请求页面参数错误");
+		}
 		//封装每页显示的数据
-		int begin = (currPage - 1)*pageSize;
-		System.out.println("---------Service");
-		List<Article> list = articleDao.queryByPage(Article.class, begin, pageSize, null, null);
+		int begin = (pageBean.getCurrPage() - 1)*pageBean.getPageSize();
+		List<Article> list = articleDao.queryByPage(Article.class, begin, pageBean.getPageSize(), pageBean.getOrderBy(), pageBean.getOrder());
 		pageBean.setList(list);
 		return pageBean;
 	}
 
-	public int saveArticle(Article article) {
-		Manager manager = managerDaoImpl.queryById(Manager.class,1);
-		article.setManager(manager);
-		return articleDao.insert(article);
+	public int saveArticle(Article article) throws SaveFailException{
+		int articleId = -1;
+		try {
+			Manager manager = managerDaoImpl.queryById(Manager.class,article.getManager().getId());
+			article.setManager(manager);
+			articleId = articleDao.insert(article);
+		} catch (Exception e) {
+			throw new SaveFailException("保存失败!");
+		}
+		return articleId;
+	}
+
+	public void updateArticle(Article article) throws UpdateFailException {
+		try {
+			articleDao.update(article);
+		} catch (Exception e) {
+			throw new UpdateFailException("修改失败！");
+		}
+	}
+
+	public void deleteArticle(Article article) throws DeleteFailException {
+		try {
+			articleDao.deleteById(Article.class, article.getId());
+		} catch (Exception e) {
+			throw new DeleteFailException("删除失败");
+		}
 	}
 
 }

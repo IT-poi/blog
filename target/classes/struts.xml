@@ -14,13 +14,13 @@
         </action>
     </package>
     
-    <package name="json" extends="json-default" namespace="/">  
+   <!--  <package name="json" extends="json-default" namespace="/">  
         <action name="article" class="articleJsonAction" method="getPages">  
 	        <result type="json">
 	            <param name="root">recentPages</param>  
 	        </result>
          </action>  
-     </package> 
+     </package>  -->
        
 <!--      <constant name="struts.convention.result.path" value="/WEB-INF/jsp" /> -->  
     

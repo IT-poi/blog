@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import com.cuit.boke.entity.Article;
-import com.cuit.boke.entity.Manager;
 import com.cuit.boke.service.ArticleService;
 import com.opensymphony.xwork2.ActionSupport;
 
