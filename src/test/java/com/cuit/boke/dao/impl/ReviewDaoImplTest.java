@@ -34,15 +34,38 @@ public class ReviewDaoImplTest {
 	@Transactional
 	public void testInsert() {
 		Review review = new Review();
-		review.setLevel(3);
-		review.setName("44444");
-		review.setPortraitURL("4444");
-		review.setContent("4444");
+		review.setLevel(1);
+		review.setName("kanyuxia");
+		review.setPortraitURL("kanyuxia");
+		review.setContent("好");
 		review.setCteateTime(new Date());
+<<<<<<< HEAD
 //		review.setParentReview(reviewDaoImpl.queryById(Review.class, 7));
+=======
+>>>>>>> origin/master
 		review.setParentReview(null);
 		review.setArticle(articleDaoImpl.queryById(Article.class, 1));
 		reviewDaoImpl.insert(review);
+		
+		Review review1 = new Review();
+		review1.setLevel(1);
+		review1.setName("kanyuxia");
+		review1.setPortraitURL("kanyuxia");
+		review1.setContent("好");
+		review1.setCteateTime(new Date());
+		review1.setParentReview(null);
+		review1.setArticle(articleDaoImpl.queryById(Article.class, 1));
+		reviewDaoImpl.insert(review1);
+		
+		Review review2 = new Review();
+		review2.setLevel(2);
+		review2.setName("kanyuxia");
+		review2.setPortraitURL("kanyuxia");
+		review2.setContent("好");
+		review2.setCteateTime(new Date());
+		review2.setParentReview(reviewDaoImpl.queryById(Review.class, 1));
+		review2.setArticle(articleDaoImpl.queryById(Article.class, 1));
+		reviewDaoImpl.insert(review2);
 	}
 	
 	@Test

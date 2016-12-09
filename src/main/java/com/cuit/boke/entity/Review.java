@@ -161,6 +161,7 @@ public class Review {
 		this.article = article;
 	}
 
+<<<<<<< HEAD
 //	@Override
 //	public String toString() {
 //		return "Review [id=" + id + ", level=" + level + ", content=" + content
@@ -169,6 +170,16 @@ public class Review {
 //				+ ", stampNum=" + stampNum + ", parentReview=" + parentReview
 //				+ ", reviews=" + "]";
 //	}
+=======
+	@Override
+	public String toString() {
+		return "Review [id=" + id + ", level=" + level + ", content=" + content
+				+ ", name=" + name + ", portraitURL=" + portraitURL
+				+ ", cteateTime=" + ", praiseNum=" + praiseNum
+				+ ", stampNum=" + stampNum + ", parentReview=" + parentReview
+				+ ", reviews="  + "]";
+	}
+>>>>>>> origin/master
 
 	
 

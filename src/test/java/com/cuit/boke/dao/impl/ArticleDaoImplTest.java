@@ -27,7 +27,7 @@ public class ArticleDaoImplTest {
 	private ArticleDaoImpl articleDao;
 	
 	@Autowired
-	private ManagerDaoImpl ManagerDaoImpl;
+	private ManagerDaoImpl managerDaoImpl;
 	
 	@Test
 	//测试按id查询
@@ -47,10 +47,11 @@ public class ArticleDaoImplTest {
 		manager1.setPassword("1312");
 		manager1.setCreateTime(new Date());
 		System.out.println(manager1);
-		System.out.println(ManagerDaoImpl.insert(manager1));
+		System.out.println(managerDaoImpl.insert(manager1));
 		System.out.println("---------------------------------------");
 		
-		Manager manager = ManagerDaoImpl.queryById(Manager.class,1);
+		
+		Manager manager = managerDaoImpl.queryById(Manager.class,1);
 		Article article1 = new Article();
 		article1.setTitle("java编程思想");
 		article1.setContent("Thinking in java是一本很好的Java学习数据");

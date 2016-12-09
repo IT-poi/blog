@@ -1,11 +1,13 @@
 package com.cuit.boke.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,7 +20,9 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Entity
 @Table(name = "manager")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class Manager {
+public class Manager implements Serializable{
+	private static final long serialVersionUID = 1L;
+
 	// 管理员id
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,7 +33,7 @@ public class Manager {
 	private String number;
 
 	// 管理员登录的密码
-	@Column(nullable = false,length=20)
+	@Column(nullable = false,length=100)
 	private String password;
 
 	// 个人说明
@@ -45,8 +49,13 @@ public class Manager {
 	private Date createTime;
 
 	// 该博主对应的文章
+<<<<<<< HEAD
 //	@OneToMany(mappedBy = "manager", targetEntity = Article.class)
 //	private Set<Article> articles = new HashSet<Article>();
+=======
+	@OneToMany(mappedBy = "manager", targetEntity = Article.class,fetch=FetchType.LAZY)
+	private Set<Article> articles = new HashSet<Article>();
+>>>>>>> origin/master
 
 	/**
 	 * 管理员相关个人信息说明,可以自行增添。
