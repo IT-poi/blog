@@ -42,13 +42,13 @@ public class ArticleDaoImplTest {
 	@Test
 	@Rollback(false)
 	public void testInsert() {
-//		Manager manager1 = new Manager();
-//		manager1.setNumber("113");
-//		manager1.setPassword("1312");
-//		manager1.setCreateTime(new Date());
-//		System.out.println(manager1);
-//		System.out.println(ManagerDaoImpl.insert(manager1));
-//		System.out.println("---------------------------------------");
+		Manager manager1 = new Manager();
+		manager1.setNumber("113");
+		manager1.setPassword("1312");
+		manager1.setCreateTime(new Date());
+		System.out.println(manager1);
+		System.out.println(ManagerDaoImpl.insert(manager1));
+		System.out.println("---------------------------------------");
 		
 		Manager manager = ManagerDaoImpl.queryById(Manager.class,1);
 		Article article1 = new Article();

@@ -165,9 +165,9 @@ public class Review {
 	public String toString() {
 		return "Review [id=" + id + ", level=" + level + ", content=" + content
 				+ ", name=" + name + ", portraitURL=" + portraitURL
-				+ ", cteateTime=" + cteateTime + ", praiseNum=" + praiseNum
+				+ ", cteateTime=" + ", praiseNum=" + praiseNum
 				+ ", stampNum=" + stampNum + ", parentReview=" + parentReview
-				+ ", reviews=" + reviews + ", article=" + article + "]";
+				+ ", reviews=" + reviews + "]";
 	}
 
 	
