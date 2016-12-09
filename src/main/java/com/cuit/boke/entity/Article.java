@@ -71,7 +71,7 @@ public class Article {
 
 	// 该文章对应的评论
 	@OneToMany(targetEntity = Review.class, mappedBy = "article",
-			cascade=CascadeType.REMOVE,fetch=FetchType.EAGER)
+			cascade=CascadeType.REMOVE,fetch=FetchType.LAZY)
 	private Set<Review> reviews = new HashSet<Review>();
 
 	public Integer getId() {
@@ -180,7 +180,7 @@ public class Article {
 				+ ", content=" + content + ", imgURL=" + imgURL
 				+ ", createTime=" + ", pageView=" + pageView
 				+ ", commentNum=" + commentNum + ", label=" + label
-				+ ", manager=" + manager + ", reviews=" + reviews + "]";
+				+ ", manager="  + ", reviews=" + "]";
 	}
 
 	

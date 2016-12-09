@@ -46,5 +46,13 @@ public class ManagerBean {
 	public void setMessage(String message) {
 		this.message = message;
 	}
+
+	@Override
+	public String toString() {
+		return "ManagerBean [success=" + success + ", manager=" + manager
+				+ ", message=" + message + "]";
+	}
+	
+	
 	
 }

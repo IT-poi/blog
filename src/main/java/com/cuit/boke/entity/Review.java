@@ -167,7 +167,7 @@ public class Review {
 				+ ", name=" + name + ", portraitURL=" + portraitURL
 				+ ", cteateTime=" + ", praiseNum=" + praiseNum
 				+ ", stampNum=" + stampNum + ", parentReview=" + parentReview
-				+ ", reviews=" + reviews + "]";
+				+ ", reviews="  + "]";
 	}
 
 	

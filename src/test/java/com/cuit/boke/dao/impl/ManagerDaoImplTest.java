@@ -27,18 +27,13 @@ public class ManagerDaoImplTest {
 	@Rollback(false)
 	@Transactional
 	public void testInsert() {
-		Manager manager = new Manager();
-		manager.setNumber("1");
-		manager.setPassword("1");
-		manager.setCreateTime(new Date());
-		System.out.println(manager);
-		System.out.println(managerDaoImpl.insert(manager));
 		Manager manager1 = new Manager();
-		manager1.setNumber("2");
-		manager1.setPassword("2");
+		manager1.setNumber("kanyuxia");
+		manager1.setPassword("123456");
 		manager1.setCreateTime(new Date());
 		System.out.println(manager1);
 		System.out.println(managerDaoImpl.insert(manager1));
+		System.out.println("---------------------------------------");
 	}
 	
 	@Test
