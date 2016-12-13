@@ -40,27 +40,16 @@ public class ManagerAction extends ActionSupport {
 	@Override
 	public String execute() throws Exception {
 		ManagerBean managerBean = managerService.validLogin(number, password);
-		System.out.println("execute"+managerBean);
 		com.cuit.boke.dto.Result<ManagerBean> result = new com.cuit.boke.dto.Result<ManagerBean>("", managerBean, "");
-		if(result.getData().getManager()!=null){
-			result.getData().getManager().setArticles(null);
-		}
-		System.out.println(result);
 		data.put("result", result);
-		System.out.println("hello");
 		return SUCCESS;
 	}
-	
 	public Map<String, com.cuit.boke.dto.Result<ManagerBean>> getData() {
-		System.out.println("world");
-		System.out.println("data:"+data);
 		return data;
 	}
 	
-	
 	@JSON(serialize=false)
 	public String getNumber() {
-		
 		return number;
 	}
 
@@ -75,7 +64,4 @@ public class ManagerAction extends ActionSupport {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	
-
 }

@@ -71,7 +71,6 @@ public class ArticleDaoImplTest {
 		article.setImgURL("");
 		article.setStick(false);
 		article.setCreateTime(new Date());
-//		System.out.println(article.getCreateTime());
 		article.setLabel("生活");
 		
 		

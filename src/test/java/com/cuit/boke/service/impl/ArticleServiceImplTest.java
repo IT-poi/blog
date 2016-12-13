@@ -12,12 +12,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cuit.boke.dao.ArticleDao;
-import com.cuit.boke.dao.MangerDao;
-import com.cuit.boke.dao.impl.ManagerDaoImpl;
+import com.cuit.boke.dao.ManagerDao;
+import com.cuit.boke.dto.ArticleBean;
 import com.cuit.boke.dto.PageBean;
 import com.cuit.boke.entity.Article;
 import com.cuit.boke.entity.Manager;
-import com.cuit.boke.exception.UpdateFailException;
+import com.cuit.boke.entity.Review;
+import com.cuit.boke.service.ArticleService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 //junit 整合 spring 单元测试框架 导入配置文件，支持通配符
@@ -26,13 +27,13 @@ import com.cuit.boke.exception.UpdateFailException;
 public class ArticleServiceImplTest {
 
 	@Autowired
-	private ArticleServiceImpl articleServiceImpl;
+	private ArticleService articleService;
 	
 	@Autowired
 	private ArticleDao articleDao;
 	
 	@Autowired
-	private MangerDao mangerDao;
+	private ManagerDao mangerDao;
 	
 	@Test
 	@Rollback(false)
@@ -43,7 +44,7 @@ public class ArticleServiceImplTest {
 		manager.setId(30);
 		article.setManager(manager);
 		try {
-			articleServiceImpl.updateArticle(article);
+			articleService.updateArticle(article);
 		} catch (DataIntegrityViolationException e) {
 			System.out.println("123");
 		}
@@ -61,9 +62,8 @@ public class ArticleServiceImplTest {
 		article.setImgURL("");
 		article.setStick(false);
 		article.setCreateTime(new Date());
-//		System.out.println(article.getCreateTime());
 		article.setLabel("生活");
-		articleServiceImpl.saveArticle(article);
+		articleService.saveArticle(article);
 	}
 	@Test
 	@Rollback(false)
@@ -73,13 +73,22 @@ public class ArticleServiceImplTest {
 		pageBean.setPageSize(5);
 		pageBean.setOrderBy(PageBean.TIME);
 		pageBean.setOrder(PageBean.ASC);
-		System.out.println(articleServiceImpl.recentArticleByPage(pageBean));
+		System.out.println(articleService.recentArticleByPage(pageBean));
 	}
 	@Test
 	@Rollback(false)
 	public void testDelete(){
 		Article article = articleDao.queryById(Article.class, 2);
-		articleServiceImpl.deleteArticle(article);
+		articleService.deleteArticle(article);
 	}
-
+	
+	@Test
+	@Rollback(false)
+	public void testQueryArticleByid(){
+		ArticleBean articleBean = articleService.queryArticleById(1);
+		System.out.println(articleBean.getArticle());
+		for(Review review:articleBean.getReviews()){
+			System.out.println(review);
+		}
+	}
 }

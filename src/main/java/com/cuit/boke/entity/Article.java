@@ -64,16 +64,6 @@ public class Article {
 	@JoinColumn(name = "manager_id",nullable=false)
 	private Manager manager;
 
-	// 该文章对应的评论
-<<<<<<< HEAD
-//	@OneToMany(targetEntity = Review.class, mappedBy = "article",
-//			cascade=CascadeType.REMOVE)
-//	private Set<Review> reviews = new HashSet<Review>();
-=======
-	@OneToMany(targetEntity = Review.class, mappedBy = "article",
-			cascade=CascadeType.REMOVE,fetch=FetchType.LAZY)
-	private Set<Review> reviews = new HashSet<Review>();
->>>>>>> origin/master
 
 	public Integer getId() {
 		return id;
@@ -158,15 +148,6 @@ public class Article {
 		this.manager = manager;
 	}
 
-//	public Set<Review> getReviews() {
-//		return reviews;
-//	}
-//
-//	public void setReviews(Set<Review> reviews) {
-//		this.reviews = reviews;
-//	}
-
-	
 	public boolean isStick() {
 		return isStick;
 	}
@@ -175,26 +156,11 @@ public class Article {
 		this.isStick = isStick;
 	}
 
-<<<<<<< HEAD
-//	@Override
-//	public String toString() {
-//		return "Article [id=" + id + ", title=" + title + ", brief=" + brief
-//				+ ", content=" + content + ", imgURL=" + imgURL
-//				+ ", createTime=" + ", pageView=" + pageView
-//				+ ", commentNum=" + commentNum + ", label=" + label
-//				+ ", manager=" + manager + ", reviews=" + "]";
-//	}
-=======
 	@Override
 	public String toString() {
-		return "Article [id=" + id + ", title=" + title + ", brief=" + brief
-				+ ", content=" + content + ", imgURL=" + imgURL
-				+ ", createTime=" + ", pageView=" + pageView
-				+ ", commentNum=" + commentNum + ", label=" + label
-				+ ", manager="  + ", reviews=" + "]";
+		return "Article [id=" + id + ", title=" + title + ", brief=" + brief + ", content=" + content + ", imgURL="
+				+ imgURL + ", createTime=" + createTime + ", pageView=" + pageView + ", commentNum=" + commentNum
+				+ ", label=" + label + ", isStick=" + isStick + ", manager=" + manager + "]";
 	}
->>>>>>> origin/master
-
-	
 
 }

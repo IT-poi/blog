@@ -7,10 +7,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cuit.boke.dao.ArticleDao;
+import com.cuit.boke.dao.ReviewDao;
 import com.cuit.boke.dao.impl.ManagerDaoImpl;
+import com.cuit.boke.dto.ArticleBean;
 import com.cuit.boke.dto.PageBean;
 import com.cuit.boke.entity.Article;
 import com.cuit.boke.entity.Manager;
+import com.cuit.boke.entity.Review;
 import com.cuit.boke.exception.DeleteFailException;
 import com.cuit.boke.exception.SaveFailException;
 import com.cuit.boke.exception.UnknowException;
@@ -24,6 +27,8 @@ public class ArticleServiceImpl implements ArticleService{
 	private ArticleDao articleDao;
 	@Autowired
 	private ManagerDaoImpl managerDaoImpl;
+	@Autowired
+	private ReviewDao reviewDao;
 	
 	public PageBean<Article> recentArticleByPage(PageBean<Article> pageBean) throws UnknowException {
 		if (pageBean == null) {
@@ -76,6 +81,13 @@ public class ArticleServiceImpl implements ArticleService{
 		} catch (Exception e) {
 			throw new DeleteFailException("删除失败");
 		}
+	}
+	
+	public ArticleBean queryArticleById(int articleId) {
+		Article article = articleDao.queryById(Article.class, articleId);
+		List<Review> reviews = reviewDao.queryByArticleId(articleId);
+		ArticleBean articleBean = new ArticleBean(article, reviews);
+		return articleBean;
 	}
 
 }

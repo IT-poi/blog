@@ -31,9 +31,7 @@ public class ManagerDaoImplTest {
 		manager1.setNumber("kanyuxia");
 		manager1.setPassword("123456");
 		manager1.setCreateTime(new Date());
-		System.out.println(manager1);
-		System.out.println(managerDaoImpl.insert(manager1));
-		System.out.println("---------------------------------------");
+		managerDaoImpl.insert(manager1);
 	}
 	
 	@Test

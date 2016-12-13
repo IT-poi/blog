@@ -2,16 +2,12 @@ package com.cuit.boke.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
@@ -47,15 +43,6 @@ public class Manager implements Serializable{
 	// 博主创建时间
 	@Column(name = "create_time",nullable = false)
 	private Date createTime;
-
-	// 该博主对应的文章
-<<<<<<< HEAD
-//	@OneToMany(mappedBy = "manager", targetEntity = Article.class)
-//	private Set<Article> articles = new HashSet<Article>();
-=======
-	@OneToMany(mappedBy = "manager", targetEntity = Article.class,fetch=FetchType.LAZY)
-	private Set<Article> articles = new HashSet<Article>();
->>>>>>> origin/master
 
 	/**
 	 * 管理员相关个人信息说明,可以自行增添。
@@ -122,13 +109,6 @@ public class Manager implements Serializable{
 		this.createTime = createTime;
 	}
 
-//	public Set<Article> getArticles() {
-//		return articles;
-//	}
-//
-//	public void setArticles(Set<Article> articles) {
-//		this.articles = articles;
-//	}
 
 	public String getAddress() {
 		return address;
@@ -154,14 +134,6 @@ public class Manager implements Serializable{
 		this.signature = signature;
 	}
 
-//	@Override
-//	public String toString() {
-//		return "Manager [id=" + id + ", number=" + number + ", password="
-//				+ password + ", elucidation=" + elucidation + ", name=" + name
-//				+ ", createTime=" + ", articles=" 
-//				+ ", address=" + address + ", perfessional=" + perfessional
-//				+ ", signature=" + signature + "]";
-//	}
 	
 	
 	

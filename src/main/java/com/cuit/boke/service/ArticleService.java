@@ -1,5 +1,6 @@
 package com.cuit.boke.service;
 
+import com.cuit.boke.dto.ArticleBean;
 import com.cuit.boke.dto.PageBean;
 import com.cuit.boke.entity.Article;
 import com.cuit.boke.exception.DeleteFailException;
@@ -39,4 +40,11 @@ public interface ArticleService {
 	 * @throws DeleteFailException 删除失败异常
 	 */
 	public void deleteArticle(Article article) throws DeleteFailException;
+	
+	/**
+	 * 通过文章id，查询文章与评论
+	 * @param articleId
+	 * @return
+	 */
+	public ArticleBean queryArticleById(int articleId);
 }

@@ -4,7 +4,6 @@ package com.cuit.boke.dao.impl;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 import javax.transaction.Transactional;
 
@@ -39,10 +38,6 @@ public class ReviewDaoImplTest {
 		review.setPortraitURL("kanyuxia");
 		review.setContent("好");
 		review.setCteateTime(new Date());
-<<<<<<< HEAD
-//		review.setParentReview(reviewDaoImpl.queryById(Review.class, 7));
-=======
->>>>>>> origin/master
 		review.setParentReview(null);
 		review.setArticle(articleDaoImpl.queryById(Article.class, 1));
 		reviewDaoImpl.insert(review);
@@ -73,7 +68,7 @@ public class ReviewDaoImplTest {
 	@Transactional
 	public void testQueryById(){
 		Review review = reviewDaoImpl.queryById(Review.class,1);
-		System.out.println(review.getName());
+		System.out.println(review);
 	}
 	
 	@Test
@@ -110,6 +105,16 @@ public class ReviewDaoImplTest {
 	public void testArticle(){
 		Article article = articleDaoImpl.queryById(Article.class, 1);
 		System.out.println(article.getContent());
+	}
+	
+	@Test
+	@Rollback(false)
+	@Transactional
+	public void testQueryByArticleId(){
+		List<Review> reviews = reviewDaoImpl.queryByArticleId(1);
+		for(Review review:reviews){
+			System.out.println(review);
+		}
 	}
 
 }
