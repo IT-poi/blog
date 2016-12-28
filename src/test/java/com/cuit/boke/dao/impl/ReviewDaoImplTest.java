@@ -38,6 +38,7 @@ public class ReviewDaoImplTest {
 		review.setPortraitURL("kanyuxia");
 		review.setContent("好");
 		review.setCteateTime(new Date());
+
 		review.setParentReview(null);
 		review.setArticle(articleDaoImpl.queryById(Article.class, 1));
 		reviewDaoImpl.insert(review);

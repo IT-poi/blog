@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap 101 Template</title>
+
+  <!-- Bootstrap -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/animate.css" rel="stylesheet">
+  <link rel="fonts/FontAwesomeV4.1.0_8.rplib" href="myicon.ico">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+
+      <style type="text/css">
+        body{
+
+          margin: 0 auto;
+          background-color:#d0ecf8;
+        }
+
+         .height-big{
+          height: 75px;
+          margin-top: 60px;
+          margin-left: 43%;
+        }
+        .height-xs{
+          height: 30px;
+        }
+        .height-match{
+
+          height:0px;
+          padding-bottom:20%
+        }
+        .height-ban{
+         /* min-height:0px;*/
+          padding-bottom:10%
+        }
+        .blue{
+
+
+          /* opacity: 0.9;*/
+          /*background: #36D1C4;*/
+        }
+        .black{
+         /* background: #384259;*/
+         background-color: #aad3e5;
+         right: -15%;
+         opacity: 0.8;
+       }
+       .green{
+        background: #A0EECC;
+      }
+      .qing{
+        background: #6DF1CC;
+      }
+      .yellow{
+        background: #E3FFC3;
+      }
+      .red{
+        /*background: #FF89C0 ;*/
+        background-color: #e5f3f7;
+        left: 10%;
+        opacity: 0.8;
+        
+        
+      }
+      .white{
+        background: #ffffff;
+      }
+      .gray{
+       /* background: #F4F7F7;*/
+
+       display:block;
+       background-image: url("img/head_b.jpg");
+       background-repeat:no-repeat;
+       width:100%;
+     }
+     .height-sm{
+      height: 500px;
+    }
+    .height-match img{
+      position: relative;
+      width: 100%;
+    }
+    .na_tit{
+      height: 40px;
+      width: 120px;
+      font-family: "微软雅黑";
+      font-size: 15px;
+      color: #ffffff;
+      font-weight: bold;
+      margin-left: 10%;
+      bottom: -10px;
+      text-align: center;
+      line-height: 40px;
+      display: block;
+      background-color: #259cc7;
+
+    }
+    .right_box{
+      margin-top: 30px;
+      margin-left: -15px;
+      padding-left: 10px;
+      height: 40px;
+      line-height: 40px;
+      border-bottom: 40px solid #259cc7; 
+      border-right: 60px solid transparent; 
+      width: 180px; 
+      color: #ffffff;
+    }
+    .left_mid_box{
+      height:80px;
+      width: 100%;
+      border-top: 1px solid #259cc7;
+    }
+    .left_mid_box_con{
+      width: 90%;
+    }
+    .left_mid_box_mess{
+     width: 100%;
+     padding-top: 16px;
+      border-top: 1px solid #259cc7;
+   }
+   .left_mid_box_con h5{
+    width: 60%;
+    float: left;;
+  }
+  
+  .left_mid_box_mess textarea{
+    width: 100%;
+    height: 100px;
+    margin:0 auto;}
+    .left_mid_box_mess button{
+      float: right;
+      margin-bottom: 160px;
+      clear: both;
+    }
+    .left_mid_box_1{
+      border-top: 1px solid #259cc7;
+      padding-top: 15px;
+    }
+    .mess_img {
+      width: 100px;
+      height: 100px;
+      float: left;
+      background-color: red;
+
+    }
+    .mess_name{
+     
+      color:#259cc7;
+      margin-left: 15px;
+
+    }
+    .mess_flo{
+     
+      color:#417aaf;
+      margin-left: 10px;
+    }
+    .mess_con{
+      min-height:100px;
+      margin-left: 115px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #aad3e5;
+    }
+    .mess_con a{
+     
+      padding-right: 20px;
+      padding-bottom: 10px;
+      float: right;
+      clear: both;
+    }
+  
+    .modal-body textarea{
+      height: 100%;
+      width: 100%;
+      border-style:solid; 
+      resize : none;/*去掉右下角标签*/
+      border-color: #ffffff;
+      outline:none;/*去掉点击后的篮框*/
+     
+
+
+    }
+
+  </style>
+</head>
+<body class="gray">
+  <!-- 页眉大屏显示 -->  
+  <div class="height-match blue">
+    <div class="container">
+      <div style="height:30px"></div>
+      <div class="text-center">
+        <h1 class="text-left"><font color="white" >我的个人博客</font></h1>
+      </div>   
+      <p style="margin-left:10%; padding-top: 20px;">生如夏花之绚烂，死如秋叶之静美</p>   
+    </div>  
+  </div> 
+
+  <nav style="background-color:#259cc7;height: 30px" class=" navbar-inverse navbar-fixed-top " role="navigation" id = 'top'>
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+
+        <a class="navbar-brand" href="#">我的博客</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li><a href="index1.html">首页</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">关于 <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#">关于我</a></li>
+              <li><a href="#">友情链接</a></li>
+            </ul>
+          </li>
+          <li><a href="shuoshuo.html">说说</a></li>
+          <li><a href="留言板.html">留言</a></li>
+        </ul>
+        <form style = "margin-top:5px;" class="navbar-form navbar-left" role="search">
+          <div class="form-group from-inline">
+            <input type="text" class="form-control" placeholder="请输入关键字">
+            <button style = "width:70px;height: 28px;" type="submit" class="btn btn-primary" >搜索</button>
+          </div>
+        </form>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+  <!-- 主体内容-->
+  <div class="na_tit">留言板</div>
+  <hr style="border-width:2px; margin: 0 0 5px 0;">
+  <div class="height-ban">
+    <div class="col-md-7 height-ban animated zoomIn red ">
+     <h3>主人寄语</h3>
+     <div class="left_mid_box">
+      <div class="left_mid_box_con"><h5>在这愿意留下你的脚步么？么么哒~~~</h5> </div>
+    </div><!-- left_mid_box 结束-->
+    <h3>发表你的留言</h3>
+    
+      <div class="left_mid_box_mess">
+        <form >
+          <textarea name=" " >
+            我来说一句···
+          </textarea>
+        </form>
+        <button type="button" class="btn btn-info">评论</button>
+      </div>
+    <!-- left_mid_box 结束-->
+
+    <h3 style="margin-top: 50px;">留言板</h3>
+    <div class="left_mid_box_1">  
+      <div class="mess_img"> <img src="img/2.png"></div>
+      <span class="mess_name">权志龙</span>
+      <span class="mess_flo">第一楼</span>
+      <div class="mess_con">
+        <p>我们一起吃饭吧！摸摸扎，啦啦啦啦啦了啦啦啦啦啦了拉拉了</p>
+        <a data-toggle="modal" data-target="#myModal" href="#">回复</a>
+      </div>
+    </div>
+    <div class="left_mid_box_1">  
+      <div class="mess_img"> <img src="img/2.png"></div>
+      <span class="mess_name">权志龙</span>
+      <span class="mess_flo">第一楼</span>
+      <div class="mess_con">
+        <p>我们一起吃饭吧！摸摸扎，啦啦啦啦啦了啦啦啦啦啦了拉拉了</p>
+         <a data-toggle="modal" data-target="#myModal" href="#">回复</a>
+      </div>
+    </div>
+     <div class="left_mid_box_1">  
+      <div class="mess_img"> <img src="img/2.png"></div>
+      <span class="mess_name">权志龙</span>
+      <span class="mess_flo">第一楼</span>
+      <div class="mess_con">
+        <p>我们一起吃饭吧！摸摸扎，啦啦啦啦啦了啦啦啦啦啦了拉拉了</p>
+         <a data-toggle="modal" data-target="#myModal" href="#">回复</a>
+      </div>
+    </div>
+
+  
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <textarea name=" " >
+          </textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  </div>
+
+  <div class="col-md-2  animated fadeInRight black ">
+    <img style="margin: 30px 45px;" src="img/2.png">
+    <div class="right_box">我的资料 </div>
+    <p style="margin-top: 10px;">姓名：杨青</p>
+    <p>网名：DanceSmile | 即步非烟</p>
+    <p>现居：天津市—滨海新区</p>
+    <P>职业：网站设计、网站制作</P>
+    <div class="right_box">最近访客 </div>
+    <p style="margin-top: 10px;">姓名：杨青</p>
+    <p>网名：DanceSmile | 即步非烟</p>
+    <p>现居：天津市—滨海新区</p>
+    <P>职业：网站设计、网站制作</P>
+    <div class="right_box">我的资料 </div>
+    <p style="margin-top: 10px;">姓名：杨青</p>
+    <p>网名：DanceSmile | 即步非烟</p>
+    <p>现居：天津市—滨海新区</p>
+    <P>职业：网站设计、网站制作</P>
+
+
+  </div>
+</div>
+<div class=" col-md-4 col-xs-1 height-big">
+      成都信息工程大学软件工程学院
+    </div>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+<script src="http://ifightcrime.github.io/bootstrap-growl/jquery.bootstrap-growl.min.js"></script>
+
+<!-- 响应式导航栏所需要的js库-->
+<script src="js/myJs.js"></script>
+<script src="js/Headroom.js"></script>
+<script src="js/jquery-headroom.js"></script>
+</body>
+
+</html>

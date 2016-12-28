@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link rel="fonts/FontAwesomeV4.1.0_8.rplib" href="myicon.ico">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+ 
+    <style type="text/css">
+    body{
+
+      margin: 0 auto;
+      background-color:#d0ecf8;
+    }
+
+       .height-big{
+          height: 75px;
+          margin-top: 60px;
+          margin-left: 43%;
+        }
+      .height-xs{
+        height: 30px;
+      }
+      .height-match{
+
+        height:0px;
+        padding-bottom:20%
+      }
+      .height-ban{
+        height:0px;
+        padding-bottom:60%
+      }
+      .blue{
+       
+         
+        /* opacity: 0.9;*/
+        /*background: #36D1C4;*/
+      }
+      .black{
+       /* background: #384259;*/
+      /* background-color: #aad3e5;*/
+        right: -13%;
+        opacity: 0.8;
+        border-left: 3px solid #259cc7;
+      }
+      .green{
+        background: #A0EECC;
+      }
+      .qing{
+        background: #6DF1CC;
+      }
+      .yellow{
+        background: #E3FFC3;
+      }
+      .red{
+        /*background: #FF89C0 ;*/
+       /* background-color: #e5f3f7;*/
+        left: 10%;
+        opacity: 0.8;
+        
+        
+      }
+      .white{
+        background: #ffffff;
+      }
+      .gray{
+       /* background: #F4F7F7;*/
+
+         display:block;
+         background-image: url("img/head_b.jpg");
+         background-repeat:no-repeat;
+         width:100%;
+      }
+      .height-sm{
+        height: 500px;
+      }
+      .height-match img{
+        position: relative;
+        width: 100%;
+      }
+      .na_tit{
+        height: 40px;
+        width: 120px;
+        font-family: "微软雅黑";
+        font-size: 15px;
+        color: #ffffff;
+        font-weight: bold;
+        margin-left: 10%;
+        bottom: -10px;
+        text-align: center;
+        line-height: 40px;
+        display: block;
+        background-color: #259cc7;
+
+      }
+      .right_box{
+        margin-top: 185px;
+        margin-left: -15px;
+        padding-left: 50px;
+        height: 40px;
+        line-height: 40px;
+        border-bottom: 40px solid #259cc7; 
+        border-right: 60px solid transparent; 
+        width: 180px; 
+        color: #ffffff;
+        border-radius: 0px 40px;
+      }
+      .left_mid_box{
+        height:120px;
+        width: 100%;
+      /*  border-bottom: 2px solid #aad3e5;*/
+      }
+      .left_mid_box_con{
+        width: 90%;
+      }
+      .left_mid_box_con h5{
+        width: 70%;
+        float: left;;
+      }
+      .left_mid_box_img {
+        height: 120px; 
+        width: 40%; 
+        float: right;
+        position: relative;
+        margin-right: -50px;
+        margin-top: -20px;
+
+      }
+      .left_mid_box_img img{
+    
+        height: 120px; 
+    
+    
+      }
+      .left_mid_box_line{
+        background-color:#e1fef7;
+        padding-left: 30px;
+        padding-top: 10px;
+        border-radius:10px;
+        margin-bottom: 30px;
+
+      }
+      a:hover{
+        text-decoration:none;
+
+      }
+     
+    </style>
+  </head>
+  <body class="gray">
+    <!-- 页眉大屏显示 -->  
+    <div class="height-match blue">
+        <div class="container">
+          <div style="height:30px"></div>
+          <div class="text-center">
+            <h1 class="text-left"><font color="white" >我的个人博客</font></h1>
+          </div>   
+          <p style="margin-left:10%; padding-top: 20px;">生如夏花之绚烂，死如秋叶之静美</p>   
+        </div>  
+    </div> 
+
+  <nav style="background-color:#259cc7;height: 30px" class=" navbar-inverse navbar-fixed-top " role="navigation" id = 'top'>
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+     <!--  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button> -->
+      <a class="navbar-brand" href="#">我的博客</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="index1.html">首页</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">关于 <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">关于我</a></li>
+            <li><a href="#">友情链接</a></li>
+          </ul>
+        </li>
+       
+        <li><a href="shuoshuo.html">说说</a></li>
+        <li><a href="留言板.html">留言</a></li>
+      </ul>
+      <form style = "margin-top:5px;" class="navbar-form navbar-left" role="search">
+        <div class="form-group from-inline">
+          <input type="text" class="form-control" placeholder="请输入关键字">
+          <button style = "width:70px;height: 28px;" type="submit" class="btn btn-primary" >搜索</button>
+        </div>
+      </form>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<!-- 主体内容-->
+     <div class="na_tit">说说</div>
+    <hr style="border-width:2px; margin: 0 0 5px 0;">
+    <div class="height-ban">
+        <div class="col-md-7 height-ban animated zoomIn red ">
+          <a href="detial.html"><div class="left_mid_box_line">
+          <h2>女孩都有浪漫的小情怀</h2>
+         
+          <div class="left_mid_box">
+            <div class="left_mid_box_con "><h5>女孩子都有着浪漫的小情怀，对于求婚更是抱着满满的浪漫期待，也希望在求婚那一天对方可以给自己一个最浪漫的求婚词。
+          you are the apple of my eyes.
+          你是我这辈子最珍贵的人。请让我永远守护在你身边，我一定将你当成掌心的珍宝，一辈子悉心呵护。你，愿意嫁给我吗？</h5>
+
+              </div>
+              <div class="left_mid_box_img"><img src="img/1.jpg"></div>
+              </div></div></a>
+
+           <a href="detial.html"><div class="left_mid_box_line">
+          <h2>女孩都有浪漫的小情怀</h2>
+          
+          <div class="left_mid_box">
+            <div class="left_mid_box_con "><h5>女孩子都有着浪漫的小情怀，对于求婚更是抱着满满的浪漫期待，也希望在求婚那一天对方可以给自己一个最浪漫的求婚词。
+          you are the apple of my eyes.
+          你是我这辈子最珍贵的人。请让我永远守护在你身边，我一定将你当成掌心的珍宝，一辈子悉心呵护。你，愿意嫁给我吗？</h5>
+
+              </div>
+              <div class="left_mid_box_img"><img src="img/1.jpg"></div>
+              </div></div></a>
+
+
+                <a href="detial.html"><div class="left_mid_box_line">
+          <h2>女孩都有浪漫的小情怀</h2>
+          
+          <div class="left_mid_box">
+            <div class="left_mid_box_con "><h5>女孩子都有着浪漫的小情怀，对于求婚更是抱着满满的浪漫期待，也希望在求婚那一天对方可以给自己一个最浪漫的求婚词。
+          you are the apple of my eyes.
+          你是我这辈子最珍贵的人。请让我永远守护在你身边，我一定将你当成掌心的珍宝，一辈子悉心呵护。你，愿意嫁给我吗？</h5>
+
+              </div>
+              <div class="left_mid_box_img"><img src="img/1.jpg"></div>
+              </div></div></a>
+         
+
+        </div>
+
+        <div class="col-md-2  animated fadeInRight black ">
+      
+       
+          <div class="right_box" style="margin-top: 60px;">2016/12/25 </div>
+         
+            <div class="right_box">2016/12/25 </div>
+        
+            <div class="right_box">2016/12/25 </div>
+         
+
+        </div>
+   <!--  </div>
+    <div class="height-ban">
+        <div class="col-md-6 height-ban animated fadeInLeft black">123</div>
+        <div class="col-md-4 height-ban animated zoomIn red">312</div>
+    </div>
+    <div class="height-xs green"> -->
+    </div>
+    <div class=" col-md-4 col-xs-1 height-big">
+      成都信息工程大学软件工程学院
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="http://ifightcrime.github.io/bootstrap-growl/jquery.bootstrap-growl.min.js"></script>
+
+    <!-- 响应式导航栏所需要的js库-->
+    <script src="js/myJs.js"></script>
+    <script src="js/Headroom.js"></script>
+    <script src="js/jquery-headroom.js"></script>
+  </body>
+</html>

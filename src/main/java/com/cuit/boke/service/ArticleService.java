@@ -47,4 +47,7 @@ public interface ArticleService {
 	 * @return
 	 */
 	public ArticleBean queryArticleById(int articleId);
+	
+	public PageBean<Article> ArticlePageByLable(String lable, PageBean<Article> article)
+			throws UnknowException;
 }

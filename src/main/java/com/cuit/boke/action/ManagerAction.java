@@ -41,6 +41,7 @@ public class ManagerAction extends ActionSupport {
 	public String execute() throws Exception {
 		ManagerBean managerBean = managerService.validLogin(number, password);
 		com.cuit.boke.dto.Result<ManagerBean> result = new com.cuit.boke.dto.Result<ManagerBean>("", managerBean, "");
+
 		data.put("result", result);
 		return SUCCESS;
 	}

@@ -13,6 +13,12 @@ public interface ArticleDao extends GenericDao<Article, Integer> {
 	public int queryTotalCount();
 	
 	/**
+	 * 查询某个标签下的文章数量
+	 * @return
+	 */
+	public int queryTotalCountByLabel(String label);
+	
+	/**
 	 * 通过文章标签查询文章列表，分页查询
 	 * @param label 文章标签
 	 * @param begin 查询起点

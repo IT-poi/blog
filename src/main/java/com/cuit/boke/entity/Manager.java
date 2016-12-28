@@ -44,6 +44,7 @@ public class Manager implements Serializable{
 	@Column(name = "create_time",nullable = false)
 	private Date createTime;
 
+
 	/**
 	 * 管理员相关个人信息说明,可以自行增添。
 	 */

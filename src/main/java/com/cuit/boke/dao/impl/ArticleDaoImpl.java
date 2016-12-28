@@ -24,6 +24,11 @@ public class ArticleDaoImpl extends GenericDaoImpl<Article, Integer> implements 
 //		return list;
 //	}
 
+	public int queryTotalCountByLabel(String label) {
+		String sql = "select count(*) from article where label = '" + label + "'";
+		BigInteger count = (BigInteger) sessionFactory.getCurrentSession().createSQLQuery(sql).uniqueResult();
+		return count.intValue();
+	}
 
 
 	public int queryTotalCount() {
