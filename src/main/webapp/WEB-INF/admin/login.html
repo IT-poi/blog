@@ -1,0 +1,132 @@
+<!-- 后台管理首页 数据统计 -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>博客后台管理--登录</title>
+	
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="assets/materialize/css/materialize.min.css" media="screen,projection" />
+    <!-- Bootstrap Styles-->
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+    <!-- Morris Chart Styles-->
+    <link href="assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href="assets/css/custom-styles.css" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="assets/js/Lightweight-Chart/cssCharts.css"> 
+</head>
+<style type="text/css">
+    body{background: #F5F5F5;}
+    .login-form {
+      width: 360px;
+      padding-top: 100px;
+      margin: 0px auto;
+      text-shadow: none;
+    }
+    .login-form form {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+    }
+    .login-form form img {
+      margin-bottom: 18px;
+    }
+    .login-form form .profile {
+      border-radius: 999px;
+    }
+    .login-form form .top {
+      background:#30CC7B;
+      border-bottom: 1px solid #ddd;
+      text-align: center;
+      padding: 30px 0;
+    }
+    .login-form form .top .icon {
+      width: 100px;
+      height: 100px;
+    }
+    .login-form form .top h1,
+    .login-form form .top h4 {
+
+      margin: 0;
+    }
+    .login-form form .top h1 {
+      color: #fff;
+      font-size: 30px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: bold;
+      margin-top: -14px;
+    }
+    .login-form form .top h4 {
+      font-weight: normal;
+      color: #fff;
+      font-size: 15px;
+    }
+    .login-form form .form-area {
+      padding: 40px;
+    }
+    .login-form form .form-area .group {
+      position: relative;
+      margin-bottom: 20px;
+    }
+    .login-form form .form-area .form-control {
+      padding-left: 38px;
+      height: 40px;
+    }
+    .login-form form .form-area .fa {
+      position: absolute;
+      top: 11px;
+      left: 13px;
+      font-size: 16px;
+      color: #C3C3C3;
+    }
+    .login-form form .form-area .btn {
+      height: 42px;
+      font-weight: 600;
+    }
+    .login-form form .form-area .checkbox {
+      margin-bottom: 20px;
+    }
+    .login-form .footer-links {
+      color: #76757B;
+      padding: 10px 5px;
+    }
+    .login-form .footer-links a {
+      color: #76757B;
+    }
+    .login-form .footer-links a:hover {
+      color: #37363e;
+    }
+</style>
+<body>
+     <div class="login-form">
+      <form action="index.html">
+        <div class="top">
+          <h1>博客后台管理</h1>
+          <h4>能登进去的都是天才</h4>
+        </div>
+        <div class="form-area">
+          <div class="group">
+            <input type="text" class="form-control" placeholder="请输入用户名">
+            <i class="fa fa-user"></i>
+          </div>
+          <div class="group">
+            <input type="password" class="form-control" placeholder="请输入密码">
+            <i class="fa fa-key"></i>
+          </div>
+          <div class="checkbox checkbox-primary">
+            <input id="checkbox101" type="checkbox" checked>
+            <label for="checkbox101"> 记住我（并没什么卵用）</label>
+          </div>
+          <button type="submit" class="btn btn-success btn-block">新世纪大门</button>
+        </div>
+      </form>
+    </div>
+</body>
+
+</html>

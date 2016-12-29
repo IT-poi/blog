@@ -1,0 +1,173 @@
+<!-- 后台管理首页 数据统计 -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>博客后台管理</title>
+	
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="assets/materialize/css/materialize.min.css" media="screen,projection" />
+    <!-- Bootstrap Styles-->
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FontAwesome Styles-->
+    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+    <!-- Morris Chart Styles-->
+    <link href="assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <!-- Custom Styles-->
+    <link href="assets/css/custom-styles.css" rel="stylesheet" />
+    <!-- Google Fonts-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="assets/js/Lightweight-Chart/cssCharts.css"> 
+</head>
+<style type="text/css">
+    .titleStyle{
+        font-size: 30px;
+    }
+</style>
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle waves-effect waves-dark" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand waves-effect waves-dark" href="index.html"><i class="large material-icons">insert_chart</i> <strong>后台管理</strong></a>
+				
+		<div id="sideNav" href=""><i class="material-icons dp48">toc</i></div>
+            </div>
+
+            <ul class="nav navbar-top-links navbar-right"> 
+				  <li><a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown1"><i class="fa fa-user fa-fw"></i> <b>尹健康</b> <i class="material-icons right">arrow_drop_down</i></a></li>
+            </ul>
+        </nav>
+		<!-- Dropdown Structure -->
+<ul id="dropdown1" class="dropdown-content">
+<li><a href="personalInfo.html"><i class="fa fa-user fa-fw"></i>个人信息</a>
+</li>
+<li><a href="setting.html"><i class="fa fa-gear fa-fw"></i> 设置</a>
+</li> 
+<li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> 注销</a>
+</li>
+</ul>
+
+
+	   <!--/. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+
+                    <li>
+                        <a class="active-menu waves-effect waves-dark" href="index.html"><i class="fa fa-dashboard"></i>数据统计</a>
+                    </li>
+                    <li>
+                        <a href="articleMgr.html" class="waves-effect waves-dark"><i class="fa fa-desktop"></i>文章管理</a>
+                    </li>
+					<li>
+                        <a href="commentMgr.html" class="waves-effect waves-dark"><i class="fa fa-bar-chart-o"></i> 评论管理</a>
+                    </li>
+                </ul>
+
+            </div>
+
+        </nav>
+        <!-- /. NAV SIDE  -->
+      
+		<div id="page-wrapper">
+		  <div class="header"> 
+                        <h1 class="page-header">
+                            撰写博客
+                        </h1>
+						<ol class="breadcrumb">
+					  <li><a href="#">后台</a></li>
+					  <li><a href="#">撰写博客</a></li>
+					</ol> 
+									
+		</div>
+            <div id="page-inner">
+
+			<div class="row">
+                <br><br>
+                <div class="input-field col s12">
+                  <input id="title" type="text" class="validate" style="font-size: 40px">
+                  <label for="title" style="font-size: 30px">标题</label>
+                </div>         
+            </div>
+                <div class="row">
+                    <div id="editor">
+                        <script id="edit_area" name="edit_area" type="text/plain"></script>
+                        <!-- 编辑器css -->
+                        <link href="ueditor/themes/default/css/ueditor.css" type="text/css" rel="stylesheet">
+                        <!-- jquery -->
+
+                        <!-- 配置文件 -->
+                        <script type="text/javascript" src="ueditor/ueditor.config.js"></script>
+                        <!-- 编辑器源码文件 -->
+                        <script type="text/javascript" src="ueditor/ueditor.all.js"></script>
+                        <!-- 语言包文件(建议手动加载语言包，避免在ie下，因为加载语言失败导致编辑器加载失败) -->
+                        <script type="text/javascript" src="ueditor/lang/zh-cn/zh-cn.js"></script>
+                        <script type="text/javascript">
+                          var editor = UE.getEditor('edit_area',{
+                            //imageUrl:'__SITE__Admin/Ueditorup/ueditor?action=uploadimage',
+                            //imagePath: "",
+                            initialFrameWidth:"1100",
+                            initialFrameHeight:"400"
+                          });
+                        </script>
+                      </div>
+                </div>
+                <div class="row" align="center">
+                    <button class="btn btn-success">提交</button>
+                </div>
+			
+
+			   <div class="fixed-action-btn horizontal click-to-toggle">
+    <a class="btn-floating btn-large red">
+      <i class="material-icons">menu</i>
+    </a>
+    <ul>
+      <li><a class="btn-floating red" title="写博客" href="write.html"><i class="material-icons">mode_edit</i></a></li>
+      <li><a class="btn-floating green" id="re_top" title="返回顶部"><i class="material-icons">publish</i></a></li>
+      <li><a class="btn-floating blue" title="注销" href="login.html"><i class="material-icons">power_settings_new</i></a></li>
+    </ul>
+  </div>
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <!-- JS Scripts-->
+    <!-- jQuery Js -->
+    <script src="assets/js/jquery-1.10.2.js"></script>
+	
+	<!-- Bootstrap Js -->
+    <script src="assets/js/bootstrap.min.js"></script>
+	
+	<script src="assets/materialize/js/materialize.min.js"></script>
+	
+    <!-- Metis Menu Js -->
+    <script src="assets/js/jquery.metisMenu.js"></script>
+    <!-- Morris Chart Js -->
+    <script src="assets/js/morris/raphael-2.1.0.min.js"></script>
+    <script src="assets/js/morris/morris.js"></script>
+	
+	
+	<script src="assets/js/easypiechart.js"></script>
+	<script src="assets/js/easypiechart-data.js"></script>
+	
+	 <script src="assets/js/Lightweight-Chart/jquery.chart.js"></script>
+	
+    <!-- Custom Js -->
+    <script src="assets/js/custom-scripts.js"></script> 
+ <script type="text/javascript">
+	$('#re_top').click(function(){$('html,body').animate({scrollTop: '0px'}, 800);});
+ </script>
+
+</body>
+
+</html>

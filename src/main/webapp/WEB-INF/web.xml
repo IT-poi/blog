@@ -18,13 +18,21 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-  
+<filter>       
+         <filter-name>checkLoginFilter</filter-name>       
+         <filter-class>com.cuit.boke.filter.CheckLoginFilter</filter-class>       
+    </filter>       
+      <filter-mapping>    
+         <filter-name>checkLoginFilter</filter-name>    
+         <url-pattern>/back/*</url-pattern>    
+ </filter-mapping> 
   <filter>
     <filter-name>struts2</filter-name>
     <filter-class>
 		org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter
 	</filter-class>
   </filter>
+
   <filter-mapping>
     <filter-name>struts2</filter-name>
     <url-pattern>/*</url-pattern>
