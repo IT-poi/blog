@@ -14,16 +14,14 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.cuit.boke.dto.ManagerBean;
+import com.cuit.boke.entity.Manager;
 import com.cuit.boke.service.ManagerService;
 import com.opensymphony.xwork2.ActionSupport;
 
 @Controller
-@Namespace(value = "/managerAction")
+@Namespace(value = "/manager")
 @ParentPackage(value = "json-default")
 @Scope(value = "prototype")
-@Results({
-	@Result(name="success",type="json",params={"root","data"})
-})
 public class ManagerAction extends ActionSupport {
 	private static final long serialVersionUID = 1L;
 
@@ -32,17 +30,42 @@ public class ManagerAction extends ActionSupport {
 
 	private Map<String, com.cuit.boke.dto.Result<ManagerBean>> data = new HashMap<String, com.cuit.boke.dto.Result<ManagerBean>>();
 
+	private com.cuit.boke.dto.Result<Manager> result;
+	
+	private com.cuit.boke.dto.Result<ManagerBean> blogResult;
+	
 	private String number;
 	
 	private String password;
 	
-	@Action(value = "getInfo")
-	@Override
-	public String execute() throws Exception {
-		ManagerBean managerBean = managerService.validLogin(number, password);
-		com.cuit.boke.dto.Result<ManagerBean> result = new com.cuit.boke.dto.Result<ManagerBean>("", managerBean, "");
-
-		data.put("result", result);
+	@Action(value = "login", results = {
+			@Result(name="success",type="json",params={"root","blogResult"})
+	})
+	public String login(){
+		try {
+			ManagerBean managerBean = managerService.validLogin(number, password);
+			blogResult = new com.cuit.boke.dto.Result<ManagerBean>("OK", managerBean, null);
+		} catch (Exception e) {
+			e.printStackTrace();
+			blogResult = new com.cuit.boke.dto.Result<ManagerBean>("error", null, "系统错误！");
+		}
+		
+		return SUCCESS;
+	}
+	
+	@Action(value = "easyinfo", results = {
+			@Result(name="success",type="json",params={"root","result"})
+	})
+	public String managerForPerson(){
+		try {
+			//
+			Manager manager = managerService.showManagerForPerson(1);
+			System.out.println(manager);
+			result = new com.cuit.boke.dto.Result<Manager>("OK", manager, null);
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = new com.cuit.boke.dto.Result<Manager>("OK", null, "系统错误！");
+		}
 		return SUCCESS;
 	}
 	public Map<String, com.cuit.boke.dto.Result<ManagerBean>> getData() {
@@ -64,5 +87,21 @@ public class ManagerAction extends ActionSupport {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public com.cuit.boke.dto.Result<Manager> getResult() {
+		return result;
+	}
+	
+	public void setResult(com.cuit.boke.dto.Result<Manager> result) {
+		this.result = result;
+	}
+	
+	public com.cuit.boke.dto.Result<ManagerBean> getBlogResult() {
+		return blogResult;
+	}
+	
+	public void setBlogResult(com.cuit.boke.dto.Result<ManagerBean> blogResult) {
+		this.blogResult = blogResult;
 	}
 }

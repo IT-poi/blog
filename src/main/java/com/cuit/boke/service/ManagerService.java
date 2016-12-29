@@ -18,5 +18,12 @@ public interface ManagerService {
 	 * @return ManagerBean
 	 */
 	public Manager showManager(int id);
+	
+	/**
+	 * 显示给别人的博主信息
+	 * @param id
+	 * @return
+	 */
+	public Manager showManagerForPerson(int id);
 
 }

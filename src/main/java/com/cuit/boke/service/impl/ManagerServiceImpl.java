@@ -38,4 +38,10 @@ public class ManagerServiceImpl implements ManagerService{
 		return managerDao.queryById(Manager.class, id);
 	
 	}
+
+	public Manager showManagerForPerson(int id) {
+		Manager manager = showManager(id);
+		manager.setPassword("");
+		return manager;
+	}
 }
