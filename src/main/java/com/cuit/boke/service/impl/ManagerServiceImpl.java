@@ -2,8 +2,11 @@ package com.cuit.boke.service.impl;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
+import org.apache.struts2.ServletActionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +29,9 @@ public class ManagerServiceImpl implements ManagerService{
 			for(Manager manager:managers){
 				if(manager.getNumber().equals(number)
 						&&manager.getPassword().equals(Md5Utils.getMd5(password))){
+					HttpServletRequest request = ServletActionContext.getRequest();
+					HttpSession session = request.getSession();
+					session.setAttribute("isLogin", true);
 					return new ManagerBean(true, manager, null);
 				}
 			}
