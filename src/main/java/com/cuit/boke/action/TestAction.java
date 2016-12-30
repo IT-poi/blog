@@ -14,7 +14,7 @@ import com.cuit.boke.service.ArticleService;
 import com.opensymphony.xwork2.ActionSupport;
 
 @Controller
-@Namespace("/test")
+@Namespace("/Article")
 @ParentPackage("struts-default")
 public class TestAction extends ActionSupport{
 	
@@ -36,8 +36,8 @@ public class TestAction extends ActionSupport{
 		return "index";
 	}
 	
-	@Action(value="commit", results={
-			@Result(name="success", location="/success.jsp"),
+	@Action(value="info", results={
+			@Result(name="success", location="/WEB-INF/jsp/detial.html"),
 			@Result(name="error", location="/error.jsp")
 	})
 	public String getArticlePage(){

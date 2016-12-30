@@ -6,12 +6,27 @@
 <struts>
 
    <package name="default" extends="struts-default">
+   <!-- 配置博主登录拦截器 -->
+<!--    		<interceptors>   
+            <interceptor name="checkLogin"  class="com.cuit.boke.filter.CheckLoginFilter"/>   
+            <interceptor-stack name="checkLogin">   
+           		<interceptor-ref name="defaultStack" />
+                <interceptor-ref name="checkLogin" />   
+            </interceptor-stack> 
+        </interceptors>  -->  
         <action name = "main" >
-        	<result>/WEB-INF/jsp/index.html</result>
+        	<result>/resources/html/index.html</result>
         </action>
         <action name = "main1" >
         	<result>/WEB-INF/jsp/index1.html</result>
         </action>
+        <action name = "admin" >
+        	<result>/WEB-INF/admin/login.html</result>
+        </action>
+        <!-- <action name="checkLogin" class="com.cuit.boke.filter.CheckLoginFilter">
+        	<interceptor-ref name="checkLogin"/>
+        	<result>/WEB-INF/admin/login.html</result>
+        </action> -->
     </package>
     
    <!--  <package name="json" extends="json-default" namespace="/">  

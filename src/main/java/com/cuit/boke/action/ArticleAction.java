@@ -38,7 +38,7 @@ public class ArticleAction extends ActionSupport{
 	@Override
 	public String execute() throws Exception {
 		ArticleBean articleBean = articleService.queryArticleById(articleId);
-		com.cuit.boke.dto.Result<ArticleBean> result = new com.cuit.boke.dto.Result<ArticleBean>("", articleBean, "");
+		com.cuit.boke.dto.Result<ArticleBean> result = new com.cuit.boke.dto.Result<ArticleBean>("OK", articleBean, null);
 		data.put("result", result);
 		return SUCCESS;
 	}

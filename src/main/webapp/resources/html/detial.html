@@ -7,9 +7,10 @@
   <title>Bootstrap 101 Template</title>
 
   <!-- Bootstrap -->
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/animate.css" rel="stylesheet">
-  <link rel="fonts/FontAwesomeV4.1.0_8.rplib" href="myicon.ico">
+  <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/resources/css/animate.css" rel="stylesheet">
+  <link rel="/resources/fonts/FontAwesomeV4.1.0_8.rplib" href="myicon.ico">
+  <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -80,7 +81,7 @@
        /* background: #F4F7F7;*/
 
        display:block;
-       background-image: url("img/head_b.jpg");
+       background-image: url("/resources/img/head_b.jpg");
        background-repeat:no-repeat;
        width:100%;
      }
@@ -156,7 +157,7 @@
 
   </style>
 </head>
-<body class="gray">
+<body ng-app="detial" ng-controller="detialController" class="gray">
   <!-- 页眉大屏显示 -->  
   <div class="height-match blue">
     <div class="container">
@@ -214,7 +215,7 @@
         你是我这辈子最珍贵的人。请让我永远守护在你身边，我一定将你当成掌心的珍宝，一辈子悉心呵护。你，愿意嫁给我吗？</h4>
 
         </div>
-        <div class="left_mid_box_img"><img style="width: 600px;height: 300px" src="img/1.jpg"></div>
+        <div class="left_mid_box_img"><img style="width: 600px;height: 300px" src="/resources/img/1.jpg"></div>
       </div>
     </div>
     <div class="comment">
@@ -249,12 +250,13 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="/resources/js/bootstrap.min.js"></script>
     <script src="http://ifightcrime.github.io/bootstrap-growl/jquery.bootstrap-growl.min.js"></script>
 
     <!-- 响应式导航栏所需要的js库-->
-    <script src="js/myJs.js"></script>
-    <script src="js/Headroom.js"></script>
-    <script src="js/jquery-headroom.js"></script>
+    <script src="/resources/js/myJs.js"></script>
+    <script src="/resources/js/Headroom.js"></script>
+    <script src="/resources/js/jquery-headroom.js"></script>
+    <script src="/resources/js/detial-controller.js"></script>
   </body>
   </html>

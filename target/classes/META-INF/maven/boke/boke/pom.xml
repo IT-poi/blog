@@ -152,7 +152,13 @@
 			<artifactId>javassist</artifactId>
 			<version>3.11.0.GA</version>
 		</dependency>
-
+		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+		<dependency>
+		    <groupId>javax.servlet</groupId>
+		    <artifactId>javax.servlet-api</artifactId>
+		    <version>4.0.0-b01</version>
+		</dependency>
+		
 	</dependencies>
   <build>
     <finalName>boke</finalName>
