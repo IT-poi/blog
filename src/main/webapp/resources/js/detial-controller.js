@@ -31,7 +31,8 @@ app.controller("detialController", function($scope,$http) {
 //		}
 //	 });
 	$(function(){
-		console.log(GetQueryString("id"));
+		var articleId = GetQueryString("id");
+		$scope.getArtile(articleId);
 	});
 
 	//请求页面
@@ -61,18 +62,15 @@ app.controller("detialController", function($scope,$http) {
 //            });
 	};
 	
-	$scope.getArtile = function(){
-		$.get('/ArticleAction/getArticle').
+	$scope.getArtile = function(articleId){
+		$.get('/ArticleAction/getArticle?articleId='+articleId).
 	        success(function(response){
 	        	console.log(response);
 	        	$scope.article = response.data;
-	        	console.log($scope.blogger);
+	        	console.log($scope.article);
 	        });
 	};
 	
-	$scope.refreshPage = function(){
-		queryArticlePage($scope.recentPages);
-	};
 	//下一页
 	$scope.nextPage = function(){
 		console.log("nextPage()");

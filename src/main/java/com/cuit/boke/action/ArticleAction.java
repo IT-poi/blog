@@ -22,10 +22,12 @@ import com.opensymphony.xwork2.ActionSupport;
 @Scope(value="prototype")
 @ParentPackage(value="json-default")
 @Results(
-		@Result(name="success",type="json",params={"root","data"})
+		@Result(name="success",type="json",params={"root","result"})
 		)
 public class ArticleAction extends ActionSupport{
 	private static final long serialVersionUID = 1L;
+	
+	private com.cuit.boke.dto.Result<ArticleBean> result;
 	
 	@Autowired
 	private ArticleService articleService;
@@ -37,9 +39,13 @@ public class ArticleAction extends ActionSupport{
 	@Action(value="getArticle")
 	@Override
 	public String execute() throws Exception {
-		ArticleBean articleBean = articleService.queryArticleById(articleId);
-		com.cuit.boke.dto.Result<ArticleBean> result = new com.cuit.boke.dto.Result<ArticleBean>("OK", articleBean, null);
-		data.put("result", result);
+		try {
+			ArticleBean articleBean = articleService.queryArticleById(articleId);
+			result = new com.cuit.boke.dto.Result<ArticleBean>("ok", articleBean, null);
+		} catch (Exception e) {
+			e.printStackTrace();
+			result = new com.cuit.boke.dto.Result<ArticleBean>("error", null, "系统错误");
+		}
 		return SUCCESS;
 	}
 
@@ -58,6 +64,14 @@ public class ArticleAction extends ActionSupport{
 
 	public void setArticleId(int articleId) {
 		this.articleId = articleId;
+	}
+	
+	public void setResult(com.cuit.boke.dto.Result<ArticleBean> result) {
+		this.result = result;
+	}
+	
+	public com.cuit.boke.dto.Result<ArticleBean> getResult() {
+		return result;
 	}
 
 }
