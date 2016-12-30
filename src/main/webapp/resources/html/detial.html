@@ -11,6 +11,7 @@
   <link href="/resources/css/animate.css" rel="stylesheet">
   <link rel="/resources/fonts/FontAwesomeV4.1.0_8.rplib" href="myicon.ico">
   <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+  <script src="/resources/js/detial-controller.js"></script>
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -204,16 +205,11 @@
 <div class="height-ban">
   <div class="col-md-8 height-ban animated zoomIn red ">
     <div class="left_mid_box_line ">
-      <h1 class="text-center">女孩都有浪漫的小情怀</h1>
+      <h1 class="text-center" ng-model="articles.article.title">{{articles.article.title}}</h1>
 
       <div class="left_mid_box">
-        <div class="left_mid_box_con "><h4>女孩子都有着浪漫的小情怀，对于求婚更是抱着满满的浪漫期待，也希望在求婚那一天对方可以给自己一个最浪漫的求婚词。
-        you are the apple of my eyes.
-        你是我这辈子最珍贵的人。请让我永远守护在你身边，我一定将你当成掌心的珍宝，一辈子悉心呵护。你，愿意嫁给我吗？
-        女孩子都有着浪漫的小情怀，对于求婚更是抱着满满的浪漫期待，也希望在求婚那一天对方可以给自己一个最浪漫的求婚词。
-        you are the apple of my eyes.
-        你是我这辈子最珍贵的人。请让我永远守护在你身边，我一定将你当成掌心的珍宝，一辈子悉心呵护。你，愿意嫁给我吗？</h4>
-
+        <div class="left_mid_box_con ">
+        	<h4 ng-modle="articles.article.content">{{articles.article.content}}</h4>
         </div>
         <div class="left_mid_box_img"><img style="width: 600px;height: 300px" src="/resources/img/1.jpg"></div>
       </div>
@@ -257,6 +253,5 @@
     <script src="/resources/js/myJs.js"></script>
     <script src="/resources/js/Headroom.js"></script>
     <script src="/resources/js/jquery-headroom.js"></script>
-    <script src="/resources/js/detial-controller.js"></script>
   </body>
   </html>

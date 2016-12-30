@@ -1,11 +1,13 @@
 var app = angular.module("detial",[]);
 app.controller("detialController", function($scope,$http) {
+	
 	function GetQueryString(name)
 	{
 	     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
 	     var r = window.location.search.substr(1).match(reg);
 	     if(r!=null)return  unescape(r[2]); return null;
 	};
+	$scope.articles = {};
 	
 	//初始化
 //	$scope.recentPages = {};
@@ -66,8 +68,9 @@ app.controller("detialController", function($scope,$http) {
 		$.get('/ArticleAction/getArticle?articleId='+articleId).
 	        success(function(response){
 	        	console.log(response);
-	        	$scope.article = response.data;
-	        	console.log($scope.article);
+	        	$scope.articles = response.data;
+	        	console.log($scope.articles);
+	        	console.log($scope.articles.article.content);
 	        });
 	};
 	
