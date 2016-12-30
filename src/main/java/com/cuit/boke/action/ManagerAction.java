@@ -1,5 +1,8 @@
 package com.cuit.boke.action;
-
+/**
+ * 		名称：后台管理员操作Action类
+ *      编码：谢旷，马荧
+ */
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,12 +40,15 @@ public class ManagerAction extends ActionSupport {
 	private String number;
 	
 	private String password;
-	
+	/**
+	 * 管理员登录Action
+	 */
 	@Action(value = "/login", results = {
 			@Result(name="success",type="json",params={"root","blogResult"})
 	})
 	public String login(){
 		try {
+			//调用service验证
 			ManagerBean managerBean = managerService.validLogin(number, password);
 			blogResult = new com.cuit.boke.dto.Result<ManagerBean>("ok", managerBean, null);
 		} catch (Exception e) {
@@ -52,12 +58,36 @@ public class ManagerAction extends ActionSupport {
 		
 		return SUCCESS;
 	}
+	/**
+	 * 管理员登出Action
+	 */
+	@Action(value = "/logout", results = {
+			@Result(name="success",type="json",params={"root","blogResult"})
+	})
+	public String logout(){
+		try {
+			//调用service验证
+			ManagerBean managerBean = managerService.validLogin(number, password);
+			blogResult = new com.cuit.boke.dto.Result<ManagerBean>("ok", managerBean, null);
+		} catch (Exception e) {
+			e.printStackTrace();
+			blogResult = new com.cuit.boke.dto.Result<ManagerBean>("error", null, "系统错误！");
+		}
+		
+		return SUCCESS;
+	}
+	
+	/**
+	 * 首页跳转Action
+	 */
 	@Action(value = "/back/index", results = {
 			@Result(name="/back/index",location="/admin/index.html")
 	})
 	public String index(){
-		return "success";
+		return "/back/index";
 	}
+	
+	
 	@Action(value = "easyinfo", results = {
 			@Result(name="success",type="json",params={"root","result"})
 	})

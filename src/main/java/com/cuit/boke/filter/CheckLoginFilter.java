@@ -22,13 +22,20 @@ public class CheckLoginFilter extends HttpServlet implements javax.servlet.Filte
 			HttpServletRequest request = (HttpServletRequest) sRequest;
 	        HttpServletResponse response = (HttpServletResponse) sResponse;
 	        HttpSession session = request.getSession();        
+	        String   request_uri   =   request.getRequestURI();  
+	        String contextPath=request.getContextPath();
 	        
-	        String contextPath=request.getContextPath();    
 	        System.out.println("checking......");
-            String user=(String)session.getAttribute("isLogin");  
+            String user=(String)session.getAttribute("isLogin");
+            System.out.println("user:::"+user);
+            //排除登录页过滤
+            if(request_uri.substring(contextPath.length()).equals("/admin")){
+            	filterChain.doFilter(request, response); 
+                return;
+            }
             //判断有登录直接跳入主页
-            if(user.equals("true")){
-            	response.sendRedirect(contextPath+"/back/index");   
+            if(user != null && user.equals("true")){
+            	 filterChain.doFilter(request, response); 
                  return;    
             }
           //转入管理员登陆页面    

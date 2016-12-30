@@ -31,7 +31,7 @@ public class ManagerServiceImpl implements ManagerService{
 						&&manager.getPassword().equals(Md5Utils.getMd5(password))){
 					HttpServletRequest request = ServletActionContext.getRequest();
 					HttpSession session = request.getSession();
-					session.setAttribute("isLogin", true);
+					session.setAttribute("isLogin", "true");
 					return new ManagerBean(true, manager, null);
 				}
 			}
