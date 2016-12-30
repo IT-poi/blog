@@ -15,7 +15,7 @@
             </interceptor-stack> 
         </interceptors>  -->  
         <action name = "main" >
-        	<result>/resources/html/index.html</result>
+        	<result>/boke/index.html</result>
         </action>
         <action name = "main1" >
         	<result>/WEB-INF/jsp/index1.html</result>
