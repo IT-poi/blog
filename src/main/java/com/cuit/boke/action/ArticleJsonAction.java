@@ -118,6 +118,7 @@ public class ArticleJsonAction extends ActionSupport implements ModelDriven<Page
 		pageBean.setCurrPage(currPage);
 		pageBean.setPageSize(pageSize);
 		pageBean.setOrderBy(orderBy);
+		System.out.println(order);
 		pageBean.setOrder(order);
 		pageBean.setTotalPage(totalPage);
 		pageBean.setTotalCount(totalCount);

@@ -14,7 +14,7 @@
                 <interceptor-ref name="checkLogin" />   
             </interceptor-stack> 
         </interceptors>  -->  
-        <action name = "main" >
+        <action name = "index" >
         	<result>/boke/index.html</result>
         </action>
         <action name = "main1" >

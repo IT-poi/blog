@@ -10,7 +10,7 @@ app.controller("indexController", function($scope,$http) {
 		  offset: {from: 'top', amount: 60}, // 'top', or 'bottom'
 		  align: 'right', // ('left', 'right', or 'center')
 		  width: 250, // (integer, or 'auto')
-		  delay: 4000,
+		  delay: 2000, //毫秒数
 		  allow_dismiss: true,
 		  stackup_spacing: 10 // spacing between consecutively stacked growls.
 		});
@@ -18,6 +18,7 @@ app.controller("indexController", function($scope,$http) {
 	
 	//初始化
 	$scope.recentPages = {};
+	$scope.pageList = []
 //	$scope.blogger = {};
 	
 //	$(function(){
@@ -26,7 +27,6 @@ app.controller("indexController", function($scope,$http) {
 //			message("啥子哦！");
 //			$http.get("/article/list")
 //			.success(function (response) {
-//				console.log(response);//TODO
 //				if(response.status === "OK"){
 //					$scope.recentPages = response.data;
 //				}else{
@@ -45,9 +45,10 @@ app.controller("indexController", function($scope,$http) {
 
 	$http.get("/article/list")
 	.success(function (response) {
-		console.log(response);//TODO
 		if(response.status === "OK"){
 			$scope.recentPages = response.data;
+			$scope.pageList = response.data.list;
+			console.log($scope.pageList);
 		}else{
 			console.log(response.messages);
 		}
@@ -64,29 +65,31 @@ app.controller("indexController", function($scope,$http) {
 			totalCount : pageBean.totalCount,
 			totalPage : pageBean.totalPage
 		};
-		console.log(params);
-		$http.post('/article/pagelist',
+		$.post('/article/pagelist',
 		            params).
 		        success(function(response){
+		        	console.log(response);
 		        	$scope.recentPages = response.data;
+		        	$scope.pageList = response.data.list;
+		        	console.log($scope.pageList);
 		        });
 //		$http({
 //				method: 'POST',
 //	            data: params,
-//	            ignoreErrors: true,
 //	            url:"/article/pagelist"
 //            })
-//            .success(function (result) {
-//            	$scope.recentPages = result.data;
+//            .success(function (response) {
+//            	console.log(response);
+//	        	$scope.recentPages = response.data;
+//	        	$scope.pageList = response.data.list;
+//	        	console.log($scope.pageList);
 //            });
 	};
 	
 	$scope.getManager = function(){
 		$http.get('/manager/easyinfo').
 	        success(function(response){
-	        	console.log(response);
 	        	$scope.blogger = response.data;
-	        	console.log($scope.blogger);
 	        });
 	};
 	

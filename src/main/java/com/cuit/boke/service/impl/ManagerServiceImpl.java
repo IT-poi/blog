@@ -48,6 +48,7 @@ public class ManagerServiceImpl implements ManagerService{
 	public Manager showManagerForPerson(int id) {
 		Manager manager = showManager(id);
 		manager.setPassword("");
+		manager.setNumber("");
 		return manager;
 	}
 }
