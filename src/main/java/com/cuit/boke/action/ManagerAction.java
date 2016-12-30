@@ -6,11 +6,14 @@ package com.cuit.boke.action;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
-import org.apache.struts2.convention.annotation.Results;
 import org.apache.struts2.json.annotations.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -62,31 +65,27 @@ public class ManagerAction extends ActionSupport {
 	 * 管理员登出Action
 	 */
 	@Action(value = "/logout", results = {
-			@Result(name="success",type="json",params={"root","blogResult"})
+			@Result(name="success",location="/admin")
 	})
 	public String logout(){
-		try {
-			//调用service验证
-			ManagerBean managerBean = managerService.validLogin(number, password);
-			blogResult = new com.cuit.boke.dto.Result<ManagerBean>("ok", managerBean, null);
-		} catch (Exception e) {
-			e.printStackTrace();
-			blogResult = new com.cuit.boke.dto.Result<ManagerBean>("error", null, "系统错误！");
-		}
-		
+		HttpServletRequest request =  ServletActionContext.getRequest();
+		HttpSession session = request.getSession();
+		session.setAttribute("isLogin","false");  
 		return SUCCESS;
 	}
 	
-	/**
-	 * 首页跳转Action
-	 */
-	@Action(value = "/back/index", results = {
-			@Result(name="/back/index",location="/admin/index.html")
-	})
-	public String index(){
-		return "/back/index";
-	}
-	
+//	/**
+//	 * 获取用户名Action
+//	 */
+//	@Action(value = "/admin/getUserName", results = {
+//			@Result(name="success",type="json",params={"uname"})
+//	})
+//	public String getUserName(){
+//		HttpServletRequest request = ServletActionContext.getRequest();
+//		HttpSession session = request.getSession();
+//		String uname = (String)session.getAttribute("userName");
+//		return SUCCESS;
+//	}
 	
 	@Action(value = "easyinfo", results = {
 			@Result(name="success",type="json",params={"root","result"})

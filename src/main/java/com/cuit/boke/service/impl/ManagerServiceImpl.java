@@ -32,6 +32,8 @@ public class ManagerServiceImpl implements ManagerService{
 					HttpServletRequest request = ServletActionContext.getRequest();
 					HttpSession session = request.getSession();
 					session.setAttribute("isLogin", "true");
+					session.setAttribute("userName", manager.getName());
+					session.setAttribute("userId",manager.getId());
 					return new ManagerBean(true, manager, null);
 				}
 			}

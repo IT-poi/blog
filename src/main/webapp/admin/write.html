@@ -25,6 +25,9 @@
     .titleStyle{
         font-size: 30px;
     }
+    #preview img{
+        width: 20%;
+    }
 </style>
 <body>
     <div id="wrapper">
@@ -51,7 +54,7 @@
 </li>
 <li><a href="setting.html"><i class="fa fa-gear fa-fw"></i> 设置</a>
 </li> 
-<li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> 注销</a>
+<li><a href="/logout"><i class="fa fa-sign-out fa-fw"></i> 注销</a>
 </li>
 </ul>
 
@@ -95,7 +98,14 @@
                 <div class="input-field col s12">
                   <input id="title" type="text" class="validate" style="font-size: 40px">
                   <label for="title" style="font-size: 30px">标题</label>
-                </div>         
+                </div> 
+                <div class="file-field input-field col s12">
+                  <div class="btn">
+                    <span>上传题图</span>
+                    <input type="file" multiple="" onchange="preview(this);">
+                  </div>
+                  <div id="preview"></div>
+                </div>      
             </div>
                 <div class="row">
                     <div id="editor">
@@ -132,7 +142,7 @@
     <ul>
       <li><a class="btn-floating red" title="写博客" href="write.html"><i class="material-icons">mode_edit</i></a></li>
       <li><a class="btn-floating green" id="re_top" title="返回顶部"><i class="material-icons">publish</i></a></li>
-      <li><a class="btn-floating blue" title="注销" href="login.html"><i class="material-icons">power_settings_new</i></a></li>
+      <li><a class="btn-floating blue" title="注销" href="/logout"><i class="material-icons">power_settings_new</i></a></li>
     </ul>
   </div>
             </div>
@@ -166,6 +176,151 @@
     <script src="../assets/js/custom-scripts.js"></script> 
  <script type="text/javascript">
 	$('#re_top').click(function(){$('html,body').animate({scrollTop: '0px'}, 800);});
+    //获取url参数 notice_id
+    var article_id = getUrlParameter('article_id');
+    //判断是新建还是修改文章
+    $(document).ready(function() {
+      if(notice_id != ''){
+        $.messager.progress({
+            text : '正在加载...',
+        });
+        $.ajax({
+            url : '/',
+            type : 'post',
+            dataType : 'json',
+            data : {
+              notice_id : notice_id,
+            },
+            success : function (data, response, status) {
+              $('#title').val(data['rows'][0].title);
+            }
+          
+        });
+      }
+      
+    });
+    /*预览上传图片*/
+    function preview(file) {
+        var prevDiv = document.getElementById('preview');
+        if (file.files && file.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(evt) {
+                prevDiv.innerHTML = '<img src="' + evt.target.result + '" />';
+            }
+            reader.readAsDataURL(file.files[0]);
+        } else {
+            prevDiv.innerHTML = '<div class="img" style="filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src=\'' + file.value + '\'"></div>';
+        }
+    }
+
+    //文件传输
+    function file_upload(id){
+      var id = id;
+      $.ajaxFileUpload({  
+          url:'',
+          type : 'post',  
+          secureuri:false,  
+          fileElementId:'notice_file',  
+          dataType: 'JSON',
+          data:{id:id},  
+          success: function (data, status)  
+          {  
+              $.messager.progress('close'); 
+              // layer.msg('操作成功!');
+              layer.open({
+                content: '操作成功'
+                ,btn: ['确定']
+                ,yes: function(index, layero){
+                  parent.$('#notice_notice_list').datagrid('reload',{});
+                  page_close();
+                }
+                ,cancel: function(){ 
+                  parent.$('#notice_notice_list').datagrid('reload',{});
+                  page_close();
+                }
+              });
+          },  
+          error: function (data, status, e)  
+          {  
+              $.messager.progress('close'); 
+              // layer.msg('操作成功!');
+              layer.open({
+                content: '操作成功'
+                ,btn: ['确定']
+                ,yes: function(index, layero){
+                  parent.$('#notice_notice_list').datagrid('reload',{});
+                  page_close();
+                }
+                ,cancel: function(){ 
+                  parent.$('#notice_notice_list').datagrid('reload',{});
+                  page_close();
+                }
+              });
+            
+          }  
+      }) 
+    }
+    //数据传输
+    function data_upload(){
+      var text = editor.getContent();
+      text = text.replace(/&nbsp;/g," ");
+      text = HtmlUtil.htmlEncodeByRegExp(text);
+      var title = $('#title').val();
+      if(text == '' || title == ''){
+        layer.msg('请将通知信息填写完整', {icon: 5});
+        return false
+      }
+      var ptime = moment().format("YYYY-MM-DD hh:mm:ss");
+      var realName;
+      if ($('#notice_file').val() != '') {
+        var array = $('#notice_file').val().split('\\');
+        var realName = array[array.length-1]; //获取文件名
+      }
+      var sendType = $('input:radio:checked').val();
+      $.ajax({
+        url : '../Notice/Notice_add',
+        type : 'post',
+        dataType : 'json',
+        data:{
+              content: text, 
+              title: title, 
+              ptime:ptime,
+              file_name: realName,
+              notice_id: notice_id,
+              sendType: sendType,
+             },
+        beforeSend : function () {
+          $.messager.progress({
+            text : '正在发布...',
+          });
+        },
+        success : function (data, response, status) {
+
+            if ($('#notice_file').val() == '') {
+              $.messager.progress('close');
+              // layer.msg('操作成功!');
+              layer.open({
+                content: '操作成功'
+                ,btn: ['确定']
+                ,yes: function(index, layero){
+                  parent.$('#notice_notice_list').datagrid('reload',{});
+                  page_close();
+                }
+                ,cancel: function(){ 
+                  parent.$('#notice_notice_list').datagrid('reload',{});
+                  page_close();
+                }
+              });
+            }else{
+              if(notice_id != ''){
+                data = notice_id;
+              }
+              file_upload(data);
+            }
+      
+        }
+      });
+    }
  </script>
 
 </body>

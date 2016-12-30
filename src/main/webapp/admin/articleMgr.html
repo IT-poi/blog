@@ -47,7 +47,7 @@
 </li>
 <li><a href="setting.html"><i class="fa fa-gear fa-fw"></i> 设置</a>
 </li> 
-<li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> 注销</a>
+<li><a href="/logout"><i class="fa fa-sign-out fa-fw"></i> 注销</a>
 </li>
 </ul>
 
@@ -155,7 +155,7 @@
     <ul>
       <li><a class="btn-floating red" title="写博客" href="write.html"><i class="material-icons">mode_edit</i></a></li>
       <li><a class="btn-floating green" id="re_top" title="返回顶部"><i class="material-icons">publish</i></a></li>
-      <li><a class="btn-floating blue" title="注销" href="login.html"><i class="material-icons">power_settings_new</i></a></li>
+      <li><a class="btn-floating blue" title="注销" href="/logout"><i class="material-icons">power_settings_new</i></a></li>
     </ul>
   </div>
             </div>
@@ -195,7 +195,59 @@
     <!-- Custom Js -->
     <script src="../assets/js/custom-scripts.js"></script> 
  
-
+    <script type="text/javascript">
+        //其他内容传输
+        function article_submit(){
+            
+        }
+        //文件传输
+        function file_upload(id){
+          var id = id;
+          $.ajaxFileUpload({  
+              url:'../Notice/Notice_fileUpload',
+              type : 'post',  
+              secureuri:false,  
+              fileElementId:'notice_file',  
+              dataType: 'JSON',
+              data:{id:id},  
+              success: function (data, status)  
+              {  
+                  $.messager.progress('close'); 
+                  // layer.msg('操作成功!');
+                  layer.open({
+                    content: '操作成功'
+                    ,btn: ['确定']
+                    ,yes: function(index, layero){
+                      parent.$('#notice_notice_list').datagrid('reload',{});
+                      page_close();
+                    }
+                    ,cancel: function(){ 
+                      parent.$('#notice_notice_list').datagrid('reload',{});
+                      page_close();
+                    }
+                  });
+              },  
+              error: function (data, status, e)  
+              {  
+                  $.messager.progress('close'); 
+                  // layer.msg('操作成功!');
+                  layer.open({
+                    content: '操作成功'
+                    ,btn: ['确定']
+                    ,yes: function(index, layero){
+                      parent.$('#notice_notice_list').datagrid('reload',{});
+                      page_close();
+                    }
+                    ,cancel: function(){ 
+                      parent.$('#notice_notice_list').datagrid('reload',{});
+                      page_close();
+                    }
+                  });
+                
+              }  
+          }) 
+        }
+    </script>
 </body>
 
 </html>
