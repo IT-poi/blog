@@ -48,7 +48,7 @@ app.controller("detialController", function($scope,$http) {
 			totalPage : pageBean.totalPage
 		};
 		console.log(params);
-		$.post('/article/pagelist',
+		$http.post('/article/pagelist',
 		            params).
 		        success(function(response){
 		        	$scope.recentPages = response.data;
@@ -65,7 +65,7 @@ app.controller("detialController", function($scope,$http) {
 	};
 	
 	$scope.getArtile = function(articleId){
-		$.get('/ArticleAction/getArticle?articleId='+articleId).
+		$http.get('/ArticleAction/getArticle?articleId='+articleId).
 	        success(function(response){
 	        	console.log(response);
 	        	$scope.articles = response.data;

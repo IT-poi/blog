@@ -65,7 +65,7 @@ app.controller("indexController", function($scope,$http) {
 			totalPage : pageBean.totalPage
 		};
 		console.log(params);
-		$.post('/article/pagelist',
+		$http.post('/article/pagelist',
 		            params).
 		        success(function(response){
 		        	$scope.recentPages = response.data;
@@ -82,7 +82,7 @@ app.controller("indexController", function($scope,$http) {
 	};
 	
 	$scope.getManager = function(){
-		$.get('/manager/easyinfo').
+		$http.get('/manager/easyinfo').
 	        success(function(response){
 	        	console.log(response);
 	        	$scope.blogger = response.data;
