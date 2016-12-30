@@ -21,7 +21,7 @@
         	<result>/WEB-INF/jsp/index1.html</result>
         </action>
         <action name = "admin" >
-        	<result>/WEB-INF/admin/login.html</result>
+        	<result>/admin/login.html</result>
         </action>
         <!-- <action name="checkLogin" class="com.cuit.boke.filter.CheckLoginFilter">
         	<interceptor-ref name="checkLogin"/>

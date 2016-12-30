@@ -177,6 +177,17 @@
             outline: none;
             pa-left: -10px;
         }
+        .navbar-inverse .navbar-nav>li>a {
+            color: #fff;
+        }
+        .navbar-inverse .navbar-brand {
+            color: #fff;
+        }
+        .navbar-inverse .navbar-nav>li>a:hover, .navbar-inverse .navbar-nav>li>a:focus {
+            transition:background-color 0.5s ease-out;
+            color: #259CC7;
+            background-color: #fff;
+        }
     </style>
 </head>
 
@@ -186,13 +197,13 @@
         <div class="container">
             <div style="height:30px"></div>
             <div class="text-center">
-                <h1 class="text-left"><font color="white" >我的个人博客</font></h1>
+                <h1 class="text-left"><font color="white" >WORD个人博客</font></h1>
             </div>
-            <p style="margin-left:10%; padding-top: 20px;">生如夏花之绚烂，死如秋叶之静美</p>
+            <p style="margin-left:10%; padding-top: 20px;">万恶淫为源，百善孝为先</p>
         </div>
     </div>
 
-    <nav style="background-color:#259cc7;height: 30px" class=" navbar-inverse navbar-fixed-top " role="navigation" id='top'>
+    <nav style="background-color:#259cc7;" class=" navbar-inverse navbar-fixed-top " role="navigation" id='top'>
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -202,22 +213,23 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button> -->
-                <a class="navbar-brand" href="#">我的博客</a>
+                <a class="navbar-brand" href="#">WORD博客</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li><a href="index1.html">首页</a></li>
+                    <li><a href="shuoshuo.html">生活</a></li>
+                    <li><a href="留言板.html">技术</a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">关于 <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">关于</a>
+                        <!-- <ul class="dropdown-menu" role="menu">
                             <li><a href="own.html">关于我</a></li>
                             <li><a href="#">友情链接</a></li>
-                        </ul>
+                        </ul> -->
                     </li>
-                    <li><a href="shuoshuo.html">说说</a></li>
-                    <li><a href="留言板.html">留言</a></li>
+                    
                 </ul>
                 <form style="margin-top:5px;" class="navbar-form navbar-left" role="search">
                     <div class="form-group from-inline">
