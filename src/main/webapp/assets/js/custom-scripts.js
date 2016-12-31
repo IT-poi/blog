@@ -221,7 +221,7 @@
 			}
 		});
 		
-        mainApp.initFunction(); 
+        // mainApp.initFunction(); 
     });
 
 	$(".dropdown-button").dropdown();

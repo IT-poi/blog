@@ -141,7 +141,7 @@
         success: function (data) {
             console.log(data);
             if (data['data']['success']) {
-              alert("欢迎回来，"+data['data']['manager']['name']);
+              // alert("欢迎回来，"+data['data']['manager']['name']);
               window.location="/admin/index.html";
             }else{
               alert(data['data']['message']);

@@ -38,7 +38,7 @@
             </div>
 
             <ul class="nav navbar-top-links navbar-right"> 
-				  <li><a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown1"><i class="fa fa-user fa-fw"></i> <b>尹健康</b> <i class="material-icons right">arrow_drop_down</i></a></li>
+				  <li><a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown1"><i class="fa fa-user fa-fw"></i> <b id="username">尹健康</b> <i class="material-icons right">arrow_drop_down</i></a></li>
             </ul>
         </nav>
 		<!-- Dropdown Structure -->
@@ -89,6 +89,40 @@
 
 			
                 <div class="row">
+                    <div class="col-lg-12">
+             <div class="card">
+                        <div class="card-action">
+                            个人信息
+                        </div>
+                        <div class="card-content">
+                            <form class="col s12">
+                              <div class="row">
+                                <div class="input-field col s6">
+                                  <input placeholder="" id="first_name" type="text" class="validate">
+                                  <label for="first_name">姓名</label>
+                                </div>
+                                <div class="input-field col s6">
+                                  <input id="last_name" type="text" class="validate">
+                                  <label for="last_name">职业</label>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="input-field col s12">
+                                  <input id="password" type="password" class="validate">
+                                  <label for="password">个人说明</label>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="input-field col s12">
+                                  <input id="email" type="email" class="validate">
+                                  <label for="email">个性签名</label>
+                                </div>
+                              </div>
+                            </form>
+                            <div class="clearBoth"></div>
+                          </div>
+                            </div>
+                         </div> 
                 </div>
 			
 
@@ -111,7 +145,7 @@
     <!-- JS Scripts-->
     <!-- jQuery Js -->
     <script src="../assets/js/jquery-1.10.2.js"></script>
-	
+	<script src="../resources/js/admin_root.js"></script>
 	<!-- Bootstrap Js -->
     <script src="../assets/js/bootstrap.min.js"></script>
 	
@@ -136,3 +170,6 @@
 </body>
 
 </html>
+<script type="text/javascript">
+    
+</script>

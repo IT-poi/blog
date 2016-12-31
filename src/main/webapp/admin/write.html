@@ -28,6 +28,9 @@
     #preview img{
         width: 20%;
     }
+    .file-field .btn, .file-field .btn-large {
+        line-height: 1.42857143;
+    }
 </style>
 <body>
     <div id="wrapper">
@@ -45,7 +48,7 @@
             </div>
 
             <ul class="nav navbar-top-links navbar-right"> 
-				  <li><a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown1"><i class="fa fa-user fa-fw"></i> <b>尹健康</b> <i class="material-icons right">arrow_drop_down</i></a></li>
+				  <li><a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown1"><i class="fa fa-user fa-fw"></i> <b id="username">尹健康</b> <i class="material-icons right">arrow_drop_down</i></a></li>
             </ul>
         </nav>
 		<!-- Dropdown Structure -->
@@ -82,12 +85,12 @@
       
 		<div id="page-wrapper">
 		  <div class="header"> 
-                        <h1 class="page-header">
+                        <h1 class="page-header" id="header_title">
                             撰写博客
                         </h1>
 						<ol class="breadcrumb">
 					  <li><a href="#">后台</a></li>
-					  <li><a href="#">撰写博客</a></li>
+					  <li><a href="#" id="header_active">撰写博客</a></li>
 					</ol> 
 									
 		</div>
@@ -97,7 +100,11 @@
                 <br><br>
                 <div class="input-field col s12">
                   <input id="title" type="text" class="validate" style="font-size: 40px">
-                  <label for="title" style="font-size: 30px">标题</label>
+                  <label for="title" id="title_label" style="font-size: 30px">标题</label>
+                </div> 
+                <div class="input-field col s12">
+                  <input id="brief" type="text" class="validate" style="font-size: 20px">
+                  <label for="brief" id="brief_label" style="font-size: 20px">摘要</label>
                 </div> 
                 <div class="file-field input-field col s12">
                   <div class="btn">
@@ -124,7 +131,7 @@
                           var editor = UE.getEditor('edit_area',{
                             //imageUrl:'__SITE__Admin/Ueditorup/ueditor?action=uploadimage',
                             //imagePath: "",
-                            initialFrameWidth:"1100",
+                            initialFrameWidth:"1050",
                             initialFrameHeight:"400"
                           });
                         </script>
@@ -154,7 +161,7 @@
     <!-- JS Scripts-->
     <!-- jQuery Js -->
     <script src="../assets/js/jquery-1.10.2.js"></script>
-	
+	<script src="../resources/js/admin_root.js"></script>
 	<!-- Bootstrap Js -->
     <script src="../assets/js/bootstrap.min.js"></script>
 	
@@ -177,22 +184,39 @@
  <script type="text/javascript">
 	$('#re_top').click(function(){$('html,body').animate({scrollTop: '0px'}, 800);});
     //获取url参数 notice_id
-    var article_id = getUrlParameter('article_id');
+    var article_id = getUrlParameter('id');
+
     //判断是新建还是修改文章
     $(document).ready(function() {
-      if(notice_id != ''){
-        $.messager.progress({
-            text : '正在加载...',
-        });
+
+      if(article_id != ''){
+
         $.ajax({
-            url : '/',
+            url : '/ArticleAction/getArticle',
             type : 'post',
             dataType : 'json',
             data : {
-              notice_id : notice_id,
+              articleId : article_id,
             },
             success : function (data, response, status) {
-              $('#title').val(data['rows'][0].title);
+              
+              console.log(data);
+              $('#title').val(data['data']['article'].title);
+              $('#brief').val(data['data']['article'].brief);
+              $('#title_label').attr('class',"active");
+              $('#brief_label').attr('class',"active");
+              $('#header_title').text('修改文章');
+              $('#header_active').text('修改文章');
+              //html字符串处理
+              var html = data['data']['article'].content;
+              var decodeHTML = HtmlUtil.htmlDecodeByRegExp(html);
+              // editor.setContent(decodeHTML);
+              //当编辑器就绪时添加内容
+              editor.ready(function () { 
+                 // alert(decode);
+                 editor.setContent(decodeHTML);
+              });
+              
             }
           
         });
