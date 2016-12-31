@@ -47,5 +47,25 @@ public class ArticleDaoImpl extends GenericDaoImpl<Article, Integer> implements 
 		List<Article> list = (List<Article>) sessionFactory.getCurrentSession().createSQLQuery(sql).addEntity(Article.class).list();
 		return list;
 	}
+
+
+	public List<Article> queryByKeywordsPage(String keywords, int begin,
+			int pageSize) {
+		String sql = "select * from article where label like '%"+ keywords + 
+				"%' or content like '%"+ keywords+"%' or title like '%"+keywords+"%' "
+						+ "order by "+PageBean.TIME + " DESC limit " + begin + "," + pageSize;
+		@SuppressWarnings("unchecked")
+		List<Article> list = (List<Article>) sessionFactory.getCurrentSession().createSQLQuery(sql).addEntity(Article.class).list();
+		return list;
+	}
+
+
+	public int queryTotalCountByKeywords(String keywords) {
+		String sql = "select count(*) from article where label like '%" + keywords + "%'"
+				+ " or content like '%"+ keywords +"%'"
+				+ " or title like '%"+ keywords +"%'";
+		BigInteger count = (BigInteger) sessionFactory.getCurrentSession().createSQLQuery(sql).uniqueResult();
+		return count.intValue();
+	}
 	
 }

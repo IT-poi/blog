@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap 101 Template</title>
+    <title>WORD博客-生活</title>
 
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/animate.css" rel="stylesheet">
-    <link rel="fonts/FontAwesomeV4.1.0_8.rplib" href="myicon.ico">
+    <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/resources/css/animate.css" rel="stylesheet">
+    <link rel="/resources/fonts/FontAwesomeV4.1.0_8.rplib" href="myicon.ico">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -36,7 +36,7 @@
       .height-match{
 
         height:0px;
-        padding-bottom:20%
+        padding-bottom:15%
       }
       .height-ban{
         height:0px;
@@ -79,7 +79,7 @@
        /* background: #F4F7F7;*/
 
          display:block;
-         background-image: url("img/head_b.jpg");
+         background-image: url("/resources/img/head_b.jpg");
          background-repeat:no-repeat;
          width:100%;
       }
@@ -156,6 +156,18 @@
         text-decoration:none;
 
       }
+      
+     .navbar-inverse .navbar-nav>li>a {
+         color: #fff;
+     }
+     .navbar-inverse .navbar-brand {
+         color: #fff;
+     }
+     .navbar-inverse .navbar-nav>li>a:hover, .navbar-inverse .navbar-nav>li>a:focus {
+         transition:background-color 0.5s ease-out;
+         color: #259CC7;
+         background-color: #fff;
+     }
      
     </style>
   </head>
@@ -163,53 +175,49 @@
     <!-- 页眉大屏显示 -->  
     <div class="height-match blue">
         <div class="container">
-          <div style="height:30px"></div>
-          <div class="text-center">
-            <h1 class="text-left"><font color="white" >我的个人博客</font></h1>
-          </div>   
-          <p style="margin-left:10%; padding-top: 20px;">生如夏花之绚烂，死如秋叶之静美</p>   
-        </div>  
-    </div> 
-
-  <nav style="background-color:#259cc7;height: 30px" class=" navbar-inverse navbar-fixed-top " role="navigation" id = 'top'>
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-     <!--  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button> -->
-      <a class="navbar-brand" href="#">我的博客</a>
+            <div style="height:50px"></div>
+            <div class="text-center">
+                <h1 class="text-left"><font color="white" >WORD个人博客</font></h1>
+            </div>
+            <p style="margin-left:10%; padding-top: 20px;">万恶淫为源，百善孝为先</p>
+        </div>
     </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><a href="index1.html">首页</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">关于 <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">关于我</a></li>
-            <li><a href="#">友情链接</a></li>
-          </ul>
-        </li>
-       
-        <li><a href="shuoshuo.html">说说</a></li>
-        <li><a href="留言板.html">留言</a></li>
-      </ul>
-      <form style = "margin-top:5px;" class="navbar-form navbar-left" role="search">
-        <div class="form-group from-inline">
-          <input type="text" class="form-control" placeholder="请输入关键字">
-          <button style = "width:70px;height: 28px;" type="submit" class="btn btn-primary" >搜索</button>
+    <nav style="background-color:#259cc7;" class=" navbar-inverse navbar-fixed-top " role="navigation" id='top'>
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+			        <span class="sr-only">Toggle navigation</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			      </button>
+                <a class="navbar-brand" href="#">WORD博客</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="/index">首页</a></li>
+                    <li><a href="/life">生活</a></li>
+                    <li><a href="/technology">技术</a></li>
+                    <li><a href="/about" >关于</a></li>
+                    
+                </ul>
+                <form style="margin-top:5px;" class="navbar-form navbar-left" role="search">
+                    <div class="form-group from-inline">
+                        <input type="text" class="form-control" placeholder="请输入关键字">
+                        <button style="width:70px;height: 28px;" type="submit" class="btn btn-primary">搜索</button>
+                    </div>
+                </form>
+            </div>
+            <!-- /.navbar-collapse -->
         </div>
-      </form>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
+        <!-- /.container-fluid -->
+    </nav>
 <!-- 主体内容-->
-     <div class="na_tit">说说</div>
+     <div class="na_tit">生活&感悟</div>
     <hr style="border-width:2px; margin: 0 0 5px 0;">
     <div class="height-ban">
         <div class="col-md-7 height-ban animated zoomIn red ">
@@ -222,7 +230,7 @@
           你是我这辈子最珍贵的人。请让我永远守护在你身边，我一定将你当成掌心的珍宝，一辈子悉心呵护。你，愿意嫁给我吗？</h5>
 
               </div>
-              <div class="left_mid_box_img"><img src="img/1.jpg"></div>
+              <div class="left_mid_box_img"><img src="/resources/img/1.jpg"></div>
               </div></div></a>
 
            <a href="detial.html"><div class="left_mid_box_line">
@@ -234,7 +242,7 @@
           你是我这辈子最珍贵的人。请让我永远守护在你身边，我一定将你当成掌心的珍宝，一辈子悉心呵护。你，愿意嫁给我吗？</h5>
 
               </div>
-              <div class="left_mid_box_img"><img src="img/1.jpg"></div>
+              <div class="left_mid_box_img"><img src="/resources/img/1.jpg"></div>
               </div></div></a>
 
 
@@ -247,7 +255,7 @@
           你是我这辈子最珍贵的人。请让我永远守护在你身边，我一定将你当成掌心的珍宝，一辈子悉心呵护。你，愿意嫁给我吗？</h5>
 
               </div>
-              <div class="left_mid_box_img"><img src="img/1.jpg"></div>
+              <div class="left_mid_box_img"><img src="/resources/img/1.jpg"></div>
               </div></div></a>
          
 
@@ -277,12 +285,12 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="/resources/js/bootstrap.min.js"></script>
     <script src="http://ifightcrime.github.io/bootstrap-growl/jquery.bootstrap-growl.min.js"></script>
 
     <!-- 响应式导航栏所需要的js库-->
-    <script src="js/myJs.js"></script>
-    <script src="js/Headroom.js"></script>
-    <script src="js/jquery-headroom.js"></script>
+    <script src="/resources/js/myJs.js"></script>
+    <script src="/resources/js/Headroom.js"></script>
+    <script src="/resources/js/jquery-headroom.js"></script>
   </body>
 </html>

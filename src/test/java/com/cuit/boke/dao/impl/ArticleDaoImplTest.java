@@ -102,6 +102,20 @@ public class ArticleDaoImplTest {
 	}
 	
 	@Test
+	@Rollback(false)
+	public void testCount(){
+		int i = articleDao.queryTotalCountByKeywords("明天");
+		System.out.println(i);
+	}
+	
+	@Test
+	@Rollback(false)
+	public void testQueryByKeywords(){
+		List<Article> list = articleDao.queryByKeywordsPage("java", 0, 5);
+		System.out.println(list);
+	}
+	
+	@Test
 	public void testQueryByPage(){
 		List<Article> list = articleDao.queryByPage(Article.class, 0, 2, PageBean.TIME, null);
 		System.out.println(list);

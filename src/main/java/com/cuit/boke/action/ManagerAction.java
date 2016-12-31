@@ -95,10 +95,10 @@ public class ManagerAction extends ActionSupport {
 			//
 			Manager manager = managerService.showManagerForPerson(1);
 			System.out.println(manager);
-			result = new com.cuit.boke.dto.Result<Manager>("OK", manager, null);
+			result = new com.cuit.boke.dto.Result<Manager>("ok", manager, null);
 		} catch (Exception e) {
 			e.printStackTrace();
-			result = new com.cuit.boke.dto.Result<Manager>("OK", null, "系统错误！");
+			result = new com.cuit.boke.dto.Result<Manager>("ok", null, "系统错误！");
 		}
 		return SUCCESS;
 	}

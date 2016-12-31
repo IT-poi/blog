@@ -48,6 +48,24 @@ public interface ArticleService {
 	 */
 	public ArticleBean queryArticleById(int articleId);
 	
+	/**
+	 * 通过文章标签（分类）查询文章列表 
+	 * @param lable 文章标签
+	 * @param article 封装了分页参数
+	 * @return 查询结果
+	 * @throws UnknowException 可能会出现的异常
+	 */
 	public PageBean<Article> ArticlePageByLable(String lable, PageBean<Article> article)
 			throws UnknowException;
+	
+	/**
+	 * 通过关键字查询文章列表（关键字可以是文章标题，标签，内容中的文字）
+	 * @param keywords 关键字
+	 * @param article 内含分页参数
+	 * @return 查询结果
+	 * @throws UnknowException 可能会出现的异常
+	 */
+	public PageBean<Article> articlePageByKeywords(String keywords, PageBean<Article> article)
+			throws UnknowException;
+	
 }

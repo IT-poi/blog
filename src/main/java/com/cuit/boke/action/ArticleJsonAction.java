@@ -74,6 +74,14 @@ public class ArticleJsonAction extends ActionSupport implements ModelDriven<Page
 	public void setOrder(String order) {
 		this.order = order;
 	}
+	
+	public String getKeywords() {
+		return keywords;
+	}
+	
+	public void setKeywords(String keywords) {
+		this.keywords = keywords;
+	}
 
 	private int currPage; //当前页数
 	
@@ -86,6 +94,8 @@ public class ArticleJsonAction extends ActionSupport implements ModelDriven<Page
 	private String orderBy; //排序方式，可以通过最新和最热排序
 	
 	private String order; //排序方式，升序或者降序
+	
+	private String keywords; //关键字
 	
 
 	@Autowired
@@ -109,6 +119,10 @@ public class ArticleJsonAction extends ActionSupport implements ModelDriven<Page
 		this.result = result;
 	}
 
+	/**
+	 * 查询文章列表
+	 * @return
+	 */
 	@Action(value="pagelist", results={
 			@Result(type="json", params={"root","result"})
 			})
@@ -126,10 +140,32 @@ public class ArticleJsonAction extends ActionSupport implements ModelDriven<Page
 		System.out.println("----JsonAction");
 		System.out.println(pageBean);
 		pages = articleService.recentArticleByPage(pageBean);
-		result = new com.cuit.boke.dto.Result<PageBean<Article>>("OK", pages, "OK");
+		result = new com.cuit.boke.dto.Result<PageBean<Article>>("ok", pages, null);
 		return SUCCESS;
 	}
-	
+	/**
+	 * 通过关键字查询文章列表
+	 * @return 结果
+	 */
+	@Action(value="kewords/pagelist", results={
+			@Result(type="json", params={"root","result"})
+			})
+	public String getPagesByKeywords(){
+		PageBean<Article> pages;
+		PageBean<Article> pageBean = new PageBean<Article>();
+		pageBean.setCurrPage(currPage);
+		pageBean.setPageSize(pageSize);
+		pageBean.setOrderBy(orderBy);
+		pageBean.setOrder(order);
+		pageBean.setTotalPage(totalPage);
+		pageBean.setTotalCount(totalCount);
+		System.out.println(currPage);
+		System.out.println("----JsonAction");
+		System.out.println(pageBean);
+		pages = articleService.articlePageByKeywords(keywords, pageBean);
+		result = new com.cuit.boke.dto.Result<PageBean<Article>>("ok", pages, null);
+		return SUCCESS;
+	}
 	@Action(value="list", results={
 			@Result(type="json", params={"root","result"})
 			})

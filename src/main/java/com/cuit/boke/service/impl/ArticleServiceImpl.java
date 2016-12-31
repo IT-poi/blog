@@ -114,4 +114,30 @@ public class ArticleServiceImpl implements ArticleService{
 		pageBean.setList(list);
 		return pageBean;
 	}
+
+	public PageBean<Article> articlePageByKeywords(String keywords,
+			PageBean<Article> pageBean) throws UnknowException {
+		if (pageBean == null) {
+			throw new UnknowException("pageBean为空");
+		}
+		//封装当前页数
+//		pageBean.setCurrPage(pageBean.getCurrPage());
+		//封装每页显示的记录数
+//		pageBean.setPageSize(pageBean.getPageSize());
+		//封装总记录条数
+		int totalCount = articleDao.queryTotalCountByKeywords(keywords);
+		pageBean.setTotalCount(totalCount);
+		//封装总页数
+//		Double pageCount = Math.ceil(totalCount / pageSize);
+		int pageCount = (totalCount + pageBean.getPageSize() -1) / pageBean.getPageSize();
+		pageBean.setTotalPage(pageCount);
+		if (pageBean.getCurrPage() > pageCount || pageBean.getCurrPage()<=0) {
+			throw new UnknowException("请求页面参数错误");
+		}
+		//封装每页显示的数据
+		int begin = (pageBean.getCurrPage() - 1)*pageBean.getPageSize();
+		List<Article> list = articleDao.queryByKeywordsPage(keywords, begin, pageBean.getPageSize());
+		pageBean.setList(list);
+		return pageBean;
+	}
 }

@@ -49,8 +49,15 @@ public class ManagerServiceImpl implements ManagerService{
 
 	public Manager showManagerForPerson(int id) {
 		Manager manager = showManager(id);
-		manager.setPassword("");
-		manager.setNumber("");
-		return manager;
+		//将去到的manager复制到一个新的实体中，去掉博主账号，密码和创建时间
+		//如果直接修改manager对象，会将修改后的结果同步到数据库中
+		Manager easyManager = new Manager();
+		easyManager.setId(manager.getId());
+		easyManager.setName(manager.getName());
+		easyManager.setElucidation(manager.getElucidation());
+		easyManager.setAddress(manager.getAddress());
+		easyManager.setPerfessional(manager.getPerfessional());
+		easyManager.setSignature(manager.getSignature());
+		return easyManager;
 	}
 }

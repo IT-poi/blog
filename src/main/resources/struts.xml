@@ -13,7 +13,16 @@
            		<interceptor-ref name="defaultStack" />
                 <interceptor-ref name="checkLogin" />   
             </interceptor-stack> 
-        </interceptors>  -->  
+        </interceptors>  -->
+        <action name = "technology" >
+        	<result>/boke/technology.html</result>
+        </action>
+        <action name = "life" >
+        	<result>/boke/life.html</result>
+        </action>
+        <action name = "about" >
+        	<result>/boke/own.html</result>
+        </action>
         <action name = "index" >
         	<result>/boke/index.html</result>
         </action>

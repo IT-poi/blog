@@ -1,44 +1,11 @@
-var app = angular.module("myApp",[]);
-app.controller("indexController", function($scope,$http) {
+var app = angular.module("life",[]);
+app.controller("lifeController", function($scope,$http) {
 	
-	//消息
-	var message = function(messages){
-	    //右上角提示消息
-	    $.bootstrapGrowl(messages, {
-		  ele: 'body', // which element to append to
-		  type: 'success', // (null, 'info', 'error', 'success')
-		  offset: {from: 'top', amount: 60}, // 'top', or 'bottom'
-		  align: 'right', // ('left', 'right', or 'center')
-		  width: 250, // (integer, or 'auto')
-		  delay: 2000, //毫秒数
-		  allow_dismiss: true,
-		  stackup_spacing: 10 // spacing between consecutively stacked growls.
-		});
-	 };
 	
 	//初始化
 	$scope.recentPages = {};
 	$scope.pageList = []
-//	$scope.blogger = {};
-	
-//	$(function(){
-//		console.log("------------" + $scope.recentPages.currPage);
-//		if($scope.recentPages.currPage == null){
-//			message("啥子哦！");
-//			$http.get("/article/list")
-//			.success(function (response) {
-//				if(response.status === "OK"){
-//					$scope.recentPages = response.data;
-//				}else{
-//					console.log(response.messages);
-//				}
-//			});
-//		}else{
-//			message("耍一哈");
-//			console.log($scope.recentPages.currPage);
-//			$scope.refreshPage($scope.recentPages);
-//		}
-//	 });
+
 	$(function(){
 		$scope.getManager();
 	});
@@ -56,14 +23,15 @@ app.controller("indexController", function($scope,$http) {
 	
 	
 	//请求页面
-	$scope.queryArticlePage = function(pageBean){
+	$scope.queryArticlePage = function(label, pageBean){
 		var params = {
 			currPage : pageBean.currPage,
 			pageSize : pageBean.pageSize,
 			order : pageBean.order,
 			orderBy : pageBean.orderBy,
 			totalCount : pageBean.totalCount,
-			totalPage : pageBean.totalPage
+			totalPage : pageBean.totalPage,
+			label : label
 		};
 		$.post('/article/pagelist',
 		            params).
@@ -73,17 +41,6 @@ app.controller("indexController", function($scope,$http) {
 		        	$scope.pageList = response.data.list;
 		        	console.log($scope.pageList);
 		        });
-//		$http({
-//				method: 'POST',
-//	            data: params,
-//	            url:"/article/pagelist"
-//            })
-//            .success(function (response) {
-//            	console.log(response);
-//	        	$scope.recentPages = response.data;
-//	        	$scope.pageList = response.data.list;
-//	        	console.log($scope.pageList);
-//            });
 	};
 	
 	$scope.getManager = function(){

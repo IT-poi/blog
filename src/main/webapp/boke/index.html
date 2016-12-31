@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap 101 Template</title>
+    <title>WORD博客</title>
 
     <!-- Bootstrap -->
     <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
@@ -37,8 +37,7 @@
         
         .height-match {
             height: 0px;
-            padding-top: 20px;
-            padding-bottom: 200px;
+            padding-bottom: 15%;
         }
         
         .height-ban {
@@ -177,6 +176,9 @@
             outline: none;
             pa-left: -10px;
         }
+        a:hover{
+        	text-decoration:none;
+      	}
         .navbar-inverse .navbar-nav>li>a {
             color: #fff;
         }
@@ -188,6 +190,9 @@
             color: #259CC7;
             background-color: #fff;
         }
+        /* h2{
+        	display: inline;
+        } */
     </style>
 </head>
 
@@ -195,7 +200,7 @@
     <!-- 页眉大屏显示 -->
     <div class="height-match blue">
         <div class="container">
-            <div style="height:40px"></div>
+            <div style="height:100px"></div>
             <div class="text-center">
                 <h1 class="text-left"><font color="white" >WORD个人博客</font></h1>
             </div>
@@ -219,17 +224,10 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="index1.html">首页</a></li>
-                    <li><a href="shuoshuo.html">生活</a></li>
-                    <li><a href="留言板.html">技术</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">关于</a>
-                        <!-- <ul class="dropdown-menu" role="menu">
-                            <li><a href="own.html">关于我</a></li>
-                            <li><a href="#">友情链接</a></li>
-                        </ul> -->
-                    </li>
-                    
+                    <li><a href="/index">首页</a></li>
+                    <li><a href="/life">生活</a></li>
+                    <li><a href="/technology">技术</a></li>
+                    <li><a href="/about" >关于</a></li>
                 </ul>
                 <form style="margin-top:5px;" class="navbar-form navbar-left" role="search">
                     <div class="form-group from-inline">
