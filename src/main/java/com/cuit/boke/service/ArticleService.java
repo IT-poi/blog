@@ -55,7 +55,7 @@ public interface ArticleService {
 	 * @return 查询结果
 	 * @throws UnknowException 可能会出现的异常
 	 */
-	public PageBean<Article> ArticlePageByLable(String lable, PageBean<Article> article)
+	public PageBean<Article> articlePageByLable(String lable, PageBean<Article> article)
 			throws UnknowException;
 	
 	/**

@@ -82,6 +82,12 @@ public class ArticleJsonAction extends ActionSupport implements ModelDriven<Page
 	public void setKeywords(String keywords) {
 		this.keywords = keywords;
 	}
+	public void setLabel(String label) {
+		this.label = label;
+	}
+	public String getLabel() {
+		return label;
+	}
 
 	private int currPage; //当前页数
 	
@@ -96,6 +102,8 @@ public class ArticleJsonAction extends ActionSupport implements ModelDriven<Page
 	private String order; //排序方式，升序或者降序
 	
 	private String keywords; //关键字
+	
+	private String label; //文章标签
 	
 
 	@Autowired
@@ -139,15 +147,48 @@ public class ArticleJsonAction extends ActionSupport implements ModelDriven<Page
 		System.out.println(currPage);
 		System.out.println("----JsonAction");
 		System.out.println(pageBean);
-		pages = articleService.recentArticleByPage(pageBean);
-		result = new com.cuit.boke.dto.Result<PageBean<Article>>("ok", pages, null);
+		try {
+			pages = articleService.recentArticleByPage(pageBean);
+			result = new com.cuit.boke.dto.Result<PageBean<Article>>("ok", pages, null);
+		} catch (Exception e) {
+//			e.printStackTrace();
+			result = new com.cuit.boke.dto.Result<PageBean<Article>>("error", null, e.getMessage());
+		}
 		return SUCCESS;
 	}
+	
+	/**
+	 * 查询文章列表通过标签
+	 * @return
+	 */
+	@Action(value="pagelistLabel", results={
+			@Result(type="json", params={"root","result"})
+			})
+	public String getPagesByLabel(){
+		PageBean<Article> pages;
+		PageBean<Article> pageBean = new PageBean<Article>();
+		pageBean.setCurrPage(currPage);
+		pageBean.setPageSize(pageSize);
+		pageBean.setTotalPage(totalPage);
+		pageBean.setTotalCount(totalCount);
+		System.out.println(currPage);
+		System.out.println("----JsonAction");
+		System.out.println(pageBean);
+		try {
+			pages = articleService.articlePageByLable(label, pageBean);
+			result = new com.cuit.boke.dto.Result<PageBean<Article>>("ok", pages, null);
+		} catch (Exception e) {
+//			e.printStackTrace();
+			result = new com.cuit.boke.dto.Result<PageBean<Article>>("error", null, e.getMessage());
+		}
+		return SUCCESS;
+	}
+	
 	/**
 	 * 通过关键字查询文章列表
-	 * @return 结果
+	 * 
 	 */
-	@Action(value="kewords/pagelist", results={
+	@Action(value="keywordsPagelist", results={
 			@Result(type="json", params={"root","result"})
 			})
 	public String getPagesByKeywords(){
@@ -162,8 +203,14 @@ public class ArticleJsonAction extends ActionSupport implements ModelDriven<Page
 		System.out.println(currPage);
 		System.out.println("----JsonAction");
 		System.out.println(pageBean);
-		pages = articleService.articlePageByKeywords(keywords, pageBean);
-		result = new com.cuit.boke.dto.Result<PageBean<Article>>("ok", pages, null);
+		try {
+			pages = articleService.articlePageByKeywords(keywords, pageBean);
+			result = new com.cuit.boke.dto.Result<PageBean<Article>>("ok", pages, null);
+		} catch (Exception e) {
+//			e.printStackTrace();
+			result = new com.cuit.boke.dto.Result<PageBean<Article>>("error", null, e.getMessage());
+		}
+		
 		return SUCCESS;
 	}
 	@Action(value="list", results={
@@ -177,8 +224,13 @@ public class ArticleJsonAction extends ActionSupport implements ModelDriven<Page
 		pageBean.setOrderBy(PageBean.TIME);
 		pageBean.setOrder(PageBean.ASC);
 		System.out.println("----JsonAction");
-		pages = articleService.recentArticleByPage(pageBean);
-		result = new com.cuit.boke.dto.Result<PageBean<Article>>("OK", pages, "OK");
+		try {
+			pages = articleService.recentArticleByPage(pageBean);
+			result = new com.cuit.boke.dto.Result<PageBean<Article>>("OK", pages, "OK");
+		} catch (Exception e) {
+//			e.printStackTrace();
+			result = new com.cuit.boke.dto.Result<PageBean<Article>>("error", null, e.getMessage());
+		}
 		return SUCCESS;
 	}
 

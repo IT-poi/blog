@@ -22,7 +22,6 @@
 
       <style type="text/css">
         body{
-
           margin: 0 auto;
           background-color:#d0ecf8;
         }
@@ -38,15 +37,13 @@
         .height-match{
 
           height:0px;
-          padding-bottom:20%
+          padding-bottom:15%
         }
         .height-ban{
           /*height:0px;*/
           /*padding-bottom:60%*/
         }
         .blue{
-
-
           /* opacity: 0.9;*/
           /*background: #36D1C4;*/
         }
@@ -144,15 +141,16 @@
       text-decoration:none;
     }
     .comment textarea{
-      width: 867px;
+      width: 60%;
       height: 100px;
       margin:0 auto;
 
 
     }
     .comment button{
-      float: right;
-      margin-bottom: 60px;
+      margin-top:10px;
+      margin-bottom: 10px;
+      width:200px;
     }
     .navbar-inverse .navbar-nav>li>a {
         color: #fff;
@@ -165,7 +163,63 @@
         color: #259CC7;
         background-color: #fff;
     }
+    .left_mid_box_1{
+      border-top: 1px solid #259cc7;
+      padding-top: 15px;
+    }
+	.mess_img {
+      width: 100px;
+      height: 100px;
+      float: left;
+      background-color: red;
 
+    }
+    .mess_name{
+     
+      color:#259cc7;
+      margin-left: 15px;
+
+    }
+    .mess_flo{
+     
+      color:#417aaf;
+      margin-left: 10px;
+    }
+    .mess_time{
+    	float:right;
+    	margin-right:10px;
+    }
+    .mess_con{
+      min-height:100px;
+      margin-left: 115px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #aad3e5;
+    }
+    .mess_con a{
+     
+      padding-right: 20px;
+      padding-bottom: 10px;
+      float: right;
+      clear: both;
+    }
+    .left_mid_box_mess{
+      width: 100%;
+      padding-top: 16px;
+      border-top: 1px solid #259cc7;
+      margin: 0 auto;
+      text-align: center;
+   }
+   .left_mid_box_mess label{
+   	  display: flex;
+   	  width:60%;
+   	  margin-left:20%;
+   }
+   .left_mid_box_mess input{
+   	  display: flex;
+   	  width:60%;
+   	  margin-left:20%;
+   }
   </style>
 </head>
 <body ng-app="detial" ng-controller="detialController" class="gray">
@@ -206,8 +260,8 @@
                 </ul>
                 <form style="margin-top:5px;" class="navbar-form navbar-left" role="search">
                     <div class="form-group from-inline">
-                        <input type="text" class="form-control" placeholder="请输入关键字">
-                        <button style="width:70px;height: 28px;" type="submit" class="btn btn-primary">搜索</button>
+                       <input id="search" type="text" class="form-control" placeholder="请输入关键字">
+                        <button style="width:70px;height: 28px;" ng-click="search()" class="btn btn-primary">搜索</button>
                     </div>
                 </form>
             </div>
@@ -231,17 +285,40 @@
       </div>
     </div>
     <div class="comment">
-      <form >
-      <textarea name=" " >
-      我来说一句···
-      </textarea>
-      </form>
-      <button type="button" class="btn btn-info">评论</button>
+       <h3>发表你的留言</h3>
+    
+      <div class="left_mid_box_mess">
+        <form >
+          <label>昵称（必填）</label>
+          <input id="name" type="text"/>
+          <label>邮箱（非必填）</label>
+          <input id="name" type="text"/>
+          <label>个人地址（非必填）</label>
+          <input id="name" type="text" style="margin-bottom:20px;"/>
+          <textarea id="review" ></textarea>
+          
+        </form>
+        <div style="margin-left:20%; text-align: right;width: 60%"><button type="button" class="btn btn-info">评论</button></div>
+        
+      </div>
+    <!-- left_mid_box 结束-->
 
-
+    <h3 style="margin-top: 50px;">评论</h3>
+    <div ng-repeat="x in reviewList" >
+	    <div class="left_mid_box_1">  
+	      <div class="mess_img"> <img src="/resources/img/2.png"></div>
+	      <span class="mess_name">{{x.name}}</span>
+	      <span class="mess_flo">第一楼</span>
+	      <span class="mess_time">{{x.cteateTime}}</span>
+	      <div class="mess_con">
+	        <p>{{x.content}}</p>
+	        <a data-toggle="modal" data-target="#myModal" href="#">回复</a>
+	      </div>
+	    </div>
     </div>
-
-
+    
+    
+    </div>
 
   </div>
 

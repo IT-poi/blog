@@ -11,7 +11,14 @@
     <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
     <link href="/resources/css/animate.css" rel="stylesheet">
     <link rel="/resources/fonts/FontAwesomeV4.1.0_8.rplib" href="myicon.ico">
+    
+    <link rel="stylesheet" type="text/css" href="/resources/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="/resources/css/component.css" />
+    
 	<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <script src="/resources/js/snap.svg-min.js"></script>
+	<script src="/resources/js/classie.js"></script>
+    <script src="/resources/js/svgLoader.js"></script>
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -231,8 +238,8 @@
                 </ul>
                 <form style="margin-top:5px;" class="navbar-form navbar-left" role="search">
                     <div class="form-group from-inline">
-                        <input type="text" class="form-control" placeholder="请输入关键字">
-                        <button style="width:70px;height: 28px;" type="submit" class="btn btn-primary">搜索</button>
+                        <input id="search" type="text" class="form-control" placeholder="请输入关键字">
+                        <button style="width:70px;height: 28px;" ng-click="search()" class="btn btn-primary">搜索</button>
                     </div>
                 </form>
             </div>
@@ -246,29 +253,21 @@
     <div class="height-ban">
         <div class="col-md-7 height-ban animated zoomIn red">
 			<div ng-repeat="x in pageList">
-	            <h2><a href="/boke/detial.html?id=1">{{x.title}}</a></h2>
+	            <h2><a href="/boke/detial.html?id={{x.id}}">{{x.title}}</a></h2>
 	            </br>
 	            <div class="left_mid_box">
 	                <div class="left_mid_box_con ">
-	                    <h5>{{x.content}}</h5>
+	                    <a href="/boke/detial.html?id={{x.id}}"><h5>{{x.content}}</h5></a>
 	                </div>
-	                <div class="left_mid_box_img"><img src="/resources/img/1.jpg"></div>
+	                <div class="left_mid_box_img">
+	                	<a href="/boke/detial.html?id={{x.id}}"><img src="/resources/img/1.jpg"></a>
+	                </div>
 	            </div>
             </div>
 
 
             <div class="foot_ye">
                 <ul>
-<!--
-                    <li style="background:none;border: none;">
-                        <button type="button" class="btn btn-info">确定</button>
-                    </li>
-                    <li style="background:none;border: none;">页</li>
-                    <li>
-                        <input></input>
-                    </li>
-                    <li style="background:none;border: none;">转到第</li>
--->
                     <li><a href="#" ng-click="lastPage()">末页</a></li>
                     <li><a href="#" ng-click="nextPage()">下一页</a></li>
 <!--
@@ -281,10 +280,6 @@
                     <li><a href="#" ng-click="firstPage()">首页</a></li>
                     <li ng-model="recentPages.currPage" style="background:none;border: none; margin-left:0px;padding-left:0px">第{{recentPages.currPage}}页</li>
                     <li ng-model="recentPages.totalPage" style="background:none;border: none; padding-right:0px; margin-right:0px">共{{recentPages.totalPage}}页，</li>
-                    
-
-
-
                 </ul>
             </div>
 
@@ -316,6 +311,11 @@
     <div class=" col-md-4 col-xs-1 height-big">
         成都信息工程大学软件工程学院
     </div>
+    <div id="loader" class="pageload-overlay" data-opening="M20,15 50,30 50,30 30,30 Z;M0,0 80,0 50,30 20,45 Z;M0,0 80,0 60,45 0,60 Z;M0,0 80,0 80,60 0,60 Z" data-closing="M0,0 80,0 60,45 0,60 Z;M0,0 80,0 50,30 20,45 Z;M20,15 50,30 50,30 30,30 Z;M30,30 50,30 50,30 30,30 Z">
+         <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 80 60" preserveAspectRatio="none">
+             <path d="M30,30 50,30 50,30 30,30 Z"/>
+         </svg>
+     </div>
 
     <!--  </div>
     <div class="height-ban">

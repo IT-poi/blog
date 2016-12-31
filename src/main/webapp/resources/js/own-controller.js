@@ -1,6 +1,11 @@
 var app = angular.module("own",[]);
 app.controller("ownController", function($scope,$http) {
 	
+	$scope.search = function(){
+		var search = document.getElementById("search").value;
+		window.location.href='/boke/search.html?keywords='+search;
+	};
+	
 	$scope.blogger = {};
 	
 	$(function(){

@@ -1,58 +1,26 @@
-var app = angular.module("myApp",[]);
-app.controller("indexController", function($scope,$http) {
-	
-	//消息
-	var message = function(messages){
-	    //右上角提示消息
-	    $.bootstrapGrowl(messages, {
-		  ele: 'body', // which element to append to
-		  type: 'success', // (null, 'info', 'error', 'success')
-		  offset: {from: 'top', amount: 60}, // 'top', or 'bottom'
-		  align: 'right', // ('left', 'right', or 'center')
-		  width: 250, // (integer, or 'auto')
-		  delay: 2000, //毫秒数
-		  allow_dismiss: true,
-		  stackup_spacing: 10 // spacing between consecutively stacked growls.
-		});
-	 };
-	 
-	 var loader = new SVGLoader(document.getElementById('loader'), {
-         speedIn: 100
-     });
-	//初始化
-	$scope.recentPages = {};
-	$scope.pageList = [];
-//	$scope.blogger = {};
+var app = angular.module("technology",[]);
+app.controller("technologyController", function($scope,$http) {
 	
 	$scope.search = function(){
 		var search = document.getElementById("search").value;
 		window.location.href='/boke/search.html?keywords='+search;
 	};
-	$(function(){
-		$scope.getManager();
-	});
-
-	$http.get("/article/list")
-	.success(function (response) {
-		if(response.status === "OK"){
-			$scope.recentPages = response.data;
-			$scope.pageList = response.data.list;
-			console.log($scope.pageList);
-		}else{
-			console.log(response.messages);
-		}
-	});
 	
+	//初始化
+	$scope.recentPages = {};
+	$scope.pageList = [];
+	var label = "技术";
+
+	$(function(){
+		$scope.refreshPage();
+	});
 	
 	//请求页面
-	$scope.queryArticlePage = function(pageBean){
+	$scope.queryArticlePage = function(label, pageBean){
 		var params = {
 			currPage : pageBean.currPage,
 			pageSize : pageBean.pageSize,
-			order : pageBean.order,
-			orderBy : pageBean.orderBy,
-			totalCount : pageBean.totalCount,
-			totalPage : pageBean.totalPage
+			label : label
 		},
 		transFn = function(data) {
             return $.param(data);
@@ -61,27 +29,30 @@ app.controller("indexController", function($scope,$http) {
             headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
             transformRequest: transFn
         };
-//        loader.show();
-		$http.post('/article/pagelist',
+		$http.post('/article/pagelistLabel',
 		            params, postCfg).
 		        success(function(response){
-		        	console.log(response);
 		        	$scope.recentPages = response.data;
 		        	$scope.pageList = response.data.list;
+		        	for(var i = 0; i<$scope.pageList.length; i++){
+		        		console.log("----------------------------------");
+		        		console.log($scope.pageList[i].createTime);
+		        		console.log(($scope.pageList[i].createTime).pattern("yyyy-MM-dd"));
+		        		$scope.pageList[i] = ($scope.pageList[i].createTime).pattern("yyyy-MM-dd");
+		        		console.log($scope.pageList[i].createTime);
+		        	}
 		        	console.log($scope.pageList);
-//		        	loader.hide();
 		        });
 	};
 	
-	$scope.getManager = function(){
-		$http.get('/manager/easyinfo').
-	        success(function(response){
-	        	$scope.blogger = response.data;
-	        });
-	};
-	
+
 	$scope.refreshPage = function(){
-		$scope.queryArticlePage($scope.recentPages);
+		var label = "技术";
+		var pageBean = {
+			currPage : 1,
+			pageSize : 5
+		};
+		$scope.queryArticlePage(label, pageBean);
 	};
 	//下一页
 	$scope.nextPage = function(){
@@ -91,7 +62,7 @@ app.controller("indexController", function($scope,$http) {
 		}else if($scope.recentPages.currPage >= 1){
 			//
 			$scope.recentPages.currPage++;
-			$scope.queryArticlePage($scope.recentPages);
+			$scope.queryArticlePage(label, $scope.recentPages);
 		}else{
 			message("抱歉，发生了未知错误！");
 		}
@@ -104,7 +75,7 @@ app.controller("indexController", function($scope,$http) {
 		}else if($scope.recentPages.currPage <= $scope.recentPages.totalPage){
 			//
 			$scope.recentPages.currPage--;
-			$scope.queryArticlePage($scope.recentPages);
+			$scope.queryArticlePage(label, $scope.recentPages);
 		}else{
 			console.log("抱歉，发生了未知错误！");
 		}
@@ -116,7 +87,7 @@ app.controller("indexController", function($scope,$http) {
 			message("你在卖萌么！");
 		}else{
 			$scope.recentPages.currPage = 1;
-			$scope.queryArticlePage($scope.recentPages);
+			$scope.queryArticlePage(label, $scope.recentPages);
 		}
 	};
 	//尾页
@@ -125,7 +96,7 @@ app.controller("indexController", function($scope,$http) {
 			message("你在卖萌么！");
 		}else{
 			$scope.recentPages.currPage = $scope.recentPages.totalPage;
-			$scope.queryArticlePage($scope.recentPages);
+			$scope.queryArticlePage(label, $scope.recentPages);
 		}
 	};
 	

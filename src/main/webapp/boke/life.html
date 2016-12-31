@@ -10,7 +10,9 @@
     <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
     <link href="/resources/css/animate.css" rel="stylesheet">
     <link rel="/resources/fonts/FontAwesomeV4.1.0_8.rplib" href="myicon.ico">
-
+	<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+  	<script src="/resources/js/life-controller.js"></script>
+  	
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -39,8 +41,7 @@
         padding-bottom:15%
       }
       .height-ban{
-        height:0px;
-        padding-bottom:60%
+        padding-bottom:50px;
       }
       .blue{
        
@@ -106,8 +107,9 @@
 
       }
       .right_box{
-        margin-top: 185px;
+        margin-top: 60px;
         margin-left: -15px;
+        margin-bottom: 185px;
         padding-left: 50px;
         height: 40px;
         line-height: 40px;
@@ -169,9 +171,28 @@
          background-color: #fff;
      }
      
+     .foot_ye {
+         /*margin-right: 200px;*/
+     }
+     
+     .foot_ye li {
+         margin-right: 5px;
+         list-style: none;
+         display: block;
+         color: #259cc7;
+         float: right;
+         padding-left: 10px;
+         padding-right: 10px;
+         height: 40px;
+         line-height: 40px;
+         background-color: #ffffff;
+         text-align: center;
+         border: 1px #d0ecf8 solid;
+     }
+     
     </style>
   </head>
-  <body class="gray">
+  <body ng-app="life" ng-controller="lifeController" class="gray">
     <!-- 页眉大屏显示 -->  
     <div class="height-match blue">
         <div class="container">
@@ -207,8 +228,8 @@
                 </ul>
                 <form style="margin-top:5px;" class="navbar-form navbar-left" role="search">
                     <div class="form-group from-inline">
-                        <input type="text" class="form-control" placeholder="请输入关键字">
-                        <button style="width:70px;height: 28px;" type="submit" class="btn btn-primary">搜索</button>
+                       	<input id="search" type="text" class="form-control" placeholder="请输入关键字">
+                        <button style="width:70px;height: 28px;" ng-click="search()" class="btn btn-primary">搜索</button>
                     </div>
                 </form>
             </div>
@@ -221,56 +242,46 @@
     <hr style="border-width:2px; margin: 0 0 5px 0;">
     <div class="height-ban">
         <div class="col-md-7 height-ban animated zoomIn red ">
-          <a href="detial.html"><div class="left_mid_box_line">
-          <h2>女孩都有浪漫的小情怀</h2>
-         
-          <div class="left_mid_box">
-            <div class="left_mid_box_con "><h5>女孩子都有着浪漫的小情怀，对于求婚更是抱着满满的浪漫期待，也希望在求婚那一天对方可以给自己一个最浪漫的求婚词。
-          you are the apple of my eyes.
-          你是我这辈子最珍贵的人。请让我永远守护在你身边，我一定将你当成掌心的珍宝，一辈子悉心呵护。你，愿意嫁给我吗？</h5>
-
-              </div>
-              <div class="left_mid_box_img"><img src="/resources/img/1.jpg"></div>
-              </div></div></a>
-
-           <a href="detial.html"><div class="left_mid_box_line">
-          <h2>女孩都有浪漫的小情怀</h2>
+        <div ng-repeat="x in pageList">
+	       	<a href="/boke/detial.html?id={{x.id}}">
+	          <div class="left_mid_box_line">
+	          <h2>{{x.title}}</h2>
+	         
+	          <div class="left_mid_box">
+	            <div class="left_mid_box_con ">
+	            	<h5>{{x.brief}}</h5>
+	            </div>
+	              <div class="left_mid_box_img"><img src="/resources/img/1.jpg"></div>
+	          </div>
+	          </div>
+           	</a>
+        </div>
           
-          <div class="left_mid_box">
-            <div class="left_mid_box_con "><h5>女孩子都有着浪漫的小情怀，对于求婚更是抱着满满的浪漫期待，也希望在求婚那一天对方可以给自己一个最浪漫的求婚词。
-          you are the apple of my eyes.
-          你是我这辈子最珍贵的人。请让我永远守护在你身边，我一定将你当成掌心的珍宝，一辈子悉心呵护。你，愿意嫁给我吗？</h5>
 
-              </div>
-              <div class="left_mid_box_img"><img src="/resources/img/1.jpg"></div>
-              </div></div></a>
-
-
-                <a href="detial.html"><div class="left_mid_box_line">
-          <h2>女孩都有浪漫的小情怀</h2>
-          
-          <div class="left_mid_box">
-            <div class="left_mid_box_con "><h5>女孩子都有着浪漫的小情怀，对于求婚更是抱着满满的浪漫期待，也希望在求婚那一天对方可以给自己一个最浪漫的求婚词。
-          you are the apple of my eyes.
-          你是我这辈子最珍贵的人。请让我永远守护在你身边，我一定将你当成掌心的珍宝，一辈子悉心呵护。你，愿意嫁给我吗？</h5>
-
-              </div>
-              <div class="left_mid_box_img"><img src="/resources/img/1.jpg"></div>
-              </div></div></a>
-         
+           
+         <div class="foot_ye">
+                <ul>
+                    <li><a href="#" ng-click="lastPage()">末页</a></li>
+                    <li><a href="#" ng-click="nextPage()">下一页</a></li>
+<!--
+                    <li><a href="#">...</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">1</a></li>
+-->
+                    <li><a href="#" ng-click="previousPage()">上一页</a></li>
+                    <li><a href="#" ng-click="firstPage()">首页</a></li>
+                    <li ng-model="recentPages.currPage" style="background:none;border: none; margin-left:0px;padding-left:0px">第{{recentPages.currPage}}页</li>
+                    <li ng-model="recentPages.totalPage" style="background:none;border: none; padding-right:0px; margin-right:0px">共{{recentPages.totalPage}}页，</li>
+                </ul>
+            </div>
 
         </div>
 
         <div class="col-md-2  animated fadeInRight black ">
-      
-       
-          <div class="right_box" style="margin-top: 60px;">2016/12/25 </div>
-         
-            <div class="right_box">2016/12/25 </div>
         
-            <div class="right_box">2016/12/25 </div>
-         
-
+          <div ng-repeat="x in pageList" class="right_box">{{x.createTime}}</div>
+          
         </div>
    <!--  </div>
     <div class="height-ban">

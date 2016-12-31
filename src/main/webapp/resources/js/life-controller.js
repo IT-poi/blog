@@ -1,57 +1,58 @@
 var app = angular.module("life",[]);
 app.controller("lifeController", function($scope,$http) {
 	
+	$scope.search = function(){
+		var search = document.getElementById("search").value;
+		window.location.href='/boke/search.html?keywords='+search;
+	};
 	
 	//初始化
 	$scope.recentPages = {};
-	$scope.pageList = []
+	$scope.pageList = [];
+	var label = "生活";
 
 	$(function(){
-		$scope.getManager();
+		$scope.refreshPage();
 	});
-
-	$http.get("/article/list")
-	.success(function (response) {
-		if(response.status === "OK"){
-			$scope.recentPages = response.data;
-			$scope.pageList = response.data.list;
-			console.log($scope.pageList);
-		}else{
-			console.log(response.messages);
-		}
-	});
-	
 	
 	//请求页面
 	$scope.queryArticlePage = function(label, pageBean){
 		var params = {
 			currPage : pageBean.currPage,
 			pageSize : pageBean.pageSize,
-			order : pageBean.order,
-			orderBy : pageBean.orderBy,
-			totalCount : pageBean.totalCount,
-			totalPage : pageBean.totalPage,
 			label : label
-		};
-		$.post('/article/pagelist',
-		            params).
+		},
+		transFn = function(data) {
+            return $.param(data);
+        },
+        postCfg = {
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+            transformRequest: transFn
+        };
+		$http.post('/article/pagelistLabel',
+		            params, postCfg).
 		        success(function(response){
-		        	console.log(response);
 		        	$scope.recentPages = response.data;
 		        	$scope.pageList = response.data.list;
+		        	for(var i = 0; i<$scope.pageList.length; i++){
+		        		console.log("----------------------------------");
+		        		console.log($scope.pageList[i].createTime);
+		        		console.log(($scope.pageList[i].createTime).pattern("yyyy-MM-dd"));
+		        		$scope.pageList[i] = ($scope.pageList[i].createTime).pattern("yyyy-MM-dd");
+		        		console.log($scope.pageList[i].createTime);
+		        	}
 		        	console.log($scope.pageList);
 		        });
 	};
 	
-	$scope.getManager = function(){
-		$http.get('/manager/easyinfo').
-	        success(function(response){
-	        	$scope.blogger = response.data;
-	        });
-	};
-	
+
 	$scope.refreshPage = function(){
-		$scope.queryArticlePage($scope.recentPages);
+		var label = "生活";
+		var pageBean = {
+			currPage : 1,
+			pageSize : 5
+		};
+		$scope.queryArticlePage(label, pageBean);
 	};
 	//下一页
 	$scope.nextPage = function(){
@@ -61,7 +62,7 @@ app.controller("lifeController", function($scope,$http) {
 		}else if($scope.recentPages.currPage >= 1){
 			//
 			$scope.recentPages.currPage++;
-			$scope.queryArticlePage($scope.recentPages);
+			$scope.queryArticlePage(label, $scope.recentPages);
 		}else{
 			message("抱歉，发生了未知错误！");
 		}
@@ -74,7 +75,7 @@ app.controller("lifeController", function($scope,$http) {
 		}else if($scope.recentPages.currPage <= $scope.recentPages.totalPage){
 			//
 			$scope.recentPages.currPage--;
-			$scope.queryArticlePage($scope.recentPages);
+			$scope.queryArticlePage(label, $scope.recentPages);
 		}else{
 			console.log("抱歉，发生了未知错误！");
 		}
@@ -86,7 +87,7 @@ app.controller("lifeController", function($scope,$http) {
 			message("你在卖萌么！");
 		}else{
 			$scope.recentPages.currPage = 1;
-			$scope.queryArticlePage($scope.recentPages);
+			$scope.queryArticlePage(label, $scope.recentPages);
 		}
 	};
 	//尾页
@@ -95,7 +96,7 @@ app.controller("lifeController", function($scope,$http) {
 			message("你在卖萌么！");
 		}else{
 			$scope.recentPages.currPage = $scope.recentPages.totalPage;
-			$scope.queryArticlePage($scope.recentPages);
+			$scope.queryArticlePage(label, $scope.recentPages);
 		}
 	};
 	

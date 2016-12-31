@@ -89,7 +89,7 @@ public class ArticleServiceImpl implements ArticleService{
 		ArticleBean articleBean = new ArticleBean(article, reviews);
 		return articleBean;
 	}
-	public PageBean<Article> ArticlePageByLable(String label, PageBean<Article> pageBean)
+	public PageBean<Article> articlePageByLable(String label, PageBean<Article> pageBean)
 			throws UnknowException {
 		if (pageBean == null) {
 			throw new UnknowException("pageBean为空");

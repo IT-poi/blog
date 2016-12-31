@@ -1,6 +1,11 @@
 var app = angular.module("detial",[]);
 app.controller("detialController", function($scope,$http) {
 	
+	$scope.search = function(){
+		var search = document.getElementById("search").value;
+		window.location.href='/boke/search.html?keywords='+search;
+	};
+	
 	function GetQueryString(name)
 	{
 	     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
@@ -8,6 +13,7 @@ app.controller("detialController", function($scope,$http) {
 	     if(r!=null)return  unescape(r[2]); return null;
 	};
 	$scope.articles = {};
+	$scope.reviewList = [];
 	
 	//初始化
 //	$scope.recentPages = {};
@@ -67,10 +73,10 @@ app.controller("detialController", function($scope,$http) {
 	$scope.getArtile = function(articleId){
 		$http.get('/ArticleAction/getArticle?articleId='+articleId).
 	        success(function(response){
-	        	console.log(response);
 	        	$scope.articles = response.data;
-	        	console.log($scope.articles);
-	        	console.log($scope.articles.article.content);
+	        	$scope.reviewList = response.data.reviews;
+	        	console.log("-----------------------");
+	        	console.log($scope.reviewList.length);
 	        });
 	};
 	
