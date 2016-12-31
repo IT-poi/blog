@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>WORD博客-生活</title>
+
+    <!-- Bootstrap -->
+    <link href="/resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/resources/css/animate.css" rel="stylesheet">
+    <link rel="/resources/fonts/FontAwesomeV4.1.0_8.rplib" href="myicon.ico">
+	<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+  	<script src="/resources/js/technology-controller.js"></script>
+  	
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+ 
+    <style type="text/css">
+    body{
+
+      margin: 0 auto;
+      background-color:#d0ecf8;
+    }
+
+       .height-big{
+          height: 75px;
+          margin-top: 60px;
+          margin-left: 43%;
+        }
+      .height-xs{
+        height: 30px;
+      }
+      .height-match{
+
+        height:0px;
+        padding-bottom:15%
+      }
+      .height-ban{
+        padding-bottom:50px;
+      }
+      .blue{
+       
+         
+        /* opacity: 0.9;*/
+        /*background: #36D1C4;*/
+      }
+      .black{
+       /* background: #384259;*/
+      /* background-color: #aad3e5;*/
+        right: -13%;
+        opacity: 0.8;
+        border-left: 3px solid #259cc7;
+      }
+      .green{
+        background: #A0EECC;
+      }
+      .qing{
+        background: #6DF1CC;
+      }
+      .yellow{
+        background: #E3FFC3;
+      }
+      .red{
+        /*background: #FF89C0 ;*/
+       /* background-color: #e5f3f7;*/
+        left: 10%;
+        opacity: 0.8;
+        
+        
+      }
+      .white{
+        background: #ffffff;
+      }
+      .gray{
+       /* background: #F4F7F7;*/
+
+         display:block;
+         background-image: url("/resources/img/head_b.jpg");
+         background-repeat:no-repeat;
+         width:100%;
+      }
+      .height-sm{
+        height: 500px;
+      }
+      .height-match img{
+        position: relative;
+        width: 100%;
+      }
+      .na_tit{
+        height: 40px;
+        width: 120px;
+        font-family: "微软雅黑";
+        font-size: 15px;
+        color: #ffffff;
+        font-weight: bold;
+        margin-left: 10%;
+        bottom: -10px;
+        text-align: center;
+        line-height: 40px;
+        display: block;
+        background-color: #259cc7;
+
+      }
+      .right_box{
+        margin-top: 60px;
+        margin-left: -15px;
+        margin-bottom: 185px;
+        padding-left: 50px;
+        height: 40px;
+        line-height: 40px;
+        border-bottom: 40px solid #259cc7; 
+        border-right: 60px solid transparent; 
+        width: 180px; 
+        color: #ffffff;
+        border-radius: 0px 40px;
+      }
+      .left_mid_box{
+        height:120px;
+        width: 100%;
+      /*  border-bottom: 2px solid #aad3e5;*/
+      }
+      .left_mid_box_con{
+        width: 90%;
+      }
+      .left_mid_box_con h5{
+        width: 70%;
+        float: left;;
+      }
+      .left_mid_box_img {
+        height: 120px; 
+        width: 40%; 
+        float: right;
+        position: relative;
+        margin-right: -50px;
+        margin-top: -20px;
+
+      }
+      .left_mid_box_img img{
+    
+        height: 120px; 
+    
+    
+      }
+      .left_mid_box_line{
+        background-color:#e1fef7;
+        padding-left: 30px;
+        padding-top: 10px;
+        border-radius:10px;
+        margin-bottom: 30px;
+
+      }
+      a:hover{
+        text-decoration:none;
+
+      }
+      
+     .navbar-inverse .navbar-nav>li>a {
+         color: #fff;
+     }
+     .navbar-inverse .navbar-brand {
+         color: #fff;
+     }
+     .navbar-inverse .navbar-nav>li>a:hover, .navbar-inverse .navbar-nav>li>a:focus {
+         transition:background-color 0.5s ease-out;
+         color: #259CC7;
+         background-color: #fff;
+     }
+     
+     .foot_ye {
+         /*margin-right: 200px;*/
+     }
+     
+     .foot_ye li {
+         margin-right: 5px;
+         list-style: none;
+         display: block;
+         color: #259cc7;
+         float: right;
+         padding-left: 10px;
+         padding-right: 10px;
+         height: 40px;
+         line-height: 40px;
+         background-color: #ffffff;
+         text-align: center;
+         border: 1px #d0ecf8 solid;
+     }
+     
+    </style>
+  </head>
+  <body ng-app="technology" ng-controller="technologyController" class="gray">
+    <!-- 页眉大屏显示 -->  
+    <div class="height-match blue">
+        <div class="container">
+            <div style="height:50px"></div>
+            <div class="text-center">
+                <h1 class="text-left"><font color="white" >WORD个人博客</font></h1>
+            </div>
+            <p style="margin-left:10%; padding-top: 20px;">万恶淫为源，百善孝为先</p>
+        </div>
+    </div>
+
+    <nav style="background-color:#259cc7;" class=" navbar-inverse navbar-fixed-top " role="navigation" id='top'>
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+			        <span class="sr-only">Toggle navigation</span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			      </button>
+                <a class="navbar-brand" href="#">WORD博客</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="/index">首页</a></li>
+                    <li><a href="/life">生活</a></li>
+                    <li><a href="/technology">技术</a></li>
+                    <li><a href="/about" >关于</a></li>
+                    
+                </ul>
+                <form style="margin-top:5px;" class="navbar-form navbar-left" role="search">
+                    <div class="form-group from-inline">
+                        <input id="search" type="text" class="form-control" placeholder="请输入关键字">
+                        <button style="width:70px;height: 28px;" ng-click="search()" class="btn btn-primary">搜索</button>
+                    </div>
+                </form>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+<!-- 主体内容-->
+     <div class="na_tit">技术&学习</div>
+    <hr style="border-width:2px; margin: 0 0 5px 0;">
+    <div class="height-ban">
+        <div class="col-md-7 height-ban animated zoomIn red ">
+        <div ng-repeat="x in pageList">
+	       	<a href="/boke/detial.html?id={{x.id}}">
+	          <div class="left_mid_box_line">
+	          <h2>{{x.title}}</h2>
+	         
+	          <div class="left_mid_box">
+	            <div class="left_mid_box_con ">
+	            	<h5>{{x.brief}}</h5>
+	            </div>
+	              <div class="left_mid_box_img"><img src="/resources/img/1.jpg"></div>
+	          </div>
+	          </div>
+           	</a>
+        </div>
+          
+
+           
+         <div class="foot_ye">
+                <ul>
+                    <li><a href="#" ng-click="lastPage()">末页</a></li>
+                    <li><a href="#" ng-click="nextPage()">下一页</a></li>
+<!--
+                    <li><a href="#">...</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">1</a></li>
+-->
+                    <li><a href="#" ng-click="previousPage()">上一页</a></li>
+                    <li><a href="#" ng-click="firstPage()">首页</a></li>
+                    <li ng-model="recentPages.currPage" style="background:none;border: none; margin-left:0px;padding-left:0px">第{{recentPages.currPage}}页</li>
+                    <li ng-model="recentPages.totalPage" style="background:none;border: none; padding-right:0px; margin-right:0px">共{{recentPages.totalPage}}页，</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="col-md-2  animated fadeInRight black ">
+        
+          <div ng-repeat="x in pageList" class="right_box">{{x.createTime}}</div>
+          
+        </div>
+   <!--  </div>
+    <div class="height-ban">
+        <div class="col-md-6 height-ban animated fadeInLeft black">123</div>
+        <div class="col-md-4 height-ban animated zoomIn red">312</div>
+    </div>
+    <div class="height-xs green"> -->
+    </div>
+    <div class=" col-md-4 col-xs-1 height-big">
+      成都信息工程大学软件工程学院
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/resources/js/bootstrap.min.js"></script>
+    <script src="http://ifightcrime.github.io/bootstrap-growl/jquery.bootstrap-growl.min.js"></script>
+
+    <!-- 响应式导航栏所需要的js库-->
+    <script src="/resources/js/myJs.js"></script>
+    <script src="/resources/js/Headroom.js"></script>
+    <script src="/resources/js/jquery-headroom.js"></script>
+  </body>
+</html>
