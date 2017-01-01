@@ -30,7 +30,7 @@ function init(){
 function message(messages){
   $.bootstrapGrowl(messages, {
 	  ele: 'body', // which element to append to
-	  type: 'info', // (null, 'info', 'error', 'success')
+	  type: 'warning', // (null, 'warning', 'info', 'danger', 'success')
 	  offset: {from: 'top', amount: 60}, // 'top', or 'bottom'
 	  align: 'right', // ('left', 'right', or 'center')
 	  width: 250, // (integer, or 'auto')

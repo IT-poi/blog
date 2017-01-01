@@ -42,6 +42,13 @@ public interface ArticleService {
 	public void deleteArticle(Article article) throws DeleteFailException;
 	
 	/**
+	 * 删除文章通过id来删除文章
+	 * @param article 要删除的文章
+	 * @throws DeleteFailException 删除失败异常
+	 */
+	public void deleteArticleById(int articleId) throws DeleteFailException;
+	
+	/**
 	 * 通过文章id，查询文章与评论
 	 * @param articleId
 	 * @return

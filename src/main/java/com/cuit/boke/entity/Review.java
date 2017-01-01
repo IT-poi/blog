@@ -34,6 +34,14 @@ public class Review {
 	// 该评论的用户名
 	@Column(nullable = false)
 	private String name;
+	
+	// 该评论用户的个人地址
+	@Column
+	private String url;
+	
+	// 该评论用户的邮箱
+	@Column
+	private String email;
 
 	// 该评论作者的头像URL地址
 	@Column(name = "portrait_url", nullable = false)
@@ -41,7 +49,7 @@ public class Review {
 
 	// 该评论生成时间
 	@Column(name = "create_time", nullable = false)
-	private Date cteateTime;
+	private Date createTime;
 
 	// 该评论获得的赞的数目
 	@Column(name = "praise_num", columnDefinition = "int default 0", nullable = false)
@@ -99,18 +107,21 @@ public class Review {
 	}
 
 	public void setPortraitURL(String portraitURL) {
-		if (portraitURL.isEmpty()) {
+		if (portraitURL == null || portraitURL.isEmpty()) {
 			portraitURL = "/pictrue/1.png";
 		}
 		this.portraitURL = portraitURL;
 	}
 
-	public Date getCteateTime() {
-		return cteateTime;
+	public Date getCreateTime() {
+		if (portraitURL == null || portraitURL.isEmpty()) {
+			portraitURL = "/pictrue/1.png";
+		}
+		return createTime;
 	}
 
-	public void setCteateTime(Date cteateTime) {
-		this.cteateTime = cteateTime;
+	public void setCreateTime(Date cteateTime) {
+		this.createTime = cteateTime;
 	}
 
 	public int getPraiseNum() {
@@ -127,6 +138,22 @@ public class Review {
 
 	public void setStampNum(int stampNum) {
 		this.stampNum = stampNum;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public Review getParentReview() {
@@ -149,7 +176,7 @@ public class Review {
 	@Override
 	public String toString() {
 		return "Review [id=" + id + ", level=" + level + ", content=" + content + ", name=" + name + ", portraitURL="
-				+ portraitURL + ", cteateTime=" + cteateTime + ", praiseNum=" + praiseNum + ", stampNum=" + stampNum
+				+ portraitURL + ", cteateTime=" + createTime + ", praiseNum=" + praiseNum + ", stampNum=" + stampNum
 				+ ", parentReview=" + parentReview + ", article=" + article + "]";
 	}
 	

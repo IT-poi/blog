@@ -1,5 +1,6 @@
 package com.cuit.boke.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,7 +59,7 @@ public class ArticleServiceImpl implements ArticleService{
 	public int saveArticle(Article article) throws SaveFailException{
 		int articleId = -1;
 		try {
-			Manager manager = managerDaoImpl.queryById(Manager.class,article.getManager().getId());
+			Manager manager = managerDaoImpl.queryById(Manager.class, 1);
 			article.setManager(manager);
 			articleId = articleDao.insert(article);
 		} catch (Exception e) {
@@ -69,7 +70,14 @@ public class ArticleServiceImpl implements ArticleService{
 
 	public void updateArticle(Article article) throws UpdateFailException {
 		try {
-			articleDao.update(article);
+			Article article2 = articleDao.queryById(Article.class, article.getId());
+			article2.setTitle(article.getTitle());
+			article2.setBrief(article.getBrief());
+			article2.setContent(article.getContent());
+			article2.setImgURL(article.getImgURL());
+			article2.setLabel(article.getLabel());
+			article2.setStick(article.isStick());
+			articleDao.update(article2);
 		} catch (Exception e) {
 			throw new UpdateFailException("修改失败！");
 		}
@@ -139,5 +147,13 @@ public class ArticleServiceImpl implements ArticleService{
 		List<Article> list = articleDao.queryByKeywordsPage(keywords, begin, pageBean.getPageSize());
 		pageBean.setList(list);
 		return pageBean;
+	}
+
+	public void deleteArticleById(int articleId) throws DeleteFailException {
+		try {
+			articleDao.deleteById(Article.class, articleId);
+		} catch (Exception e) {
+			throw new DeleteFailException("删除失败");
+		}
 	}
 }
