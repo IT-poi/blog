@@ -28,14 +28,12 @@ public interface ManagerService {
 	/**
 	 * 修改博主信息
 	 * @param id
-	 * @return
 	 */
-	public Manager updateInfo(Manager manager);
+	public void updateInfo(Manager manager, int id);
 	/**
 	 * 修改博主密码
 	 * @param id
-	 * @return
 	 */
-	public Manager updatePwd(int id,String password);
+	public String updatePwd(int id,String password,String new_password);
 
 }

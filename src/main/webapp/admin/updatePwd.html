@@ -186,16 +186,26 @@
       return true;
     }
     function submit_btn(){
-      // if (check()) {
-      //   $.ajax({
-      //     url: '/manager/easyinfo',
-      //     type:'POST',
-      //     success: function (data) {
-      //       // console.log(data);
-      //       $('#username').text(data['data']['name']);
-      //         // alert(data);
-      //     }
-      //   })
-      // }
+      if (check()) {
+        var old_pwd = $('#old_pwd').val();
+        var new_pwd = $('#new_pwd').val();
+        $.ajax({
+          url: '/upadte_pwd',
+          type:'POST',
+          data:{
+            password:old_pwd,
+            new_password:new_pwd,
+          },
+          success: function (data) {
+            console.log(data);
+            if (data.status == "true") {
+              // location.reload();
+            }else if (data.status == "pwd_error") {
+              alert(data.data.messages);
+            }
+              // alert(data);
+          }
+        })
+      }
     }
 </script>

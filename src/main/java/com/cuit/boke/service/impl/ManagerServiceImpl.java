@@ -61,13 +61,23 @@ public class ManagerServiceImpl implements ManagerService{
 		return easyManager;
 	}
 
-	public Manager updateInfo(Manager manager) {
-//		showManager
-		return null;
+	public void updateInfo(Manager manager,int id) {
+		Manager ma = showManager(id);
+		ma.setName(manager.getName());
+		ma.setAddress(manager.getAddress());
+		ma.setElucidation(manager.getElucidation());
+		ma.setPerfessional(manager.getPerfessional());
+		ma.setSignature(manager.getSignature());
+		managerDao.update(ma);
 	}
 
-	public Manager updatePwd(int id, String password) {
-		
-		return null;
+	public String updatePwd(int id, String password, String new_password) {
+		Manager ma = showManager(id);
+		if(Md5Utils.getMd5(password).equals(ma.getPassword())){
+			ma.setPassword(Md5Utils.getMd5(new_password));//md5加密
+			managerDao.update(ma);
+			return "success";
+		}
+		return "pwd_error";  //返回旧密码匹配错误
 	}
 }
