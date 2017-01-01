@@ -11,6 +11,13 @@ import java.util.List;
  * dao类的通用接口，包括基本的crud操作
  */
 public interface GenericDao<T, PK> {
+	
+	/**
+	 * 查询总记录条数
+	 * @param clazz
+	 * @return
+	 */
+	public int queryCount(Class<T> clazz);
 	/**
 	 * 通过id查询对应数据
 	 * @param id

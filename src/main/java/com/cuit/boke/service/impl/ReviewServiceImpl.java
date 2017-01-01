@@ -49,4 +49,8 @@ public class ReviewServiceImpl implements ReviewService{
 		reviewDao.insert(review);
 	}
 
+	public int reviewsCount() {
+		return reviewDao.queryCount(Review.class);
+	}
+
 }

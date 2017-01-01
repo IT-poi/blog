@@ -91,8 +91,14 @@ public class ArticleServiceImpl implements ArticleService{
 		}
 	}
 	
-	public ArticleBean queryArticleById(int articleId) {
+	public ArticleBean queryArticleById(String blogger, int articleId) {
 		Article article = articleDao.queryById(Article.class, articleId);
+		if (blogger != null) {
+			if(blogger.equals("true")){
+				article.setPageView(article.getPageView()+1);
+				articleDao.update(article);
+			}
+		}
 		List<Review> reviews = reviewDao.queryByArticleId(articleId);
 		ArticleBean articleBean = new ArticleBean(article, reviews);
 		return articleBean;
@@ -155,5 +161,18 @@ public class ArticleServiceImpl implements ArticleService{
 		} catch (Exception e) {
 			throw new DeleteFailException("删除失败");
 		}
+	}
+
+	public int articleCount() {
+		return articleDao.queryTotalCount();
+	}
+
+	public int allArticleViewCount() {
+		List<Article> articles = articleDao.queryAll(Article.class);
+		int articleCount = 0;
+		for (Article article : articles) {
+			articleCount += article.getPageView();
+		}
+		return articleCount;
 	}
 }

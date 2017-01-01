@@ -1,6 +1,7 @@
 package com.cuit.boke.dao.impl;
 
 import java.io.Serializable;
+import java.math.BigInteger;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -72,6 +73,12 @@ public class GenericDaoImpl<T,PK extends Serializable> implements GenericDao<T, 
 
 	public void flush() {
 		sessionFactory.getCurrentSession().flush();
+	}
+
+	public int queryCount(Class<T> clazz) {
+		String sql = "select count(*) from " + clazz.getSimpleName();
+		BigInteger count = (BigInteger) sessionFactory.getCurrentSession().createSQLQuery(sql).uniqueResult();
+		return count.intValue();
 	}
 	
 	

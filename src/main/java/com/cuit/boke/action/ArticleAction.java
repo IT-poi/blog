@@ -36,11 +36,14 @@ public class ArticleAction extends ActionSupport{
 	
 	private int articleId;
 	
+	private String blogger;
+	
 	@Action(value="getArticle")
 	@Override
 	public String execute() throws Exception {
 		try {
-			ArticleBean articleBean = articleService.queryArticleById(articleId);
+			ArticleBean articleBean = articleService.queryArticleById(blogger, articleId);
+			blogger = "";
 			result = new com.cuit.boke.dto.Result<ArticleBean>("ok", articleBean, null);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -72,6 +75,14 @@ public class ArticleAction extends ActionSupport{
 	
 	public com.cuit.boke.dto.Result<ArticleBean> getResult() {
 		return result;
+	}
+
+	public String getBlogger() {
+		return blogger;
+	}
+
+	public void setBlogger(String blogger) {
+		this.blogger = blogger;
 	}
 
 }

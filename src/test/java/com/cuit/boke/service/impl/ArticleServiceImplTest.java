@@ -85,7 +85,7 @@ public class ArticleServiceImplTest {
 	@Test
 	@Rollback(false)
 	public void testQueryArticleByid(){
-		ArticleBean articleBean = articleService.queryArticleById(1);
+		ArticleBean articleBean = articleService.queryArticleById("true",1);
 		System.out.println(articleBean.getArticle());
 		for(Review review:articleBean.getReviews()){
 			System.out.println(review);

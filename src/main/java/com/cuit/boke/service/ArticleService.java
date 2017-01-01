@@ -11,6 +11,19 @@ import com.cuit.boke.exception.UpdateFailException;
 
 public interface ArticleService {
 	
+	
+	/**
+	 * 查询文章总数量
+	 * @return
+	 */
+	public int articleCount();
+	
+	/**
+	 * 查询所有文章总浏览量
+	 * @return
+	 */
+	public int allArticleViewCount();
+	
 	/**
 	 * 分页查询文章
 	 * @param currPage 当前页
@@ -42,7 +55,7 @@ public interface ArticleService {
 	public void deleteArticle(Article article) throws DeleteFailException;
 	
 	/**
-	 * 删除文章通过id来删除文章
+	 * 通过文章id删除文章
 	 * @param article 要删除的文章
 	 * @throws DeleteFailException 删除失败异常
 	 */
@@ -53,7 +66,7 @@ public interface ArticleService {
 	 * @param articleId
 	 * @return
 	 */
-	public ArticleBean queryArticleById(int articleId);
+	public ArticleBean queryArticleById(String blogger, int articleId);
 	
 	/**
 	 * 通过文章标签（分类）查询文章列表 

@@ -7,6 +7,12 @@ import com.cuit.boke.entity.Review;
 public interface ReviewService {
 	
 	
+	
+	/**
+	 * 返回所有评论的总条数
+	 * @return
+	 */
+	public int reviewsCount();
 	/**
 	 * 删除评论
 	 * @param id 评论id
@@ -27,5 +33,6 @@ public interface ReviewService {
 	 * @param review 评论详情
 	 */
 	public void addReviews(int articleId, String parentId, Review review);
+
 
 }
