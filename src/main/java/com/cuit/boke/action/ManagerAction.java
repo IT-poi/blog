@@ -111,9 +111,9 @@ public class ManagerAction extends ActionSupport {
 		try {
 			//调用service验证
 			String result = managerService.updatePwd(id, password, new_password);
-			update_result = new com.cuit.boke.dto.Result<String>("ok", "true", null);
+			update_result = new com.cuit.boke.dto.Result<String>("ok", "true", "修改成功");
 			if (result.equals("pwd_error") ) {
-				update_result = new com.cuit.boke.dto.Result<String>("error", "false", "修改失败，输入旧密码错误");
+				update_result = new com.cuit.boke.dto.Result<String>("error", "pwd_error", "修改失败，输入旧密码错误");
 			}
 			
 		} catch (Exception e) {

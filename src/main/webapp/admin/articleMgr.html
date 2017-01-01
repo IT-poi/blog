@@ -189,9 +189,28 @@
     <script src="../assets/js/dataTables/jquery.dataTables.js"></script>
     <script src="../assets/js/dataTables/dataTables.bootstrap.js"></script>
     <script type="text/javascript">
+        function myrefresh(){
+           window.location.reload();
+        }
         //删除操作
         function article_delete(id){
-            alert('删除');
+            var r=confirm("确认删除吗？");
+            if (r==true){
+                $.ajax({
+                    url: '/article/delete',
+                    type:'POST',
+                    data:{
+                        articleId: id,
+                    },
+                    success: function (data) {
+                      if (data.status == "ok") {
+                        alert('删除成功！');
+                        myrefresh();
+                      }
+                        // alert(data);
+                    }
+                })
+            }
         }
         //修改操作
         function article_update(id){
@@ -199,67 +218,71 @@
             window.location=url;
         }
     </script>
-    <script>
-            $(document).ready(function () {
-                $('#dataTables-example').dataTable({
-                    serverSide: true,//分页，取数据等等的都放到服务端去
-                    processing: true,//载入数据的时候是否显示“载入中”
-                    pageLength: 10,//首次加载的数据条数
-                    ordering: false,//排序操作在服务端进行，所以可以关了。
-                    ajax: {//类似jquery的ajax参数，基本都可以用。
-                        data: function (d) {//d 是原始的发送给服务器的数据，默认很长。
-                            console.log(d);
-                            var param = {
-                                currPage : d.start,
-                                pageSize : d.length,
-                                order : '',
-                                orderBy : '',
-                                totalCount : '',
-                                totalPage : ''
-                            };//因为服务端排序，可以新建一个参数对象
-                            param.currPage = d.start;//开始的序号
-                            param.pageSize = d.length;//要取的数据的
-                            return param;//自定义需要传递的参数。
-                        },
-                        dataSrc: function (json) {
-                            return json.data.list;
-                        },//默认data，也可以写其他的，格式化table的时候取里面的数据
-                        type: "post",//后台指定了方式，默认get，外加datatable默认构造的参数很长，有可能超过get的最大长度。
-                        url: "/article/pagelist",
-                        success: function(data){
-                            var html = '';
-                            for(var i = 0; i<data.data.list.length; i++){
-                                html = '<tr class="gradeX"><td class="center">'+data.data.list[i]['title']+'</td><td class="center">'+data.data.list[i]['createTime']+'</td><td class="center">'+data.data.list[i]['pageView']+'</td><td class="center">'+data.data.list[i]['commentNum']+'</td><td class="center"><button class="btn btn-info" onclick="article_update(\''+data.data.list[i]['id']+'\')">修改</button>&nbsp;<button class="btn btn-danger" onclick="article_delete(\''+data.data.list[i]['id']+'\')">删除</button></td></tr>' + html;
-                            }
-                            
-                            $('#data_body').html(html);
-                            console.log(data);
-                            console.log(data['data']['list']);
-                            $('#dataTables-example_processing').hide();
-                        }
-                    },
-                    // columns: [//对应上面thead里面的序列
-                    //     { 
-                    //       data: "id", 
-                    //     },//字段名字和返回的json序列的key对应
-                    //     { 
-                    //       data: "brief", 
-                    //     },
-                    //     { 
-                    //       data: "brief", 
-                    //     },
-                    //     { data: "discriminator", },
-                    //     {
-                    //         data: function (e) {//这里给最后一列返回一个操作列表
-                    //             console.log(e);
-                    //             //e是得到的json数组中的一个item ，可以用于控制标签的属性。
-                    //             return e;
-                    //         }
-                    //     }
-                    // ],
-                });
-            });
-    </script>
+<script>
+    function showData(){
+        $('#dataTables-example').dataTable({
+            serverSide: true,//分页，取数据等等的都放到服务端去
+            processing: true,//载入数据的时候是否显示“载入中”
+            pageLength: 10,//首次加载的数据条数
+            ordering: false,//排序操作在服务端进行，所以可以关了。
+            ajax: {//类似jquery的ajax参数，基本都可以用。
+                data: function (d) {//d 是原始的发送给服务器的数据，默认很长。
+                    console.log(d);
+                    var param = {
+                        currPage : d.start,
+                        pageSize : d.length,
+                        order : '',
+                        orderBy : '',
+                        totalCount : '',
+                        totalPage : ''
+                    };//因为服务端排序，可以新建一个参数对象
+                    param.currPage = d.start;//开始的序号
+                    param.pageSize = d.length;//要取的数据的
+                    return param;//自定义需要传递的参数。
+                },
+                dataSrc: function (json) {
+                    return json.data.list;
+                },//默认data，也可以写其他的，格式化table的时候取里面的数据
+                type: "post",//后台指定了方式，默认get，外加datatable默认构造的参数很长，有可能超过get的最大长度。
+                url: "/article/pagelist",
+                success: function(data){
+                    console.log(data);
+                    var html = '';
+                    for(var i = 0; i<data.data.list.length; i++){
+                        html = '<tr class="gradeX"><td class="center">'+data.data.list[i]['title']+'</td><td class="center">'+data.data.list[i]['createTime']+'</td><td class="center">'+data.data.list[i]['pageView']+'</td><td class="center">'+data.data.list[i]['commentNum']+'</td><td class="center"><button class="btn btn-info" onclick="article_update(\''+data.data.list[i]['id']+'\')">修改</button>&nbsp;<button class="btn btn-danger" onclick="article_delete(\''+data.data.list[i]['id']+'\')">删除</button></td></tr>' + html;
+                    }
+                    
+                    $('#data_body').html(html);
+                    console.log(data);
+                    console.log(data['data']['list']);
+                    $('#dataTables-example_processing').hide();
+                }
+            },
+            // columns: [//对应上面thead里面的序列
+            //     { 
+            //       data: "id", 
+            //     },//字段名字和返回的json序列的key对应
+            //     { 
+            //       data: "brief", 
+            //     },
+            //     { 
+            //       data: "brief", 
+            //     },
+            //     { data: "discriminator", },
+            //     {
+            //         data: function (e) {//这里给最后一列返回一个操作列表
+            //             console.log(e);
+            //             //e是得到的json数组中的一个item ，可以用于控制标签的属性。
+            //             return e;
+            //         }
+            //     }
+            // ],
+        });
+    }
+    $(document).ready(function () {
+        showData();
+    });
+</script>
     <!-- Custom Js -->
     <script src="../assets/js/custom-scripts.js"></script> 
  

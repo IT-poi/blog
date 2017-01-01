@@ -197,13 +197,17 @@
             new_password:new_pwd,
           },
           success: function (data) {
-            console.log(data);
-            if (data.status == "true") {
-              // location.reload();
-            }else if (data.status == "pwd_error") {
-              alert(data.data.messages);
-            }
+            if (data.data == "true") {
+              alert(data.messages);
+              $("input[type='password']").each(function(){
+                  $(this).val('');
+              });
+            }else if (data.data == "pwd_error") {
+              alert(data.messages);
+            }else{
+              alert(data.messages);
               // alert(data);
+            }
           }
         })
       }

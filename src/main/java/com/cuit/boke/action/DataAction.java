@@ -12,7 +12,7 @@ import com.cuit.boke.service.ArticleService;
 import com.cuit.boke.service.ReviewService;
 import com.opensymphony.xwork2.ActionSupport;
 
-@Controller("reviewsAction")
+@Controller("dataAction")
 @ParentPackage("json-default")
 @Scope(value="prototype")
 @Namespace("/data")

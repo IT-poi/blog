@@ -182,6 +182,35 @@
 </html>
 <script type="text/javascript">
     $(function(){
+      showData();
+    });
+
+    function submit_btn(){
+        var name = $('#name').val();
+        var profession = $('#profession').val();
+        var elucidation = $('#elucidation').val();
+        var signature = $('#signature').val();
+        var address = $('#address').val();
+        $.ajax({
+        url: '/upadte_info',
+        type:'POST',
+        data:{
+              name:name,
+              profession:profession,
+              elucidation:elucidation,
+              signature:signature,
+              address:address,
+        },success: function (data) {
+          console.log(data);
+          if (data.data == "true") {
+            alert("修改成功");
+            $('#username').text(name);
+          }
+        }
+      })
+    }
+
+    function showData(){
       $.ajax({
         url: '/manager/easyinfo',
         type:'POST',
@@ -198,26 +227,6 @@
           $('#elucidation_label').attr('class','active');
           $('#signature_label').attr('class','active');
           $('#address_label').attr('class','active');
-            // alert(data);
-        }
-      })
-    });
-
-    function submit_btn(){
-        $.ajax({
-        url: '/manager/easyinfo',
-        type:'POST',
-        success: function (data) {
-          // console.log(data);
-          $('#name').val(data['data']['name']);
-          $('#profession').val(data['data']['perfessional']);
-          $('#elucidation').val(data['data']['elucidation']);
-          $('#signature').val(data['data']['signature']);
-
-          $('#name_label').attr('class','active');
-          $('#profession_label').attr('class','active');
-          $('#elucidation_label').attr('class','active');
-          $('#signature_label').attr('class','active');
             // alert(data);
         }
       })

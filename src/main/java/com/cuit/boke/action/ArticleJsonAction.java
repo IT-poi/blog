@@ -170,6 +170,7 @@ public class ArticleJsonAction extends ActionSupport implements ModelDriven<Page
 		PageBean<Article> pageBean = new PageBean<Article>();
 		pageBean.setCurrPage(currPage);
 		pageBean.setPageSize(pageSize);
+		System.out.println(orderBy);
 		pageBean.setOrderBy(orderBy);
 		System.out.println(order);
 		pageBean.setOrder(order);
@@ -182,7 +183,7 @@ public class ArticleJsonAction extends ActionSupport implements ModelDriven<Page
 			pages = articleService.recentArticleByPage(pageBean);
 			result = new com.cuit.boke.dto.Result<PageBean<Article>>("ok", pages, null);
 		} catch (Exception e) {
-//			e.printStackTrace();
+			e.printStackTrace();
 			result = new com.cuit.boke.dto.Result<PageBean<Article>>("error", null, e.getMessage());
 		}
 		return SUCCESS;
@@ -269,23 +270,23 @@ public class ArticleJsonAction extends ActionSupport implements ModelDriven<Page
 			@Result(type="json", params={"root","stringResult"})
 			})
 	public String deleteArticle(){
-		articleId = 1;
 		try {
-			stringResult = new com.cuit.boke.dto.Result<String>("ok", "success", null);
 			articleService.deleteArticleById(articleId);
+			stringResult = new com.cuit.boke.dto.Result<String>("ok", "success", null);
 		} catch (Exception e) {
+			e.printStackTrace();
 			stringResult = new com.cuit.boke.dto.Result<String>("error", "failed", "删除文章失败！");
 		}
 		return SUCCESS;
 	}
 	//修改文章
-	@Action(value="delete", results={
+	@Action(value="update", results={
 			@Result(type="json", params={"root","stringResult"})
 			})
 	public String updateArticle(){
 		Article article = new Article();
 		article.setId(articleId);
-		article.setCreateTime(new Date());
+//		article.setCreateTime(new Date());
 		article.setTitle(title);
 		article.setBrief(brief);
 		article.setContent(content);
@@ -301,12 +302,14 @@ public class ArticleJsonAction extends ActionSupport implements ModelDriven<Page
 		return SUCCESS;
 	}
 	
-	//修改文章
+
+		//添加文章
 		@Action(value="add", results={
 				@Result(type="json", params={"root","stringResult"})
 				})
 		public String addArticle(){
 			Article article = new Article();
+			article.setCreateTime(new Date());
 			article.setTitle(title);
 			article.setBrief(brief);
 			article.setContent(content);
@@ -317,7 +320,7 @@ public class ArticleJsonAction extends ActionSupport implements ModelDriven<Page
 				articleService.saveArticle(article);
 				stringResult = new com.cuit.boke.dto.Result<String>("ok", "success", null);
 			} catch (Exception e) {
-//				e.printStackTrace();
+				e.printStackTrace();
 				stringResult = new com.cuit.boke.dto.Result<String>("error", "failed", "修改文章失败！");
 			}
 			return SUCCESS;
@@ -335,5 +338,53 @@ public class ArticleJsonAction extends ActionSupport implements ModelDriven<Page
 	
 	public int getArticleId() {
 		return articleId;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getBrief() {
+		return brief;
+	}
+
+	public void setBrief(String brief) {
+		this.brief = brief;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public String getImgURL() {
+		return imgURL;
+	}
+
+	public void setImgURL(String imgURL) {
+		this.imgURL = imgURL;
+	}
+
+	public boolean isStick() {
+		return isStick;
+	}
+
+	public void setStick(boolean isStick) {
+		this.isStick = isStick;
+	}
+
+	public int getManagerId() {
+		return managerId;
+	}
+
+	public void setManagerId(int managerId) {
+		this.managerId = managerId;
 	}
 }

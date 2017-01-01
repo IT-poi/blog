@@ -117,6 +117,10 @@ public class PageBean<T> {
 	public void setOrder(String order) {
 		if(order == null){
 			order = DESC;
+			return;
+		}else if(order.isEmpty()){
+			order = DESC;
+			return;
 		}
 		this.order = order;
 	}
@@ -128,6 +132,10 @@ public class PageBean<T> {
 	public void setOrderBy(String orderBy) {
 		if(orderBy == null){
 			orderBy = TIME;
+			return;
+		}else if(orderBy.isEmpty()){
+			orderBy = TIME;
+			return;
 		}
 		this.orderBy = orderBy;
 	}

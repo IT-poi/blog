@@ -63,6 +63,7 @@ public class ArticleServiceImpl implements ArticleService{
 			article.setManager(manager);
 			articleId = articleDao.insert(article);
 		} catch (Exception e) {
+			e.printStackTrace();
 			throw new SaveFailException("保存失败!");
 		}
 		return articleId;

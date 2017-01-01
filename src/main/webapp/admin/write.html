@@ -105,11 +105,17 @@
                 <div class="input-field col s12">
                   <input id="brief" type="text" class="validate" style="font-size: 20px">
                   <label for="brief" id="brief_label" style="font-size: 20px">摘要</label>
-                </div> 
+                </div>
+                <div class="input-field col s12">
+                  <input id="tech" type="radio" name="label" value="1" style="font-size: 20px" checked>
+                  <label for="tech" id="tech_label" style="font-size: 20px">技术</label>
+                  <input id="life" type="radio" name="label" value="2" style="font-size: 20px">
+                  <label for="life" id="life_label" style="font-size: 20px">生活</label>
+                </div>  
                 <div class="file-field input-field col s12">
                   <div class="btn">
                     <span>上传题图</span>
-                    <input type="file" multiple="" onchange="preview(this);">
+                    <input type="file" id="article_pic" multiple="" onchange="preview(this);">
                   </div>
                   <div id="preview"></div>
                 </div>      
@@ -138,7 +144,7 @@
                       </div>
                 </div>
                 <div class="row" align="center">
-                    <button class="btn btn-success">提交</button>
+                    <button class="btn btn-success" onclick="data_upload();">提交</button>
                 </div>
 			
 
@@ -198,6 +204,7 @@
             dataType : 'json',
             data : {
               articleId : article_id,
+              blogger: 'true',
             },
             success : function (data, response, status) {
               
@@ -292,56 +299,62 @@
       text = HtmlUtil.htmlEncodeByRegExp(text);
       var title = $('#title').val();
       if(text == '' || title == ''){
-        layer.msg('请将通知信息填写完整', {icon: 5});
-        return false
+        alert('信息没有填写完整啊，博主SAMA');
+        return false;
       }
-      var ptime = moment().format("YYYY-MM-DD hh:mm:ss");
+      var brief = $('#brief').val();
       var realName;
-      if ($('#notice_file').val() != '') {
-        var array = $('#notice_file').val().split('\\');
+      if ($('#article_pic').val() != '') {
+        var array = $('#article_pic').val().split('\\');
         var realName = array[array.length-1]; //获取文件名
       }
       var sendType = $('input:radio:checked').val();
+      var url = '/article/add';
+      if (article_id != '') {
+        url = '/article/update';
+      }
+      var label = "技术";
+      $("input[name='label']").each(function(){
+          if ($(this).val() == 2) {
+            label = '生活';
+          }
+      });
       $.ajax({
-        url : '../Notice/Notice_add',
+        url : url,
         type : 'post',
         dataType : 'json',
         data:{
               content: text, 
               title: title, 
-              ptime:ptime,
-              file_name: realName,
-              notice_id: notice_id,
-              sendType: sendType,
+              brief: brief,
+              // articleId: article_id,
+              label: label,
+              isStick: 'false',
              },
-        beforeSend : function () {
-          $.messager.progress({
-            text : '正在发布...',
-          });
-        },
         success : function (data, response, status) {
+            console.log(data);
 
-            if ($('#notice_file').val() == '') {
-              $.messager.progress('close');
-              // layer.msg('操作成功!');
-              layer.open({
-                content: '操作成功'
-                ,btn: ['确定']
-                ,yes: function(index, layero){
-                  parent.$('#notice_notice_list').datagrid('reload',{});
-                  page_close();
-                }
-                ,cancel: function(){ 
-                  parent.$('#notice_notice_list').datagrid('reload',{});
-                  page_close();
-                }
-              });
-            }else{
-              if(notice_id != ''){
-                data = notice_id;
-              }
-              file_upload(data);
-            }
+            // if ($('#notice_file').val() == '') {
+            //   $.messager.progress('close');
+            //   // layer.msg('操作成功!');
+            //   layer.open({
+            //     content: '操作成功'
+            //     ,btn: ['确定']
+            //     ,yes: function(index, layero){
+            //       parent.$('#notice_notice_list').datagrid('reload',{});
+            //       page_close();
+            //     }
+            //     ,cancel: function(){ 
+            //       parent.$('#notice_notice_list').datagrid('reload',{});
+            //       page_close();
+            //     }
+            //   });
+            // }else{
+              // if(notice_id != ''){
+              //   data = notice_id;
+              // }
+              // file_upload(data);
+            // }
       
         }
       });
