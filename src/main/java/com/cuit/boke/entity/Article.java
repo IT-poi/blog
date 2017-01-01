@@ -98,12 +98,15 @@ public class Article {
 	}
 
 	public String getImgURL() {
+		if(imgURL == null || imgURL.isEmpty()){
+			imgURL = "/img/1.png";
+		}
 		return imgURL;
 	}
 
 	public void setImgURL(String imgURL) {
-		if(imgURL.isEmpty()){
-			imgURL = "/pictrue/1.png";
+		if(imgURL == null || imgURL.isEmpty()){
+			imgURL = "/img/1.png";
 		}
 		this.imgURL = imgURL;
 	}
