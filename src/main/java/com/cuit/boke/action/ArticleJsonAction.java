@@ -1,6 +1,12 @@
 package com.cuit.boke.action;
 
 
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Namespace;
@@ -11,6 +17,7 @@ import org.springframework.stereotype.Controller;
 
 import com.cuit.boke.dto.PageBean;
 import com.cuit.boke.entity.Article;
+import com.cuit.boke.entity.Manager;
 import com.cuit.boke.service.ArticleService;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -97,6 +104,8 @@ public class ArticleJsonAction extends ActionSupport implements ModelDriven<Page
 	
 	private int totalPage; //总页数
 	
+	private int articleId; //文章id
+	
 	private String orderBy; //排序方式，可以通过最新和最热排序
 	
 	private String order; //排序方式，升序或者降序
@@ -105,11 +114,25 @@ public class ArticleJsonAction extends ActionSupport implements ModelDriven<Page
 	
 	private String label; //文章标签
 	
+	private String title; //文章标题
+	
+	private String brief; // 文章概要
 
+	private String content; // 文章内容
+	
+	private String imgURL; // 图片URL,默认地址为"/"
+
+	private boolean isStick; //是否置顶，默认为否
+
+	private int managerId; //博主id
+
+	
 	@Autowired
 	private ArticleService articleService;
 	
 	private com.cuit.boke.dto.Result<PageBean<Article>> result;
+	
+	private com.cuit.boke.dto.Result<String> stringResult;
 	
 	public PageBean<Article> getPageBean() {
 		return pageBean;
@@ -125,6 +148,14 @@ public class ArticleJsonAction extends ActionSupport implements ModelDriven<Page
 
 	public void setResult(com.cuit.boke.dto.Result<PageBean<Article>> result) {
 		this.result = result;
+	}
+	
+	public void setStringResult(com.cuit.boke.dto.Result<String> stringResult) {
+		this.stringResult = stringResult;
+	}
+	
+	public com.cuit.boke.dto.Result<String> getStringResult() {
+		return stringResult;
 	}
 
 	/**
@@ -233,11 +264,76 @@ public class ArticleJsonAction extends ActionSupport implements ModelDriven<Page
 		}
 		return SUCCESS;
 	}
-
+	//删除文章
+	@Action(value="delete", results={
+			@Result(type="json", params={"root","stringResult"})
+			})
+	public String deleteArticle(){
+		articleId = 1;
+		try {
+			stringResult = new com.cuit.boke.dto.Result<String>("ok", "success", null);
+			articleService.deleteArticleById(articleId);
+		} catch (Exception e) {
+			stringResult = new com.cuit.boke.dto.Result<String>("error", "failed", "删除文章失败！");
+		}
+		return SUCCESS;
+	}
+	//修改文章
+	@Action(value="delete", results={
+			@Result(type="json", params={"root","stringResult"})
+			})
+	public String updateArticle(){
+		Article article = new Article();
+		article.setId(articleId);
+		article.setCreateTime(new Date());
+		article.setTitle(title);
+		article.setBrief(brief);
+		article.setContent(content);
+		article.setImgURL(imgURL);
+		article.setLabel(label);
+		article.setStick(isStick);
+		try {
+			articleService.updateArticle(article);
+			stringResult = new com.cuit.boke.dto.Result<String>("ok", "success", null);
+		} catch (Exception e) {
+			stringResult = new com.cuit.boke.dto.Result<String>("error", "failed", "修改文章失败！");
+		}
+		return SUCCESS;
+	}
+	
+	//修改文章
+		@Action(value="add", results={
+				@Result(type="json", params={"root","stringResult"})
+				})
+		public String addArticle(){
+			Article article = new Article();
+			article.setTitle(title);
+			article.setBrief(brief);
+			article.setContent(content);
+			article.setImgURL(imgURL);
+			article.setLabel(label);
+			article.setStick(isStick);
+			try {
+				articleService.saveArticle(article);
+				stringResult = new com.cuit.boke.dto.Result<String>("ok", "success", null);
+			} catch (Exception e) {
+//				e.printStackTrace();
+				stringResult = new com.cuit.boke.dto.Result<String>("error", "failed", "修改文章失败！");
+			}
+			return SUCCESS;
+		}
 	public PageBean<Article> getModel() {
 //		if(pageBean == null){
 //			pageBean = new PageBean<Article>();
 //		}
 		return pageBean;
+	}
+	
+	public void setArticleId(int articleId) {
+		this.articleId = articleId;
+	}
+	
+	public int getArticleId() {
+		return articleId;
 	}
 }
