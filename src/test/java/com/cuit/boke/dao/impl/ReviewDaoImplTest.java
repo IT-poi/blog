@@ -37,7 +37,7 @@ public class ReviewDaoImplTest {
 		review.setName("kanyuxia");
 		review.setPortraitURL("kanyuxia");
 		review.setContent("好");
-		review.setCteateTime(new Date());
+		review.setCreateTime(new Date());
 
 		review.setParentReview(null);
 		review.setArticle(articleDaoImpl.queryById(Article.class, 1));
@@ -48,7 +48,7 @@ public class ReviewDaoImplTest {
 		review1.setName("kanyuxia");
 		review1.setPortraitURL("kanyuxia");
 		review1.setContent("好");
-		review1.setCteateTime(new Date());
+		review1.setCreateTime(new Date());
 		review1.setParentReview(null);
 		review1.setArticle(articleDaoImpl.queryById(Article.class, 1));
 		reviewDaoImpl.insert(review1);
@@ -58,7 +58,7 @@ public class ReviewDaoImplTest {
 		review2.setName("kanyuxia");
 		review2.setPortraitURL("kanyuxia");
 		review2.setContent("好");
-		review2.setCteateTime(new Date());
+		review2.setCreateTime(new Date());
 		review2.setParentReview(reviewDaoImpl.queryById(Review.class, 1));
 		review2.setArticle(articleDaoImpl.queryById(Article.class, 1));
 		reviewDaoImpl.insert(review2);

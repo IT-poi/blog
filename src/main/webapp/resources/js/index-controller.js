@@ -26,7 +26,12 @@ app.controller("indexController", function($scope,$http) {
 	
 	$scope.search = function(){
 		var search = document.getElementById("search").value;
-		window.location.href='/boke/search.html?keywords='+search;
+		if(search === ""){
+			message("搜索关键字不能为空！");
+			return;
+		}else{
+			window.location.href='/boke/search.html?keywords='+search;
+		}
 	};
 	$(function(){
 		$scope.getManager();

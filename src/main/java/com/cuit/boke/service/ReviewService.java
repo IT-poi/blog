@@ -19,5 +19,13 @@ public interface ReviewService {
 	 * @return 所有评论
 	 */
 	public List<Review> showReview(int articleId);
+	
+	/**
+	 * 新添评论
+	 * @param articleId 文章id
+	 * @param parentId 父评论id
+	 * @param review 评论详情
+	 */
+	public void addReviews(int articleId, String parentId, Review review);
 
 }
