@@ -62,6 +62,42 @@ public class ManagerAction extends ActionSupport {
 		return SUCCESS;
 	}
 	/**
+	 * 管理员修改个人信息Action
+	 */
+	@Action(value = "/upadte_info", results = {
+			@Result(name="success",type="json",params={"root","blogResult"})
+	})
+	public String updateInfo(){
+		try {
+			//调用service验证
+			ManagerBean managerBean = managerService.validLogin(number, password);
+			blogResult = new com.cuit.boke.dto.Result<ManagerBean>("ok", managerBean, null);
+		} catch (Exception e) {
+			e.printStackTrace();
+			blogResult = new com.cuit.boke.dto.Result<ManagerBean>("error", null, "系统错误！");
+		}
+		
+		return SUCCESS;
+	}
+	/**
+	 * 管理员修改密码Action
+	 */
+	@Action(value = "/upadte_pwd", results = {
+			@Result(name="success",type="json",params={"root","blogResult"})
+	})
+	public String updatePwd(){
+		try {
+			//调用service验证
+			ManagerBean managerBean = managerService.validLogin(number, password);
+			blogResult = new com.cuit.boke.dto.Result<ManagerBean>("ok", managerBean, null);
+		} catch (Exception e) {
+			e.printStackTrace();
+			blogResult = new com.cuit.boke.dto.Result<ManagerBean>("error", null, "系统错误！");
+		}
+		
+		return SUCCESS;
+	}
+	/**
 	 * 管理员登出Action
 	 */
 	@Action(value = "/logout", results = {

@@ -76,11 +76,11 @@
 		<div id="page-wrapper">
 		  <div class="header"> 
                         <h1 class="page-header">
-                            个人信息
+                            密码修改
                         </h1>
 						<ol class="breadcrumb">
 					  <li><a href="#">后台</a></li>
-					  <li><a href="#">个人信息</a></li>
+					  <li><a href="#">密码修改</a></li>
 					  
 					</ol> 
 									
@@ -89,39 +89,30 @@
 
 			
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-6">
              <div class="card">
                         <div class="card-action">
-                            个人信息
+                            密码修改
                         </div>
                         <div class="card-content">
                             <form class="col s12">
                               <div class="row">
-                                <div class="input-field col s6">
-                                  <input id="name" type="text" class="validate">
-                                  <label for="name" id="name_label">姓名</label>
+                                <div class="input-field col s12">
+                                  <input id="old_pwd" type="password" class="validate">
+                                  <label for="old_pwd">旧密码</label>
                                 </div>
-                                <div class="input-field col s6">
-                                  <input id="profession" type="text" class="validate">
-                                  <label for="profession" id="profession_label">职业</label>
+                                
+                              </div>
+                              <div class="row">
+                                <div class="input-field col s12">
+                                  <input id="new_pwd" type="password" class="validate">
+                                  <label for="new_pwd">新密码</label>
                                 </div>
                               </div>
                               <div class="row">
                                 <div class="input-field col s12">
-                                  <input id="address" type="text" class="validate">
-                                  <label for="address" id="address_label">住址</label>
-                                </div>
-                              </div>
-                              <div class="row">
-                                <div class="input-field col s12">
-                                  <input id="elucidation" type="text" class="validate">
-                                  <label for="elucidation" id="elucidation_label">个人说明</label>
-                                </div>
-                              </div>
-                              <div class="row">
-                                <div class="input-field col s12">
-                                  <input id="signature" type="text" class="validate">
-                                  <label for="signature" id="signature_label">个性签名</label>
+                                  <input id="con_pwd" type="password" class="validate">
+                                  <label for="con_pwd">确认新密码</label>
                                 </div>
                               </div>
                             </form>
@@ -181,45 +172,30 @@
 
 </html>
 <script type="text/javascript">
-    $(function(){
-      $.ajax({
-        url: '/manager/easyinfo',
-        type:'POST',
-        success: function (data) {
-          // console.log(data);
-          $('#name').val(data['data']['name']);
-          $('#profession').val(data['data']['perfessional']);
-          $('#elucidation').val(data['data']['elucidation']);
-          $('#signature').val(data['data']['signature']);
-          $('#address').val(data['data']['address']);
-
-          $('#name_label').attr('class','active');
-          $('#profession_label').attr('class','active');
-          $('#elucidation_label').attr('class','active');
-          $('#signature_label').attr('class','active');
-          $('#address_label').attr('class','active');
-            // alert(data);
+    function check(){
+      $("input[type='password']").each(function(){
+        if ($(this).val() == '') {
+          $(this).focus();
+          return false;
         }
-      })
-    });
-
+      });
+      if($('#new_pwd').val() != $('#con_pwd').val()){
+        alert("新密码与确认密码不一致");
+        return false;
+      }
+      return true;
+    }
     function submit_btn(){
-        $.ajax({
-        url: '/manager/easyinfo',
-        type:'POST',
-        success: function (data) {
-          // console.log(data);
-          $('#name').val(data['data']['name']);
-          $('#profession').val(data['data']['perfessional']);
-          $('#elucidation').val(data['data']['elucidation']);
-          $('#signature').val(data['data']['signature']);
-
-          $('#name_label').attr('class','active');
-          $('#profession_label').attr('class','active');
-          $('#elucidation_label').attr('class','active');
-          $('#signature_label').attr('class','active');
-            // alert(data);
-        }
-      })
+      // if (check()) {
+      //   $.ajax({
+      //     url: '/manager/easyinfo',
+      //     type:'POST',
+      //     success: function (data) {
+      //       // console.log(data);
+      //       $('#username').text(data['data']['name']);
+      //         // alert(data);
+      //     }
+      //   })
+      // }
     }
 </script>

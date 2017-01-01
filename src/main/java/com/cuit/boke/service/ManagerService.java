@@ -25,5 +25,17 @@ public interface ManagerService {
 	 * @return
 	 */
 	public Manager showManagerForPerson(int id);
+	/**
+	 * 修改博主信息
+	 * @param id
+	 * @return
+	 */
+	public Manager updateInfo(Manager manager);
+	/**
+	 * 修改博主密码
+	 * @param id
+	 * @return
+	 */
+	public Manager updatePwd(int id,String password);
 
 }

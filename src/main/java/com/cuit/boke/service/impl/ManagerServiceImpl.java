@@ -50,9 +50,7 @@ public class ManagerServiceImpl implements ManagerService{
 	public Manager showManagerForPerson(int id) {
 		Manager manager = showManager(id);
 		//将去到的manager复制到一个新的实体中，去掉博主账号，密码和创建时间
-		//如果直接修改manager对象，会将修改后的结果同步到数据库中,
-		//因为此时查询到的manager已经和数据库关联起来了,当方法执行完毕，
-		//session关闭，session关闭之前会提交事物，于是会将修改后的manager提交
+		//如果直接修改manager对象，会将修改后的结果同步到数据库中
 		Manager easyManager = new Manager();
 		easyManager.setId(manager.getId());
 		easyManager.setName(manager.getName());
@@ -61,5 +59,15 @@ public class ManagerServiceImpl implements ManagerService{
 		easyManager.setPerfessional(manager.getPerfessional());
 		easyManager.setSignature(manager.getSignature());
 		return easyManager;
+	}
+
+	public Manager updateInfo(Manager manager) {
+//		showManager
+		return null;
+	}
+
+	public Manager updatePwd(int id, String password) {
+		
+		return null;
 	}
 }
