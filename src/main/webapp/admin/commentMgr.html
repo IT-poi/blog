@@ -21,7 +21,11 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
     <link rel="stylesheet" href="../assets/js/Lightweight-Chart/cssCharts.css"> 
 </head>
-
+<style type="text/css">
+    a{
+        cursor: pointer;
+    }
+</style>
 <body>
     <div id="wrapper">
         <nav class="navbar navbar-default top-navbar" role="navigation">
@@ -88,8 +92,8 @@
             <div id="page-inner">
 
 			
-                <div class="row" id="review_content">
-                   <div class="col-md-12 col-sm-12">
+                <div class="row" id="review_content" >
+                   <!-- <div class="col-md-12 col-sm-12">
                          <div class="card teal">
                             <div class="card-content white-text">
                               <span class="card-title">罗小虫</span>
@@ -106,7 +110,7 @@
                               <button class="btn btn-success">提交</button>
                             </div>
                           </div>
-                    </div>
+                    </div> -->
                 </div>
 			
 
@@ -156,56 +160,58 @@
 <script type="text/javascript">
 var article_id = getUrlParameter('id');
 $(function(){
-    var url = "";//显示全部评论的url
+    var url = "/ArticleAction/getArticle";//显示全部评论的url
     //若文章id不为空，则加载文章的
     if(article_id != ''){
-        $.ajax({
-            url: '/manager/easyinfo',
-            type:'POST',
-            data:{
-                article_id:article_id,
-            }
-            success: function (data) {
-                url = "";  //显示当前文章下评论的url
-                review_list(url);
-            }
-        })
+        url = '/ArticleAction/getArticle';
+        review_list(url);
     }else{
         review_list(url);
     }
   
 });
 //回复评论
-function review_reback(id){
+function review_reply(id){
+    var url = '/reviews/sendReviews';
+    var review = $('#reply_input'+id).val();
+    var name = $('#username').text();
     $.ajax({
         url: url,
         type:'POST',
         data:{
-            article_id:article_id,
-        }
+            articleId:article_id,
+            parentId:id,
+            name:name,
+            url:'',
+            level:'2',
+            email:'',
+            reviewCount:review,
+        },
         success: function (data) {
             alert("回复成功");
-          // for (var i = data.length - 1; i >= 0; i--) {
-          //     data[i];
-          //     html = html+"";
-          // }
-            $('#review_content').html(html);
+            myrefresh();
+            // $('#review_content').html(html);
         }
     })
 }
 //删除评论
-function review_reback(id){
-    $.ajax({
-        url: url,
-        type:'POST',
-        data:{
-            review_id:id,
-        }
-        success: function (data) {
-            alert("删除成功");
-            myrefresh();
-        }
-    })
+function review_delete(id){
+    var url = "/reviews/delete";
+    var r=confirm("确认删除吗？");
+    if (r==true){
+        $.ajax({
+            url: url,
+            type:'POST',
+            data:{
+                reviewId:id,
+            },
+            success: function (data) {
+                alert("删除成功");
+                myrefresh();
+            }
+        })
+    }
+    
 }
 //拼接评论列表
 function review_list(url){
@@ -215,16 +221,35 @@ function review_list(url){
         url: url,
         type:'POST',
         data:{
-            article_id:article_id,
-        }
-        success: function (data) {
-          // for (var i = data.length - 1; i >= 0; i--) {
-          //     data[i];
-          //     html = html+"";
-          // }
+            articleId:article_id,
+        },success: function (data) {
+            // url = "";  //显示当前文章下评论的url
+            // review_list(url);
+            var reviews = data.data.reviews;
+            var reply = "";
+            var html = '';
+            for (var i = 0; i <= reviews.length - 1; i++) {
+                // if (reviews[i].parentReview == '') {
+                //     reply = '——'+reviews[i].parentReview.name+'回复：'+reviews[i].parentReview.content;
+                // }
+                if (reviews[i].level == 1) {
+                    html = html + '<div class="col-md-12 col-sm-12"><div class="card teal"><div class="card-content white-text"><span class="card-title">'+reviews[i].name+'</span><p>'+reviews[i].content+'</p><p align="right" id="reply'+reviews[i].id+'"></p><div class="card-action" align="right"><a class="activator">回复</a><a onclick="review_delete(\''+reviews[i].id+'\')">删除</a></div></div><div class="card-reveal"><span class="card-title grey-text text-darken-4">回复内容<i class="material-icons right">close</i></span><input type="text" id="reply_input'+reviews[i].id+'"><button class="btn btn-success" onclick="review_reply(\''+reviews[i].id+'\')">提交</button></div></div></div>';
+                } 
+            }
             $('#review_content').html(html);
-        }
-    })
+            for (var i = 0; i <= reviews.length - 1; i++) {
+                
+                if (reviews[i].level == 2) {
+                    if (reviews[i].parentReview != '') {
+                        reply = '——'+reviews[i].name+' 回复 '+reviews[i].parentReview.name+'：'+reviews[i].content;
+                        $('#reply'+reviews[i].parentReview.id).text(reply);
+                        $('#reply_input'+reviews[i].parentReview.id).val(reviews[i].content);
+                    }
+                } 
+            }
+            
+        },
+    });
 }
 </script>
 </html>
