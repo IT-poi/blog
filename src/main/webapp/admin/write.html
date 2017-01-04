@@ -68,7 +68,7 @@
                 <ul class="nav" id="main-menu">
 
                     <li>
-                        <a class="active-menu waves-effect waves-dark" href="index.html"><i class="fa fa-dashboard"></i>数据统计</a>
+                        <a href="index.html"><i class="fa fa-dashboard"></i>数据统计</a>
                     </li>
                     <li>
                         <a href="articleMgr.html" class="waves-effect waves-dark"><i class="fa fa-desktop"></i>文章管理</a>
@@ -215,6 +215,11 @@
               $('#brief_label').attr('class',"active");
               $('#header_title').text('修改文章');
               $('#header_active').text('修改文章');
+
+              var label = data['data']['article'].label;
+              if (label == '生活') {
+                $('#life').attr('checked','checked');
+              }
               //html字符串处理
               var html = data['data']['article'].content;
               var decodeHTML = HtmlUtil.htmlDecodeByRegExp(html);
@@ -314,11 +319,10 @@
         url = '/article/update';
       }
       var label = "技术";
-      $("input[name='label']").each(function(){
-          if ($(this).val() == 2) {
-            label = '生活';
-          }
-      });
+      var label_val = $("input[name='label']:checked").val();
+      if (label_val == 2) {
+        label = '生活';
+      }
       $.ajax({
         url : url,
         type : 'post',
@@ -327,13 +331,13 @@
               content: text, 
               title: title, 
               brief: brief,
-              // articleId: article_id,
+              articleId: article_id,
               label: label,
               isStick: 'false',
              },
         success : function (data, response, status) {
-            console.log(data);
-
+            alert('操作成功');
+            window.location="/admin/articleMgr.html";
             // if ($('#notice_file').val() == '') {
             //   $.messager.progress('close');
             //   // layer.msg('操作成功!');

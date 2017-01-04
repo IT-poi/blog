@@ -185,5 +185,46 @@
 
 
 </body>
+<script type="text/javascript">
+    $(document).ready(function() {
 
+        $.ajax({
+            url : '/ArticleAction/getArticle',
+            type : 'post',
+            dataType : 'json',
+            data : {
+              articleId : article_id,
+              blogger: 'true',
+            },
+            success : function (data, response, status) {
+              
+              console.log(data);
+              $('#title').val(data['data']['article'].title);
+              $('#brief').val(data['data']['article'].brief);
+              $('#title_label').attr('class',"active");
+              $('#brief_label').attr('class',"active");
+              $('#header_title').text('修改文章');
+              $('#header_active').text('修改文章');
+
+              var label = data['data']['article'].label;
+              if (label == '生活') {
+                $('#life').attr('checked','checked');
+              }
+              //html字符串处理
+              var html = data['data']['article'].content;
+              var decodeHTML = HtmlUtil.htmlDecodeByRegExp(html);
+              // editor.setContent(decodeHTML);
+              //当编辑器就绪时添加内容
+              editor.ready(function () { 
+                 // alert(decode);
+                 editor.setContent(decodeHTML);
+              });
+              
+            }
+          
+        });
+
+      
+    });
+</script>
 </html>
