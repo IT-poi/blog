@@ -42,6 +42,7 @@ app.controller("indexController", function($scope,$http) {
 		if(response.status === "OK"){
 			$scope.recentPages = response.data;
 			$scope.pageList = response.data.list;
+			
 			console.log($scope.pageList);
 		}else{
 			console.log(response.messages);
@@ -72,6 +73,7 @@ app.controller("indexController", function($scope,$http) {
 		        success(function(response){
 		        	console.log(response);
 		        	$scope.recentPages = response.data;
+
 		        	$scope.pageList = response.data.list;
 		        	console.log($scope.pageList);
 //		        	loader.hide();

@@ -109,6 +109,7 @@
     .left_mid_box{
       margin-top: 25px;
       width: 100%;
+      padding-bottom: 25px;
       /*  border-bottom: 2px solid #aad3e5;*/
     }
     .left_mid_box_con{
@@ -298,9 +299,11 @@
 
       <div class="left_mid_box">
         <div class="left_mid_box_con ">
-        	<h4 ng-modle="articles.article.content">{{articles.article.content}}</h4>
+        <!-- <h4 ng-modle="articles.article.content">{{articles.article.content}}</h4> -->
+        <!-- <xmp ng-modle="articles.article.content">{{articles.article.content}}</xmp> -->
+          <div id="article_content"></div>
         </div>
-        <div class="left_mid_box_img"><img style="width: 600px;height: 300px" src="/resources/img/1.jpg"></div>
+
       </div>
     </div>
     <div class="comment">
@@ -335,7 +338,7 @@
 	    <div class="left_mid_box_1">  
 	      <div class="mess_img"> <img src="/resources/img/2.png"></div>
 	      <a href="https://{{x.url}}" target="_blank"><span class="mess_name">{{x.name}}</span></a>
-	      <span class="mess_flo">第一楼</span>
+	      <span class="mess_flo">第{{x.floor}}楼</span>
 	      <span class="mess_time">{{x.createTime}}</span>
 	      <div class="mess_con">
 	        <p>{{x.content}}</p>

@@ -189,8 +189,11 @@
     <script src="../assets/js/dataTables/jquery.dataTables.js"></script>
     <script src="../assets/js/dataTables/dataTables.bootstrap.js"></script>
     <script type="text/javascript">
-        function myrefresh(){
-           window.location.reload();
+        
+        //查看评论操作
+        function article_review(id){
+            var url = "/admin/commentMgr.html?id="+id;
+            window.location=url;
         }
         //删除操作
         function article_delete(id){
@@ -249,7 +252,7 @@
                     console.log(data);
                     var html = '';
                     for(var i = 0; i<data.data.list.length; i++){
-                        html = '<tr class="gradeX"><td class="center">'+data.data.list[i]['title']+'</td><td class="center">'+data.data.list[i]['createTime']+'</td><td class="center">'+data.data.list[i]['pageView']+'</td><td class="center">'+data.data.list[i]['commentNum']+'</td><td class="center"><button class="btn btn-info" onclick="article_update(\''+data.data.list[i]['id']+'\')">修改</button>&nbsp;<button class="btn btn-danger" onclick="article_delete(\''+data.data.list[i]['id']+'\')">删除</button></td></tr>' + html;
+                        html = '<tr class="gradeX"><td class="center">'+data.data.list[i]['title']+'</td><td class="center">'+data.data.list[i]['createTime']+'</td><td class="center">'+data.data.list[i]['pageView']+'</td><td class="center">'+data.data.list[i]['commentNum']+'</td><td style="width:25%" class="center"><button class="btn btn-success" onclick="article_review(\''+data.data.list[i]['id']+'\')">查看评论</button>&nbsp;<button class="btn btn-info" onclick="article_update(\''+data.data.list[i]['id']+'\')">修改</button>&nbsp;<button class="btn btn-danger" onclick="article_delete(\''+data.data.list[i]['id']+'\')">删除</button></td></tr>' + html;
                     }
                     
                     $('#data_body').html(html);

@@ -88,13 +88,14 @@
             <div id="page-inner">
 
 			
-                <div class="row">
-                   <div class="col-md-4 col-sm-4">
+                <div class="row" id="review_content">
+                   <div class="col-md-12 col-sm-12">
                          <div class="card teal">
                             <div class="card-content white-text">
                               <span class="card-title">罗小虫</span>
                               <p>hh，什么辣鸡博客</p>
-                              <div class="card-action">
+                              <p align="right">——成龙 回复：李才辣鸡</p>
+                              <div class="card-action" align="right">
                                 <a href="#" class="activator">回复</a>
                                 <a href="#">删除</a>
                               </div>
@@ -152,5 +153,78 @@
  
 
 </body>
-
+<script type="text/javascript">
+var article_id = getUrlParameter('id');
+$(function(){
+    var url = "";//显示全部评论的url
+    //若文章id不为空，则加载文章的
+    if(article_id != ''){
+        $.ajax({
+            url: '/manager/easyinfo',
+            type:'POST',
+            data:{
+                article_id:article_id,
+            }
+            success: function (data) {
+                url = "";  //显示当前文章下评论的url
+                review_list(url);
+            }
+        })
+    }else{
+        review_list(url);
+    }
+  
+});
+//回复评论
+function review_reback(id){
+    $.ajax({
+        url: url,
+        type:'POST',
+        data:{
+            article_id:article_id,
+        }
+        success: function (data) {
+            alert("回复成功");
+          // for (var i = data.length - 1; i >= 0; i--) {
+          //     data[i];
+          //     html = html+"";
+          // }
+            $('#review_content').html(html);
+        }
+    })
+}
+//删除评论
+function review_reback(id){
+    $.ajax({
+        url: url,
+        type:'POST',
+        data:{
+            review_id:id,
+        }
+        success: function (data) {
+            alert("删除成功");
+            myrefresh();
+        }
+    })
+}
+//拼接评论列表
+function review_list(url){
+    var html = "";
+    
+    $.ajax({
+        url: url,
+        type:'POST',
+        data:{
+            article_id:article_id,
+        }
+        success: function (data) {
+          // for (var i = data.length - 1; i >= 0; i--) {
+          //     data[i];
+          //     html = html+"";
+          // }
+            $('#review_content').html(html);
+        }
+    })
+}
+</script>
 </html>

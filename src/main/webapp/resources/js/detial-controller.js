@@ -99,13 +99,19 @@ app.controller("detialController", function($scope,$http) {
 	        success(function(response){
 	        	$scope.articles = response.data;
 	        	$scope.reviewList = response.data.reviews;
+
 	        	if($scope.reviewList.length>=1){
 	        		$scope.haveReviews = true;
 	        	}else if($scope.reviewList.length<=0){
 	        		$scope.haveReviews = false;
 	        	}
+				console.log($scope.articles);
+		        $scope.articles.article.content = HtmlUtil.htmlDecodeByRegExp($scope.articles.article.content);
+		        // console.log($scope.article.content);
+	        	$('#article_content').html($scope.articles.article.content);
 	        	console.log("-----------------------");
-	        	console.log($scope.reviewList.length);
+	        	console.log($scope.reviewList);
+
 	        });
 	};
 	

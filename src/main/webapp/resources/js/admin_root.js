@@ -10,7 +10,10 @@ $(function(){
     }
   })
 });
-
+//刷新当前页面
+function myrefresh(){
+   window.location.reload();
+}
 //查找url中的参数(传入参数名)
 function getUrlParameter(pname){
   var urlinfo=window.location.href;     //获取当前页面的url 
