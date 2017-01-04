@@ -47,7 +47,11 @@ public class ArticleServiceImpl implements ArticleService{
 		int pageCount = (totalCount + pageBean.getPageSize() -1) / pageBean.getPageSize();
 		pageBean.setTotalPage(pageCount);
 		if (pageBean.getCurrPage() > pageCount) {
-			throw new UnknowException("请求页面参数错误");
+			if(pageBean.getCurrPage()==1 && pageCount==0){
+				return pageBean;
+			}else {
+				throw new UnknowException("请求页面的参数错误");
+			}
 		}
 		//封装每页显示的数据
 		int begin = (pageBean.getCurrPage() - 1)*pageBean.getPageSize();
@@ -94,11 +98,9 @@ public class ArticleServiceImpl implements ArticleService{
 	
 	public ArticleBean queryArticleById(String blogger, int articleId) {
 		Article article = articleDao.queryById(Article.class, articleId);
-		if (blogger != null) {
-			if(blogger.equals("true")){
-				article.setPageView(article.getPageView()+1);
-				articleDao.update(article);
-			}
+		if (blogger == null || !blogger.equals("true")) {
+			article.setPageView(article.getPageView()+1);
+			articleDao.update(article);
 		}
 		List<Review> reviews = reviewDao.queryByArticleId(articleId);
 		ArticleBean articleBean = new ArticleBean(article, reviews);
@@ -121,7 +123,11 @@ public class ArticleServiceImpl implements ArticleService{
 		int pageCount = (totalCount + pageBean.getPageSize() -1) / pageBean.getPageSize();
 		pageBean.setTotalPage(pageCount);
 		if (pageBean.getCurrPage() > pageCount) {
-			throw new UnknowException("请求页面参数错误");
+			if(pageBean.getCurrPage()==1 && pageCount==0){
+				return pageBean;
+			}else {
+				throw new UnknowException("请求页面的参数错误");
+			}
 		}
 		//封装每页显示的数据
 		int begin = (pageBean.getCurrPage() - 1)*pageBean.getPageSize();
@@ -147,7 +153,11 @@ public class ArticleServiceImpl implements ArticleService{
 		int pageCount = (totalCount + pageBean.getPageSize() -1) / pageBean.getPageSize();
 		pageBean.setTotalPage(pageCount);
 		if (pageBean.getCurrPage() > pageCount || pageBean.getCurrPage()<=0) {
-			throw new UnknowException("请求页面参数错误");
+			if(pageBean.getCurrPage()==1 && pageCount==0){
+				return pageBean;
+			}else {
+				throw new UnknowException("请求页面的参数错误");
+			}
 		}
 		//封装每页显示的数据
 		int begin = (pageBean.getCurrPage() - 1)*pageBean.getPageSize();

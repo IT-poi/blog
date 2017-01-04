@@ -103,6 +103,13 @@ public class ReviewDaoImplTest {
 	@Test
 	@Rollback(false)
 	@Transactional
+	public void testMax(){
+		System.out.println(reviewDaoImpl.maxFooler(1));
+	}
+	
+	@Test
+	@Rollback(false)
+	@Transactional
 	public void testArticle(){
 		Article article = articleDaoImpl.queryById(Article.class, 1);
 		System.out.println(article.getContent());

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.cuit.boke.dao.ArticleDao;
 import com.cuit.boke.dao.ReviewDao;
+import com.cuit.boke.dto.PageBean;
 import com.cuit.boke.entity.Article;
 import com.cuit.boke.entity.Review;
 import com.cuit.boke.service.ReviewService;
@@ -45,6 +46,15 @@ public class ReviewServiceImpl implements ReviewService{
 			pId = Integer.valueOf(parentId).intValue();
 			Review parentReview = reviewDao.queryById(Review.class, pId);
 			review.setParentReview(parentReview);
+			review.setFloor(parentReview.getFloor());
+		}else{
+			reviewDao.queryByPage(Review.class, 0, 1, PageBean.TIME, PageBean.DESC);
+			int i = reviewDao.maxFooler(articleId);
+			if(i < 0){
+				review.setFloor(1);
+			}else {
+				review.setFloor(i+1);
+			}
 		}
 		reviewDao.insert(review);
 	}

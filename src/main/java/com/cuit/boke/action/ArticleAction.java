@@ -42,8 +42,10 @@ public class ArticleAction extends ActionSupport{
 	@Override
 	public String execute() throws Exception {
 		try {
+			System.out.println("-----------------------------------");
+			System.out.println(blogger);
 			ArticleBean articleBean = articleService.queryArticleById(blogger, articleId);
-			blogger = "";
+//			blogger = null;
 			result = new com.cuit.boke.dto.Result<ArticleBean>("ok", articleBean, null);
 		} catch (Exception e) {
 			e.printStackTrace();

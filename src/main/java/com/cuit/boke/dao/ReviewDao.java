@@ -20,5 +20,11 @@ public interface ReviewDao extends GenericDao<Review, Integer>{
 	 */
 	public void delete(Review review);
 	
+	/**
+	 * 查询当前文章下的最大楼层
+	 * @param articleId
+	 * @return
+	 */
+	public int maxFooler(int articleId);
 	
 }

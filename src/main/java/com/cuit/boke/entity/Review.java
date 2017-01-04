@@ -26,6 +26,10 @@ public class Review {
 	// 该评论的级别
 	@Column(nullable = false)
 	private int level;
+	
+	// 该评论的级别
+	@Column(columnDefinition = "int default 1",nullable = false)
+	private int floor;
 
 	// 该评论的内容
 	@Column(nullable = false)
@@ -173,6 +177,14 @@ public class Review {
 		this.article = article;
 	}
 
+	public void setFloor(int floor) {
+		this.floor = floor;
+	}
+	
+	public int getFloor() {
+		return floor;
+	}
+	
 	@Override
 	public String toString() {
 		return "Review [id=" + id + ", level=" + level + ", content=" + content + ", name=" + name + ", portraitURL="
