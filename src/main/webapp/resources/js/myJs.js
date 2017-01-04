@@ -30,7 +30,7 @@ function init(){
 function message(messages){
   $.bootstrapGrowl(messages, {
 	  ele: 'body', // which element to append to
-	  type: 'warning', // (null, 'warning', 'info', 'danger', 'success')
+	  type: 'info', // (null, 'warning', 'info', 'danger', 'success')
 	  offset: {from: 'top', amount: 60}, // 'top', or 'bottom'
 	  align: 'right', // ('left', 'right', or 'center')
 	  width: 250, // (integer, or 'auto')
@@ -39,6 +39,20 @@ function message(messages){
 	  stackup_spacing: 10 // spacing between consecutively stacked growls.
 	});
 };
+
+function message(messages, type){
+	  $.bootstrapGrowl(messages, {
+		  ele: 'body', // which element to append to
+		  type: type, // (null, 'warning', 'info', 'danger', 'success')
+		  offset: {from: 'top', amount: 60}, // 'top', or 'bottom'
+		  align: 'right', // ('left', 'right', or 'center')
+		  width: 250, // (integer, or 'auto')
+		  delay: 4000,
+		  allow_dismiss: true,
+		  stackup_spacing: 10 // spacing between consecutively stacked growls.
+		});
+	};
+
 /**
  * html工具方法
  * @type {Object}

@@ -48,8 +48,8 @@ public class ArticleAction extends ActionSupport{
 //			blogger = null;
 			result = new com.cuit.boke.dto.Result<ArticleBean>("ok", articleBean, null);
 		} catch (Exception e) {
-			e.printStackTrace();
-			result = new com.cuit.boke.dto.Result<ArticleBean>("error", null, "系统错误");
+//			e.printStackTrace();
+			result = new com.cuit.boke.dto.Result<ArticleBean>("error", null, e.getMessage());
 		}
 		return SUCCESS;
 	}
