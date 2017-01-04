@@ -1,5 +1,7 @@
 package com.cuit.boke.action;
 
+import java.util.List;
+
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
@@ -20,6 +22,8 @@ public class ReviewsAction extends ActionSupport{
 
 	private static final long serialVersionUID = 1L;
 	
+	private int reviewId;//评论id
+	
 	private String reviewCount;//评论内容
 	
 	private String name; //评论者name
@@ -35,6 +39,8 @@ public class ReviewsAction extends ActionSupport{
 	private int articleId; //所属文章id
 	
 	private com.cuit.boke.dto.Result<String> result; //返回结果
+	
+	private com.cuit.boke.dto.Result<List<Review>> reviewResult;//返回文章下的所有结果
 	
 	
 	@Autowired
@@ -60,6 +66,40 @@ public class ReviewsAction extends ActionSupport{
 		} catch (Exception e) {
 			e.printStackTrace();
 			result = new com.cuit.boke.dto.Result<String>("error", "failed", "评论失败！");
+		}
+		return SUCCESS;
+	}
+	/**
+	 * 删除评论
+	 * @return
+	 */
+	@Action(value="delete", results={
+			@Result(type="json", params={"root","result"})
+			})
+	public String delete(){
+		try {
+			reviewService.deleteReview(reviewId);
+			result = new com.cuit.boke.dto.Result<String>("ok", "success", null);
+		} catch (Exception e) {
+//			e.printStackTrace();
+			result = new com.cuit.boke.dto.Result<String>("error", "failed", e.getMessage());
+		}
+		return SUCCESS;
+	}
+	
+	/**
+	 * 拿到文章下的所有评论
+	 * @return
+	 */
+	@Action(value="reviewList", results={
+			@Result(type="json", params={"root","result"})
+			})
+	public String reviewList(){
+		try {
+			List<Review> reviews = reviewService.getReviews(articleId);
+			reviewResult = new com.cuit.boke.dto.Result<List<Review>>("ok", reviews, null);
+		} catch (Exception e) {
+			reviewResult = new com.cuit.boke.dto.Result<List<Review>>("ok", null, e.getMessage());
 		}
 		return SUCCESS;
 	}
@@ -130,6 +170,20 @@ public class ReviewsAction extends ActionSupport{
 	
 	public void setArticleId(int articleId) {
 		this.articleId = articleId;
+	}
+
+	public int getReviewId() {
+		return reviewId;
+	}
+
+	public void setReviewId(int reviewId) {
+		this.reviewId = reviewId;
+	}
+	public com.cuit.boke.dto.Result<List<Review>> getReviewResult() {
+		return reviewResult;
+	}
+	public void setReviewResult(com.cuit.boke.dto.Result<List<Review>> reviewResult) {
+		this.reviewResult = reviewResult;
 	}
 	
 }

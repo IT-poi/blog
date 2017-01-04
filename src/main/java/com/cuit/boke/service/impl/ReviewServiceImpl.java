@@ -58,9 +58,23 @@ public class ReviewServiceImpl implements ReviewService{
 		}
 		reviewDao.insert(review);
 	}
+	
+	
 
 	public int reviewsCount() {
 		return reviewDao.queryCount(Review.class);
 	}
 
+	//删除评论
+	public void deleteReviews(int id) {
+		reviewDao.deleteById(Review.class, id);
+	}
+	
+	//获取文章所有评论
+	public List<Review> getReviews(int articleId) {
+		return reviewDao.queryByArticleId(articleId);
+	}
+
 }
+
+	

@@ -33,6 +33,12 @@ public interface ReviewService {
 	 * @param review 评论详情
 	 */
 	public void addReviews(int articleId, String parentId, Review review);
+	
+	/**
+	 * 删除所选评论
+	 * @param id 评论id
+	 */
+	public void deleteReviews(int id);
 
-
+	public List<Review> getReviews(int articleId);
 }
