@@ -40,5 +40,16 @@ public interface ReviewService {
 	 */
 	public void deleteReviews(int id);
 
+	/**
+	 * 拿到当前评论文章id下的所有评论
+	 * @param articleId
+	 * @return
+	 */
 	public List<Review> getReviews(int articleId);
+	
+	/**
+	 * 拿到所有评论
+	 * @return
+	 */
+	public List<Review> getAll();
 }

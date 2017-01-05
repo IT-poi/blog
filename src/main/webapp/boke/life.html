@@ -110,7 +110,7 @@
         margin-top: 60px;
         margin-left: -15px;
         margin-bottom: 185px;
-        padding-left: 50px;
+        padding-left: 40px;
         height: 40px;
         line-height: 40px;
         border-bottom: 40px solid #259cc7; 
@@ -280,7 +280,7 @@
 
         <div class="col-md-2  animated fadeInRight black ">
         
-          <div ng-repeat="x in pageList" class="right_box">{{x.createTime}}</div>
+          <div ng-repeat="x in pageList" class="right_box">{{x.createTime | date:'yyyy-MM-dd'}}</div>
           
         </div>
    <!--  </div>

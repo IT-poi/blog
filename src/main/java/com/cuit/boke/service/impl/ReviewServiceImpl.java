@@ -75,6 +75,10 @@ public class ReviewServiceImpl implements ReviewService{
 		return reviewDao.queryByArticleId(articleId);
 	}
 
+	public List<Review> getAll() {
+		return reviewDao.queryAll(Review.class);
+	}
+
 }
 
 	

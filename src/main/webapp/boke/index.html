@@ -31,6 +31,13 @@
             margin: 0 auto;
             background-color: #d0ecf8;
         }
+        .baseBlockIn{
+			box-shadow:-2px 2px 2px #444;
+			-moz-box-shadow:2px 2px 2px #444;
+			-webkit-box-shadow:0px 2px 10px #444;
+			position:relative;
+			z-index:1;
+		}
         
         .height-big {
             height: 75px;
@@ -284,23 +291,16 @@
 
         </div>
 
-        <div class="col-md-2  animated fadeInRight black " style="padding-right:50px">
+        <div class="col-md-2  animated fadeInRight black baseBlockIn" style="padding-right:50px; padding-bottom:20px;">
             <img style="margin: 30px 45px;" src="resources/img/2.png">
-            <div class="right_box">我的资料 </div>
+            <div class="right_box">博主信息 </div>
             <p ng-model="blogger.name" style= "margin-top: 10px;">博主：{{blogger.name}}</p>
             <p ng-model="blogger.address">现居：{{blogger.address}}</p>
             <P ng-model="blogger.perfessional">职业：{{blogger.perfessional}}</P>
             <p ng-model="blogger.signature">签名：{{blogger.signature}}</p>
-            <div class="right_box">最近访客 </div>
-            <p style="margin-top: 10px;">姓名：杨青</p>
-            <p>网名：DanceSmile | 即步非烟</p>
-            <p>现居：天津市—滨海新区</p>
-            <P>职业：网站设计、网站制作</P>
-            <div class="right_box">我的资料 </div>
-            <p style="margin-top: 10px;">姓名：杨青</p>
-            <p>网名：DanceSmile | 即步非烟</p>
-            <p>现居：天津市—滨海新区</p>
-            <P>职业：网站设计、网站制作</P>
+            <div class="right_box" style="margin-bottom:20px;">博主推荐 </div>
+            
+            <li ng-repeat = "x in stickArticles" style="padding-bottom:10px;"><a href="/boke/detial.html?id={{x.id}}">{{x.title}}</a></li>
 
 
         </div>

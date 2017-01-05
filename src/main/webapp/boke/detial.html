@@ -67,7 +67,7 @@
         /* background-color: #e5f3f7;*/
 
         left: 16%;
-        opacity: 0.8;
+       /*  opacity: 0.8; */
         
         
       }
@@ -130,7 +130,13 @@
 
     }
     .left_mid_box_line{
-      background-color:#e1fef7;
+      /* background-color:#e1fef7; */
+      /* background-color: #F4F7F7; */
+      background-color: #A0EECC;
+    /*   background-color: #0DE2EA;
+      background-color: #5E88FC; */
+      
+      
       padding-left: 30px;
       padding-top: 10px;
       border-radius:10px;
@@ -138,11 +144,18 @@
       min-height: 600px;
 
     }
+	.baseBlockIn{
+		box-shadow:-2px 2px 2px #444;
+		-moz-box-shadow:2px 2px 2px #444;
+		-webkit-box-shadow:0px 2px 10px #444;
+		position:relative;
+		z-index:1;
+	}
     a:hover{
       text-decoration:none;
     }
     .comment textarea{
-      width: 60%;
+      width: 100%;
       height: 100px;
       margin:0 auto;
 
@@ -167,6 +180,14 @@
     .left_mid_box_1{
       border-top: 1px solid #259cc7;
       padding-top: 15px;
+      margin-bottom:20px;
+    }
+    .left_mid_box_2{
+      border-left: solid #5E88FC 1.8px;/* dashed */
+      padding-left: 20px;
+      margin-left: 60px;
+      padding-top:10px;
+      padding-bottom:10px;
     }
 	.mess_img {
       width: 100px;
@@ -179,6 +200,12 @@
      
       color:#259cc7;
       margin-left: 15px;
+
+    }
+    .mess_name_2{
+     
+      color:#259cc7;
+      margin-left: 0px;
 
     }
     .mess_flo{
@@ -194,7 +221,7 @@
       min-height:100px;
       margin-left: 115px;
       margin-top: 10px;
-      margin-bottom: 20px;
+      /* margin-bottom: 20px;  */
       border: 1px solid #aad3e5;
     }
     .mess_con a{
@@ -214,12 +241,12 @@
    .left_mid_box_mess label{
    	  display: flex;
    	  width:60%;
-   	  margin-left:20%;
+   	  /* margin-left:20%; */
    }
    .left_mid_box_mess input{
    	  display: flex;
-   	  width:60%;
-   	  margin-left:20%;
+/*    	  width:60%;
+   	  margin-left:20%; */
    }
    .tishi{
    		width:80%;
@@ -237,9 +264,8 @@
       resize : none;/*去掉右下角标签*/
       border-color: #ffffff;
      /*  outline:none;/*去掉点击后的篮框*/ 
+     }
      
-   
-}
   </style>
 </head>
 <body ng-app="detial" ng-controller="detialController" class="gray">
@@ -294,7 +320,7 @@
 <hr style="border-width:2px; margin: 0 0 5px 0;">
 <div class="height-ban">
   <div class="col-md-8 height-ban animated zoomIn red ">
-    <div class="left_mid_box_line ">
+    <div class="left_mid_box_line baseBlockIn">
       <h1 class="text-center" ng-model="articles.article.title">{{articles.article.title}}</h1>
 
       <div class="left_mid_box">
@@ -307,23 +333,19 @@
       </div>
     </div>
     <div class="comment">
-       <h3>发表你的留言</h3>
+       <h3 style="margin-top:20px;">发表你的留言</h3>
     
       <div class="input-group input-group-lg left_mid_box_mess">
-      	<div >
+      	<div class="baseBlockIn" style="padding:20px; width:60%; margin-left:20%; background-color: #F4F7F7;">
       	  <label>昵称（必填）</label>
-          <input id="userName" type="text" class="form-control" placeholder="username" style="width:60%"/>
+          <input id="userName" type="text" class="form-control" placeholder="username"/>
           <label>邮箱（非必填）</label>
-          <input id="userEmail" type="text" class="form-control" placeholder="email" style="width:60%"/>
+          <input id="userEmail" type="text" class="form-control" placeholder="email"/>
           <label>个人地址（非必填）</label>
-          <input id="userUrl" type="text" class="form-control" placeholder="url" style="width:60%; margin-bottom:20px;"/>
-          <textarea id="review" ></textarea>
+          <input id="userUrl" type="text" class="form-control" placeholder="url" style="margin-bottom:20px;"/>
+          <textarea class="form-control" id="review" placeholder="评论内容"></textarea>
+          <div style="text-align: right;width: 100%"><button type="button" ng-click="reviews()" class="btn btn-info" style="margin-top:20px;">评论</button></div>
       	</div>
-<!--         <form >
-          
-          
-        </form> -->
-        <div style="margin-left:20%; text-align: right;width: 60%"><button type="button" ng-click="reviews()" class="btn btn-info">评论</button></div>
         
       </div>
     <!-- left_mid_box 结束-->
@@ -342,9 +364,24 @@
 	      <span class="mess_time">{{x.createTime}}</span>
 	      <div class="mess_con">
 	        <p>{{x.content}}</p>
-	        <a data-toggle="modal" data-target="#myModal" href="#">回复</a>
+	        <a href="#2" ng-click="response(x.id)">回复</a>
+	        <!-- data-toggle="modal" data-target="#myModal" --> 
+	      </div>
+	      
+	      <div ng-repeat = "y in second" ng-if="y.parentReview.floor == x.floor">
+	    	<div class="left_mid_box_2">  
+		      <div class="mess_img"> <img src="/resources/img/2.png"></div>
+		      <a href="{{y.url}}" target="_blank"><span class="mess_name">{{y.name}}</span></a>
+		      <span>回复</span>
+		      <a href="{{x.url}}" target="_blank"><span class="mess_name_2">{{x.name}}</span></a>
+		      <span class="mess_time">{{y.createTime | date:'yyyy-MM-dd hh:MM:ss'}}</span>
+		      <div class="mess_con">
+		        <p>{{y.content}}</p>
+		      </div>
+		    </div>
 	      </div>
 	    </div>
+	    
     </div>
     
     
@@ -361,13 +398,13 @@
       <div class="modal-header" style="text-align:center">
         <h4 class="modal-title">悄悄回复ta</h4>
       </div>
-      <div class="modal-body" style="height:130px;">
-        <textarea id="response">
+      <div class="modal-body " style="height:130px;">
+        <textarea class = "form-control" placeholder="回复内容" id="response">
           </textarea>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-        <button type="button" class="btn btn-primary">回复</button>
+        <button type="button" class="btn btn-success" id="responseBtn">回复</button>
       </div>
     </div>
   </div>

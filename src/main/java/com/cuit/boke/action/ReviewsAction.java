@@ -61,6 +61,7 @@ public class ReviewsAction extends ActionSupport{
 		review.setUrl(url);
 		review.setEmail(email);
 		try {
+			System.out.println("---------parentId:"+parentId);
 			reviewService.addReviews(articleId, parentId, review);
 			result = new com.cuit.boke.dto.Result<String>("ok", "success", null);
 		} catch (Exception e) {
@@ -88,11 +89,11 @@ public class ReviewsAction extends ActionSupport{
 	}
 	
 	/**
-	 * 拿到文章下的所有评论
+	 * 拿到指定文章id下的所有评论
 	 * @return
 	 */
 	@Action(value="reviewList", results={
-			@Result(type="json", params={"root","result"})
+			@Result(type="json", params={"root","reviewResult"})
 			})
 	public String reviewList(){
 		try {
@@ -103,9 +104,24 @@ public class ReviewsAction extends ActionSupport{
 		}
 		return SUCCESS;
 	}
+	
+	/**
+	 * 拿到所有评论
+	 * @return
+	 */
+	@Action(value="all", results={
+			@Result(type="json", params={"root","reviewResult"})
+			})
+	public String all(){
+		try {
+			List<Review> reviews = reviewService.getAll();
+			reviewResult = new com.cuit.boke.dto.Result<List<Review>>("ok", reviews, null);
+		} catch (Exception e) {
+			reviewResult = new com.cuit.boke.dto.Result<List<Review>>("ok", null, e.getMessage());
+		}
+		return SUCCESS;
+	}
 
-	
-	
 	
 	//setter and getter
 	public com.cuit.boke.dto.Result<String> getResult() {
