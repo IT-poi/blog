@@ -25,6 +25,9 @@
     a{
         cursor: pointer;
     }
+    .card .card-action{
+        border-top: 0px;
+    }
 </style>
 <body>
     <div id="wrapper">
@@ -246,11 +249,11 @@ function review_list(url){
             }
             console.log(reviewList);
             for (var i = 0; i <= reviewList.length - 1; i++) {
-                html = '<div class="col-md-12 col-sm-12"><div class="card teal"><div class="card-content white-text"><span class="card-title">'+reviewList[i].name+'</span><p>'+reviewList[i].content+'</p><p align="right" id="reply'+reviewList[i].id+'"></p><div class="card-action" align="right"><a class="activator">回复</a><a onclick="review_delete(\''+reviewList[i].id+'\')">删除</a></div></div><div class="card-reveal"><span class="card-title grey-text text-darken-4">回复内容<i class="material-icons right">close</i></span><input type="text" id="reply_input'+reviewList[i].id+'"><button class="btn btn-success" onclick="review_reply(\''+reviewList[i].id+'\',\''+reviewList[i].article.id+'\')">提交</button></div></div></div>';
+                html = '<div class="col-md-8 col-sm-8 col-md-offset-2"><div class="card"><div class="card-content"><span class="card-title">'+reviewList[i].name+'</span><p>&nbsp;&nbsp;'+reviewList[i].content+'</p><hr><p style="padding:5px;" align="left" id="reply'+reviewList[i].id+'"></p><div class="card-action" align="right"><a style="color:#FF6600" class="activator">回复</a><a style="color:#FF6600"  onclick="review_delete(\''+reviewList[i].id+'\')">删除</a></div></div><div class="card-reveal"><span class="card-title grey-text text-darken-4">回复内容<i class="material-icons right">close</i></span><input type="text" id="reply_input'+reviewList[i].id+'"><button class="btn btn-success" onclick="review_reply(\''+reviewList[i].id+'\',\''+reviewList[i].article.id+'\')">提交</button></div></div></div>';
                 html1 = '';
                 for (var j = 0; j <= second.length - 1; j++) {
                     if (second[j].parentReview.floor == reviewList[i].floor) {
-                        html1 = html1 + '——'+second[j].name+' 回复 '+reviewList[i].name+'：'+second[j].content + '&nbsp;<a style="color:#FFA96A" onclick="review_delete(\''+second[j].id+'\')">删除</a><br>';
+                        html1 = html1 + '<span style="color:#009688">'+second[j].name+'</span>：'+second[j].content + '&nbsp;&nbsp;&nbsp;<a style="color:#FF6600" onclick="review_delete(\''+second[j].id+'\')">删除</a><br>';
                     }
                 }
                 $('#review_content').append(html);
