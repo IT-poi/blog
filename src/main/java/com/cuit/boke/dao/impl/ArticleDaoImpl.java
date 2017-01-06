@@ -67,5 +67,13 @@ public class ArticleDaoImpl extends GenericDaoImpl<Article, Integer> implements 
 		BigInteger count = (BigInteger) sessionFactory.getCurrentSession().createSQLQuery(sql).uniqueResult();
 		return count.intValue();
 	}
+
+
+	public List<Article> getStickArticles() {
+		String sql = "select * from article where stick = 1";
+		@SuppressWarnings("unchecked")
+		List<Article> list = (List<Article>) sessionFactory.getCurrentSession().createSQLQuery(sql).addEntity(Article.class).list();
+		return list;
+	}
 	
 }

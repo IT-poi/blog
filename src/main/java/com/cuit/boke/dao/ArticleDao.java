@@ -41,4 +41,10 @@ public interface ArticleDao extends GenericDao<Article, Integer> {
 	 * @return 查询结果文章列表
 	 */
 	public List<Article> queryByKeywordsPage(String keywords, int begin, int pageSize);
+	
+	/**
+	 * 查询博主推荐文章列表
+	 * @return 查询结果
+	 */
+	public List<Article> getStickArticles();
 }

@@ -186,4 +186,8 @@ public class ArticleServiceImpl implements ArticleService{
 		}
 		return articleCount;
 	}
+
+	public List<Article> stickArticles() {
+		return articleDao.getStickArticles();
+	}
 }

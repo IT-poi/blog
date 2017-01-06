@@ -2,6 +2,7 @@ package com.cuit.boke.action;
 
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
@@ -134,6 +135,8 @@ public class ArticleJsonAction extends ActionSupport implements ModelDriven<Page
 	
 	private com.cuit.boke.dto.Result<String> stringResult;
 	
+	private com.cuit.boke.dto.Result<List<Article>> stickResult;
+	
 	public PageBean<Article> getPageBean() {
 		return pageBean;
 	}
@@ -158,6 +161,22 @@ public class ArticleJsonAction extends ActionSupport implements ModelDriven<Page
 		return stringResult;
 	}
 
+	
+	
+	@Action(value="stickList", results={
+			@Result(type="json", params={"root","stickResult"})
+			})
+	public String getStickAricles(){
+		try {
+			List<Article> articles = articleService.stickArticles();
+			stickResult = new com.cuit.boke.dto.Result<List<Article>>("ok", articles, null);
+		} catch (Exception e) {
+			e.printStackTrace();
+			stickResult = new com.cuit.boke.dto.Result<List<Article>>("error", null, e.getMessage());
+		}
+		return SUCCESS;
+	}
+	
 	/**
 	 * 查询文章列表
 	 * @return
@@ -386,5 +405,13 @@ public class ArticleJsonAction extends ActionSupport implements ModelDriven<Page
 
 	public void setManagerId(int managerId) {
 		this.managerId = managerId;
+	}
+
+	public com.cuit.boke.dto.Result<List<Article>> getStickResult() {
+		return stickResult;
+	}
+
+	public void setStickResult(com.cuit.boke.dto.Result<List<Article>> stickResult) {
+		this.stickResult = stickResult;
 	}
 }

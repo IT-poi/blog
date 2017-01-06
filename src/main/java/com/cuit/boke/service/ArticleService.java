@@ -1,5 +1,7 @@
 package com.cuit.boke.service;
 
+import java.util.List;
+
 import com.cuit.boke.dto.ArticleBean;
 import com.cuit.boke.dto.PageBean;
 import com.cuit.boke.entity.Article;
@@ -87,5 +89,11 @@ public interface ArticleService {
 	 */
 	public PageBean<Article> articlePageByKeywords(String keywords, PageBean<Article> article)
 			throws UnknowException;
+	
+	/**
+	 * 返回博主推荐的文章
+	 * @return 以list返回
+	 */
+	public List<Article> stickArticles();
 	
 }

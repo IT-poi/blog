@@ -22,6 +22,7 @@ app.controller("indexController", function($scope,$http) {
 	//初始化
 	$scope.recentPages = {};
 	$scope.pageList = [];
+	$scope.stickArticles = {};
 //	$scope.blogger = {};
 	
 	$scope.search = function(){
@@ -35,6 +36,7 @@ app.controller("indexController", function($scope,$http) {
 	};
 	$(function(){
 		$scope.getManager();
+		$scope.stickArticle();
 	});
 
 	$http.get("/article/list")
@@ -48,6 +50,21 @@ app.controller("indexController", function($scope,$http) {
 			console.log(response.messages);
 		}
 	});
+	
+	//博主推荐
+	$scope.stickArticle = function(){
+		console.log("博主推荐");//TODO
+			$http.get('/article/stickList')
+	        .success(function(response){
+	        	console.log(response);
+	        	if(response.status === "ok"){
+	        		$scope.stickArticles = response.data;
+	        	}else{
+	        		console.log(response.message);
+	        	}
+	        	
+	        });
+	};
 	
 	
 	//请求页面
