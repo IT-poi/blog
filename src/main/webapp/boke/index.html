@@ -32,9 +32,7 @@
             background-color: #d0ecf8;
         }
         .baseBlockIn{
-			box-shadow:-2px 2px 2px #444;
-			-moz-box-shadow:2px 2px 2px #444;
-			-webkit-box-shadow:0px 2px 10px #444;
+		
 			position:relative;
 			z-index:1;
 		}
@@ -142,6 +140,11 @@
             height: 200px;
             width: 100%;
             border-bottom: 2px solid #aad3e5;
+        }
+        .left_t {
+        color:#259cc7;
+        margin-top:-30px;
+        float:left;
         }
         
         .left_mid_box_con {
@@ -265,9 +268,14 @@
 	                </div>
 	                <div class="left_mid_box_img">
 	                	<a href="/boke/detial.html?id={{x.id}}"><img src="/resources/img/1.jpg"></a>
-	                </div>
-	            </div>
+	               </div>
+	               
             </div>
+             <div class="left_t">
+	                <i class="glyphicon glyphicon-comment">{{x.createTime|date:'yyyy-MM-dd HH:mm:ss'}}</i>
+	                <i class="glyphicon glyphicon-comment">浏览量({{x.pageView}})</i>
+	                <i class="glyphicon glyphicon-comment">评论({{x.commentNum}})</i></div>
+	            </div> 
 
 
             <div class="foot_ye">
