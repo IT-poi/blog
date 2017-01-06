@@ -39,6 +39,7 @@ public class ReviewServiceImpl implements ReviewService{
 	public void addReviews(int articleId, String parentId, Review review) {
 		int pId;
 		Article article = articleDao.queryById(Article.class, articleId);
+		article.setCommentNum(article.getCommentNum()+1);
 		review.setCreateTime(new Date());
 		review.setPortraitURL("");
 		review.setArticle(article);
@@ -67,6 +68,10 @@ public class ReviewServiceImpl implements ReviewService{
 
 	//删除评论
 	public void deleteReviews(int id) {
+		Review review = reviewDao.queryById(Review.class, id);
+		Article article =review.getArticle();
+		article.setCommentNum(article.getCommentNum()-1);
+		articleDao.update(article);
 		reviewDao.deleteById(Review.class, id);
 	}
 	

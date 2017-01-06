@@ -32,7 +32,7 @@ public class ReviewDaoImpl extends GenericDaoImpl<Review, Integer> implements Re
 				+ "order by create_time DESC limit 0,1";
 		List<Review> reviews = sessionFactory.getCurrentSession().createSQLQuery(sql).addEntity(Review.class).list();
 		if(reviews.size()<=0){
-			System.out.println("空");
+			System.out.println("空");//TODO
 		}else{
 			Review review = reviews.get(0);
 			i = review.getFloor();
