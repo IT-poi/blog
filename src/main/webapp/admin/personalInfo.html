@@ -21,7 +21,11 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
     <link rel="stylesheet" href="../assets/js/Lightweight-Chart/cssCharts.css"> 
 </head>
-
+<style type="text/css">
+  textarea{
+    height: 200px;
+  }
+</style>
 <body>
     <div id="wrapper">
         <nav class="navbar navbar-default top-navbar" role="navigation">
@@ -121,9 +125,11 @@
                               </div>
                               <div class="row">
                                 <div class="input-field col s12">
-                                  <input  type="text" class="validate">
-                                  <textarea id="elucidation"></textarea>
-                                  <label for="elucidation" id="elucidation_label">个人说明</label>
+                                  <!-- <input  type="text" class="validate"> -->
+                                  <label>个人说明</label>
+                                  <br>
+                                  <textarea id="elucidation" placeholder="请输入个人说明"></textarea>
+                                  <!-- <label for="elucidation" id="elucidation_label">个人说明</label> -->
                                 </div>
                               </div>
                             </form>
